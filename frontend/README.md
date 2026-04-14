@@ -45,13 +45,15 @@ frontend/
 
 ## 🔗 API
 
-Le frontend communique avec le backend sur `http://localhost:5000`.
+Le frontend communique avec le backend sur `http://localhost:5000` par défaut.
 
-L'URL de l'API peut être configurée via la variable d'environnement `VITE_API_URL` dans un fichier `.env` du frontend:
+Si le backend utilise un autre port ou une autre adresse, créez un fichier `.env` dans `frontend/` et ajoutez :
 
-```
+```env
 VITE_API_URL=http://localhost:5000
 ```
+
+> Assurez-vous que le backend tourne avant de tester le formulaire de contact.
 
 ## 📱 Pages disponibles
 
