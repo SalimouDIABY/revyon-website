@@ -1,53 +1,103 @@
-# 🚀 Guide de Déploiement - Revyon Tech
+# 🚀 Déploiement - Revyon Tech
 
-## Configuration Production
+## Option 1 : Solution Complètement Gratuite (Recommandée)
 
-Avant le déploiement, assurez-vous de configurer les fichiers `.env` correctement.
+### Architecture
+- **Frontend** : Vercel (gratuit)
+- **Backend** : Railway Hobby (gratuit)
+- **Base de données** : PlanetScale (gratuit, 1GB)
+- **Email** : Zoho (déjà configuré)
 
-### ⚙️ Backend (.env)
+### Avantages
+- ✅ 100% gratuit
+- ✅ Déploiement automatique depuis GitHub
+- ✅ SSL automatique
+- ✅ Bon pour démarrage
 
-Copier `.env.example` en `.env` et remplir les valeurs réelles :
+### Limites
+- ⚠️ Railway Hobby : 512MB RAM, sommeil après 24h inactivité
+- ⚠️ PlanetScale : 1GB de données gratuites
+- ⚠️ Vercel : 100GB bandwidth/mois
 
-```bash
-cp backend/.env.example backend/.env
+### Étapes de déploiement
+
+#### 1. Railway (Backend + Base de données)
+1. Aller sur [railway.app](https://railway.app)
+2. Se connecter avec GitHub
+3. Cliquer "New Project" → "Deploy from GitHub"
+4. Sélectionner ton repo `revyon-website`
+5. Railway détectera automatiquement les services
+
+#### 2. PlanetScale (Base de données)
+1. Aller sur [planetscale.com](https://planetscale.com)
+2. Créer une base de données gratuite
+3. Copier les credentials dans Railway
+
+#### 3. Vercel (Frontend)
+1. Aller sur [vercel.com](https://vercel.com)
+2. Se connecter avec GitHub
+3. Importer ton repo
+4. Configurer `VITE_API_URL` vers ton backend Railway
+
+## Option 2 : Solution Hybride (Railway + Vercel)
+
+### Architecture
+- **Frontend** : Vercel (gratuit)
+- **Backend + DB** : Railway Hobby (gratuit)
+
+### Avantages
+- ✅ Plus simple à configurer
+- ✅ Base de données incluse dans Railway
+- ✅ Moins de services à gérer
+
+### Configuration
+Dans Railway, ajouter ces variables d'environnement :
+```
+SMTP_PASS=jrB9 5cEb 1fgN
+ADMIN_API_KEY=votre-cle-securisee
+NODE_ENV=production
 ```
 
-#### Valeurs critiques à configurer :
+## 📋 Variables d'environnement
 
-```env
-# Port du serveur (généralement 5000 en local, port défini par l'hébergeur en prod)
+### Backend (Railway)
+```
 SERVER_PORT=5000
 NODE_ENV=production
-
-# Email - SMTP pour les notifications
-SMTP_HOST=smtp.gmail.com       # Ou votre service SMTP
+DB_HOST=${{ MYSQLHOST }}
+DB_PORT=${{ MYSQLPORT }}
+DB_USER=${{ MYSQLUSER }}
+DB_PASSWORD=${{ MYSQLPASSWORD }}
+DB_NAME=${{ MYSQLDATABASE }}
+ADMIN_API_KEY=votre-cle-securisee
+SMTP_HOST=smtp.zoho.com
 SMTP_PORT=587
-SMTP_USER=revyontech@gmail.com # Votre email Gmail
-SMTP_PASS=your-app-password    # App Password (pas le mot de passe Gmail)
-SMTP_FROM=noreply@revyontech.com
-CONTACT_EMAIL=revyontech@gmail.com  # Reçoit les messages du formulaire
-
-# Base de données
-DB_HOST=127.0.0.1             # Ou l'IP/host du serveur MySQL
-DB_PORT=3306
-DB_USER=root                  # Utilisateur MySQL
-DB_PASSWORD=                  # Mot de passe MySQL
-DB_NAME=revyontech
-
-# Clé API Admin (générer une clé sécurisée)
-ADMIN_API_KEY=your-secure-random-key-min-32-chars
-
-# CORS - URL du frontend en production
-CORS_ORIGIN=https://revyontech.com    # À adapter à votre domaine
-
-# API URLs
-API_URL=https://revyontech.com/api
-CLIENT_URL=https://revyontech.com
+SMTP_USER=contact@revyontech.com
+SMTP_PASS=jrB9 5cEb 1fgN
+SMTP_FROM=Revyon Tech <contact@revyontech.com>
+CONTACT_EMAIL=revyontech@gmail.com
 ```
 
-### 🔑 Obtenir une Gmail App Password
+### Frontend (Vercel)
+```
+VITE_API_URL=https://ton-backend.railway.app
+```
 
-1. Allez sur [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+## 🔧 Migration vers payant
+
+Quand ton site grandira :
+- Railway : $5/mois (pas de sommeil)
+- PlanetScale : $0.01/GB/mois supplémentaire
+- Vercel : gratuit jusqu'à 1000 déploiements/mois
+
+## 🏁 Démarrage rapide
+
+1. **Railway** : Déployer backend
+2. **Vercel** : Déployer frontend
+3. **Domaine** : Pointer `revyontech.com` vers Vercel
+4. **Test** : Vérifier formulaire de contact
+
+Besoin d'aide pour une étape spécifique ?
 2. L'authentification 2FA doit être activée
 3. Sélectionnez "Mail" et "Windows Computer"
 4. Générez une password
