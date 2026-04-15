@@ -6,6 +6,7 @@ import nodemailer from 'nodemailer';
 import mysql from 'mysql2/promise';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import healthRoutes from './routes/health.js';
 
 // Load environment variables
 dotenv.config();
@@ -163,10 +164,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Server is running' });
-});
+// Health check routes
+app.use('/api', healthRoutes);
 
 // Contact form submission endpoint
 app.post('/api/contact', async (req, res) => {
