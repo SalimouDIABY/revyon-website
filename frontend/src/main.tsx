@@ -6,4 +6,4 @@ import { keepAliveService } from "./services/keepAlive";
 
 // Démarre le service pour garder le backend actif
 keepAliveService.start();
-  
+  createRoot(document.getElementById("root")!).render(<App />);
