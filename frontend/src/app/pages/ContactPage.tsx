@@ -48,9 +48,9 @@ export function ContactPage() {
       }, 5000);
 
     } catch (error: any) {
-      console.error('Contact form error:', error);
-      setErrors(['Erreur de connexion. Vérifiez que le serveur est en cours d\'exécution sur le port 5000.']);
-      setLoading(false);
+        console.error('Contact form error:', error);
+        setErrors(['Une erreur de connexion est survenue. Veuillez réessayer ou nous contacter directement via WhatsApp.']);
+        setLoading(false);
     }
   };
 
@@ -106,7 +106,7 @@ export function ContactPage() {
                   </div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Email</div>
-                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>revyontech@gmail.com</p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>contact@revyontech.com</p>
                   </div>
                 </div>
 
