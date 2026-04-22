@@ -13,7 +13,7 @@ export function ContactPage() {
     setErrors([]); // Clear errors when user starts typing
   };
 
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://optimistic-illumination-production-f616.up.railway.app';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

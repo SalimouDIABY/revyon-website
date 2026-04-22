@@ -2,7 +2,7 @@
 class KeepAliveService {
   private intervalId: number | null = null;
   private readonly PING_INTERVAL = 10 * 60 * 1000; // 10 minutes en millisecondes
-  private readonly API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  private readonly API_URL = import.meta.env.VITE_API_URL || 'https://optimistic-illumination-production-f616.up.railway.app';
 
   // Démarre le service de ping automatique
   start() {
