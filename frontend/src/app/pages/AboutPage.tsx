@@ -11,7 +11,8 @@ const team = [
     desc: "Assure la supervision globale du projet, valide le contenu, le design et la structure de l'entreprise.",
     color: "#F97316",
     bg: "#FFF7ED",
-    photo: "https://images.unsplash.com/photo-1645736593731-4eef033ac37a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3NtYW4lMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMHN1aXR8ZW58MXx8fHwxNzc1MzA3NzA4fDA&ixlib=rb-4.1.0&q=80&w=400",
+    initials: "SD",
+    avatarGradient: "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
   },
   {
     name: "Mamadou Ramadane Condé",
@@ -20,7 +21,8 @@ const team = [
     desc: "Gère le projet site web, assure le suivi des tâches et coordonne l'équipe des directeurs.",
     color: "#0EA5E9",
     bg: "#E0F2FE",
-    photo: "https://images.unsplash.com/photo-1764169689207-e23fb66e1fcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwcHJvZmVzc2lvbmFsJTIwbWFuJTIwYnVzaW5lc3MlMjBsZWFkZXJ8ZW58MXx8fHwxNzc1MzA3NzEwfDA&ixlib=rb-4.1.0&q=80&w=400",
+    initials: "MC",
+    avatarGradient: "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
   },
   {
     name: "Fatoumata Kanny Diallo",
@@ -29,7 +31,8 @@ const team = [
     desc: "Gère les dépenses, prévoit le budget et documente les processus pour les futurs projets.",
     color: "#8B5CF6",
     bg: "#EDE9FE",
-    photo: "https://images.unsplash.com/photo-1666867936058-de34bfd5b320?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3N3b21hbiUyMHByb2Zlc3Npb25hbCUyMGNvbmZpZGVudCUyMHNtaWxlfGVufDF8fHx8MTc3NTMwNzcwOXww&ixlib=rb-4.1.0&q=80&w=400",
+    initials: "FD",
+    avatarGradient: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)",
   },
   {
     name: "Ibrahima Sory Barry",
@@ -38,7 +41,8 @@ const team = [
     desc: "Rédige les contenus, gère les textes et images, et adapte le message marketing.",
     color: "#10B981",
     bg: "#D1FAE5",
-    photo: "https://images.unsplash.com/photo-1642257834579-eee89ff3e9fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMGFmcmljYW4lMjBtYW4lMjBlbnRyZXByZW5ldXIlMjBwcm9mZXNzaW9uYWx8ZW58MXx8fHwxNzc1MzA3NzA5fDA&ixlib=rb-4.1.0&q=80&w=400",
+    initials: "IB",
+    avatarGradient: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
   },
   {
     name: "Ousmane Kanté",
@@ -47,7 +51,8 @@ const team = [
     desc: "Définit les services à proposer, rédige les offres commerciales et oriente les relations clients.",
     color: "#F97316",
     bg: "#FFF7ED",
-    photo: "https://images.unsplash.com/photo-1573167627769-e201a7ddf409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZyUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzUzMDc3MDZ8MA&ixlib=rb-4.1.0&q=80&w=400",
+    initials: "OK",
+    avatarGradient: "linear-gradient(135deg, #F97316 0%, #FBBF24 100%)",
   },
 ];
 
@@ -363,17 +368,58 @@ export function AboutPage() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                <div style={{ position: "relative", height: "220px", background: member.bg }}>
-                  <img
-                    src={member.photo}
-                    alt={member.name}
+                {/* ── AVATAR INITIALES (remplace la photo) ── */}
+                <div
+                  style={{
+                    position: "relative",
+                    height: "220px",
+                    background: member.bg,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* Cercle décoratif de fond */}
+                  <div
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "top",
+                      position: "absolute",
+                      width: "180px",
+                      height: "180px",
+                      borderRadius: "50%",
+                      background: member.avatarGradient,
+                      opacity: 0.08,
                     }}
                   />
+                  {/* Cercle principal avec initiales */}
+                  <div
+                    style={{
+                      width: "110px",
+                      height: "110px",
+                      borderRadius: "50%",
+                      background: member.avatarGradient,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: `0 8px 32px ${member.color}40`,
+                      border: "4px solid #fff",
+                      position: "relative",
+                      zIndex: 1,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "2rem",
+                        fontWeight: "800",
+                        color: "#fff",
+                        letterSpacing: "0.05em",
+                        fontFamily: "Georgia, serif",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {member.initials}
+                    </span>
+                  </div>
+                  {/* Badge emoji */}
                   <div
                     style={{
                       position: "absolute",
@@ -391,6 +437,7 @@ export function AboutPage() {
                     {member.emoji}
                   </div>
                 </div>
+
                 <div style={{ padding: "20px" }}>
                   <h3 style={{ fontWeight: "700", color: "#0EA5E9", marginBottom: "4px", fontSize: "1rem" }}>
                     {member.name}
@@ -452,6 +499,3 @@ export function AboutPage() {
     </div>
   );
 }
-
-
-
