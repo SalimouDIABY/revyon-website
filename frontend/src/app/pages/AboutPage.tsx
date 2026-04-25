@@ -434,7 +434,7 @@ export function AboutPage() {
                       border: `1px solid ${member.bg}`,
                     }}
                   >
-                    {member.emoji}
+                    {/* {member.emoji} */}
                   </div>
                 </div>
 
@@ -456,7 +456,7 @@ export function AboutPage() {
                   >
                     {member.role}
                   </div>
-                  <p style={{ color: "#0F172A", fontSize: "0.87rem", lineHeight: "1.7" }}>{member.desc}</p>
+                  <p style={{ color: "#0F172A", fontSize: "0.87rem", lineHeight: "1.7" }}></p>
                 </div>
               </div>
             ))}
