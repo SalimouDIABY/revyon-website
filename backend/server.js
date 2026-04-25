@@ -199,14 +199,16 @@ app.post('/api/contact', async (req, res) => {
     if (!email || !validator.isEmail(email)) {
       errors.push('L\'email est invalide');
     }
-    if (!phone || !validator.isMobilePhone(phone, 'any', { strictMode: false })) {
+    const phoneNormalized = phone.startsWith('00224') ? phone.replace('00224', '+224') : 
+                        (!phone.startsWith('+') ? `+224${phone.replace(/\s/g, '')}` : phone);
+    if (!phone || !validator.isMobilePhone(phoneNormalized, 'any', { strictMode: false })) {
       errors.push('Le numéro de téléphone est invalide');
     }
     if (!service || service.trim().length === 0) {
       errors.push('Veuillez sélectionner un service');
     }
-    if (!message || message.trim().length < 100) {
-      errors.push('Le message doit contenir au moins 100 caractères');
+    if (!message || message.trim().length < 10) {
+      errors.push('Le message doit contenir au moins 10 caractères');
     }
 
     if (errors.length > 0) {

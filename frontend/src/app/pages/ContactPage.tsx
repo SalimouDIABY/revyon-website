@@ -249,8 +249,8 @@ export function ContactPage() {
                       style={{ width: "100%", padding: "12px 14px", border: "1px solid #E2E8F0", borderRadius: "8px", fontSize: "0.95rem", fontFamily: "inherit", resize: "vertical", boxSizing: "border-box" }}
                     />
                     <div style={{ fontSize: "0.8rem", color: form.message.length >= 100 ? "#059669" : "#64748B", marginTop: "6px" }}>
-                      {form.message.length} / 100 caractères minimum
-                      {form.message.length >= 100 && " ✓"}
+                      {form.message.length} / 10 caractères minimum
+                      {form.message.length >= 10 && " ✓"}
                     </div>
                   </div>
 
