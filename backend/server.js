@@ -199,9 +199,10 @@ app.post('/api/contact', async (req, res) => {
     if (!email || !validator.isEmail(email)) {
       errors.push('L\'email est invalide');
     }
-    const phoneNormalized = phone.startsWith('00224') ? phone.replace('00224', '+224') : 
-                        (!phone.startsWith('+') ? `+224${phone.replace(/\s/g, '')}` : phone);
-    if (!phone || !validator.isMobilePhone(phoneNormalized, 'any', { strictMode: false })) {
+    // Nouveau check pour les numéros de téléphone guinéens
+    const phoneClean = phone.replace(/[\s\-\.]/g, '');
+    const phoneRegex = /^(\+224|00224)?[6][0-9]{8}$/;
+    if (!phone || !phoneRegex.test(phoneClean)) {
       errors.push('Le numéro de téléphone est invalide');
     }
     if (!service || service.trim().length === 0) {
