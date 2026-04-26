@@ -57,7 +57,7 @@ export function Footer() {
                 { label: "Accueil", path: "/" },
                 { label: "À propos", path: "/a-propos" },
                 { label: "Services", path: "/services" },
-                { label: "Portfolio", path: "/portfolio" },
+                //{ label: "Portfolio", path: "/portfolio" },
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
@@ -107,7 +107,7 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 <Mail size={16} color="#fff" />
                 <a href="mailto:revyontech@gmail.com" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
-                  revyontech@gmail.com
+                  contact@revyontech.com
                 </a>
               </div>
               <div className="flex items-center gap-3">

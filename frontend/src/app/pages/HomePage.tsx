@@ -600,13 +600,13 @@ export function HomePage() {
             >
               Nous contacter <ArrowRight size={18} />
             </Link>
-            <Link
+            {/* <Link
               to="/portfolio"
               className="btn-secondary"
               style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
             >
               Voir notre portfolio
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>
