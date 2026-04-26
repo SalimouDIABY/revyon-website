@@ -241,7 +241,7 @@ export function ContactPage() {
                     </label>
                     <textarea
                       name="message"
-                      placeholder="Décrivez votre projet, vos besoins, vos objectifs... (minimum 100 caractères)"
+                      placeholder="Décrivez votre projet, vos besoins, vos objectifs... (minimum 10 caractères)"
                       value={form.message}
                       onChange={handleChange}
                       required
