@@ -1,13 +1,31 @@
 import { Link } from "react-router";
-import { Target, Eye, Heart, ArrowRight, Crown } from "lucide-react";
+import {
+  Target,
+  Eye,
+  Heart,
+  ArrowRight,
+  Crown,
+  Zap,
+  Lightbulb,
+  Globe,
+  Clock,
+  Award,
+  ShieldCheck,
+  Briefcase,
+  BarChart2,
+  Megaphone,
+  Handshake,
+  Settings,
+} from "lucide-react";
 
-const ABOUT_IMAGE = "https://images.unsplash.com/photo-1594098882270-66ce9399b040?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwdGVjaCUyMHN0YXJ0dXAlMjBjb21wYW55JTIwb2ZmaWNlfGVufDF8fHx8MTc3NTMwNzcxMHww&ixlib=rb-4.1.0&q=80&w=1080";
+const ABOUT_IMAGE =
+  "https://images.unsplash.com/photo-1594098882270-66ce9399b040?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwdGVjaCUyMHN0YXJ0dXAlMjBjb21wYW55JTIwb2ZmaWNlfGVufDF8fHx8MTc3NTMwNzcxMHww&ixlib=rb-4.1.0&q=80&w=1080";
 
 const team = [
   {
     name: "Salimou DIABY",
     role: "Directeur Général",
-    emoji: "👑",
+    Icon: Crown,
     desc: "Assure la supervision globale du projet, valide le contenu, le design et la structure de l'entreprise.",
     color: "#F97316",
     bg: "#FFF7ED",
@@ -17,7 +35,7 @@ const team = [
   {
     name: "Mamadou Ramadane Condé",
     role: "Directeur des Opérations",
-    emoji: "⚙️",
+    Icon: Settings,
     desc: "Gère le projet site web, assure le suivi des tâches et coordonne l'équipe des directeurs.",
     color: "#0EA5E9",
     bg: "#E0F2FE",
@@ -27,7 +45,7 @@ const team = [
   {
     name: "Fatoumata Kanny Diallo",
     role: "Directrice Administrative & Financière",
-    emoji: "💰",
+    Icon: BarChart2,
     desc: "Gère les dépenses, prévoit le budget et documente les processus pour les futurs projets.",
     color: "#8B5CF6",
     bg: "#EDE9FE",
@@ -37,7 +55,7 @@ const team = [
   {
     name: "Ibrahima Sory Barry",
     role: "Directeur Communication & Marketing",
-    emoji: "📢",
+    Icon: Megaphone,
     desc: "Rédige les contenus, gère les textes et images, et adapte le message marketing.",
     color: "#10B981",
     bg: "#D1FAE5",
@@ -47,7 +65,7 @@ const team = [
   {
     name: "Ousmane Kanté",
     role: "Directeur Commercial & Développement",
-    emoji: "🤝",
+    Icon: Handshake,
     desc: "Définit les services à proposer, rédige les offres commerciales et oriente les relations clients.",
     color: "#F97316",
     bg: "#FFF7ED",
@@ -58,32 +76,44 @@ const team = [
 
 const values = [
   {
-    icon: "🚀",
+    Icon: Zap,
+    color: "#F97316",
+    bg: "#FFF7ED",
     title: "Innovation",
     desc: "Nous adoptons les dernières technologies pour offrir des solutions avant-gardistes.",
   },
   {
-    icon: "🎯",
+    Icon: Award,
+    color: "#0EA5E9",
+    bg: "#E0F2FE",
     title: "Excellence",
     desc: "Chaque projet est traité avec le plus haut niveau de qualité et d'attention aux détails.",
   },
   {
-    icon: "🤝",
+    Icon: ShieldCheck,
+    color: "#8B5CF6",
+    bg: "#EDE9FE",
     title: "Intégrité",
     desc: "Nous bâtissons des relations durables fondées sur la confiance et la transparence.",
   },
   {
-    icon: "💡",
+    Icon: Lightbulb,
+    color: "#F59E0B",
+    bg: "#FFFBEB",
     title: "Créativité",
     desc: "Nous pensons différemment pour créer des solutions uniques et impactantes.",
   },
   {
-    icon: "🌍",
+    Icon: Globe,
+    color: "#10B981",
+    bg: "#D1FAE5",
     title: "Impact Local",
     desc: "Nous contribuons au développement du numérique en Afrique et en Guinée.",
   },
   {
-    icon: "⚡",
+    Icon: Clock,
+    color: "#0EA5E9",
+    bg: "#E0F2FE",
     title: "Réactivité",
     desc: "Nous répondons rapidement aux besoins de nos clients pour ne jamais perdre de temps.",
   },
@@ -140,8 +170,18 @@ export function AboutPage() {
             L'histoire de{" "}
             <span style={{ color: "#F97316" }}>Revyon Tech</span>
           </h1>
-          <p style={{ color: "#fff", fontSize: "1.05rem", lineHeight: "1.8", maxWidth: "600px", margin: "0 auto", opacity: 0.95 }}>
-            Une agence tech fondée avec la vision de transformer le paysage digital africain, une solution à la fois.
+          <p
+            style={{
+              color: "#fff",
+              fontSize: "1.05rem",
+              lineHeight: "1.8",
+              maxWidth: "600px",
+              margin: "0 auto",
+              opacity: 0.95,
+            }}
+          >
+            Une agence tech fondée avec la vision de transformer le paysage
+            digital africain, une solution à la fois.
           </p>
         </div>
       </section>
@@ -163,17 +203,22 @@ export function AboutPage() {
                 Qui sommes-nous ?
               </h2>
               <p style={{ color: "#0F172A", lineHeight: "1.8", marginBottom: "16px" }}>
-                <strong style={{ color: "#0EA5E9" }}>Revyon Tech</strong> est une agence technologique guinéenne spécialisée dans la création 
-                de solutions digitales sur mesure. Nous accompagnons les entrepreneurs, les PME et les grandes entreprises 
-                dans leur transformation numérique.
+                <strong style={{ color: "#0EA5E9" }}>Revyon Tech</strong> est
+                une agence technologique guinéenne spécialisée dans la création
+                de solutions digitales sur mesure. Nous accompagnons les
+                entrepreneurs, les PME et les grandes entreprises dans leur
+                transformation numérique.
               </p>
               <p style={{ color: "#0F172A", lineHeight: "1.8", marginBottom: "16px" }}>
-                Notre nom incarne notre ambition : <em>Révolution & Innovation</em>. Nous croyons fermement que la technologie 
-                est un levier puissant pour le développement économique de l'Afrique.
+                Notre nom incarne notre ambition :{" "}
+                <em>Révolution &amp; Innovation</em>. Nous croyons fermement que
+                la technologie est un levier puissant pour le développement
+                économique de l'Afrique.
               </p>
               <p style={{ color: "#0F172A", lineHeight: "1.8" }}>
-                Composée d'une équipe dynamique de cinq directeurs aux compétences complémentaires, 
-                Revyon Tech place l'excellence et l'innovation au cœur de chaque projet.
+                Composée d'une équipe dynamique de cinq directeurs aux
+                compétences complémentaires, Revyon Tech place l'excellence et
+                l'innovation au cœur de chaque projet.
               </p>
             </div>
             <div>
@@ -259,7 +304,15 @@ export function AboutPage() {
                   >
                     {item.title}
                   </h3>
-                  <p style={{ color: "#0F172A", lineHeight: "1.8", fontSize: "0.93rem" }}>{item.content}</p>
+                  <p
+                    style={{
+                      color: "#0F172A",
+                      lineHeight: "1.8",
+                      fontSize: "0.93rem",
+                    }}
+                  >
+                    {item.content}
+                  </p>
                 </div>
               );
             })}
@@ -282,31 +335,72 @@ export function AboutPage() {
             >
               Nos valeurs fondamentales
             </h2>
-            <p style={{ color: "#0F172A", maxWidth: "500px", margin: "0 auto", lineHeight: "1.8" }}>
-              Les principes qui guident chacune de nos actions et définissent qui nous sommes.
+            <p
+              style={{
+                color: "#0F172A",
+                maxWidth: "500px",
+                margin: "0 auto",
+                lineHeight: "1.8",
+              }}
+            >
+              Les principes qui guident chacune de nos actions et définissent
+              qui nous sommes.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((v, i) => (
-              <div
-                key={i}
-                style={{
-                  background: "#F8FAFC",
-                  borderRadius: "16px",
-                  padding: "28px",
-                  border: "1px solid #E2E8F0",
-                  display: "flex",
-                  gap: "16px",
-                  alignItems: "flex-start",
-                }}
-              >
-                <div style={{ fontSize: "2rem", flexShrink: 0 }}>{v.icon}</div>
-                <div>
-                  <h4 style={{ fontWeight: "700", color: "#0EA5E9", marginBottom: "8px" }}>{v.title}</h4>
-                  <p style={{ color: "#0F172A", fontSize: "0.9rem", lineHeight: "1.7" }}>{v.desc}</p>
+            {values.map((v, i) => {
+              const Icon = v.Icon;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    background: "#F8FAFC",
+                    borderRadius: "16px",
+                    padding: "28px",
+                    border: "1px solid #E2E8F0",
+                    display: "flex",
+                    gap: "16px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  {/* Icône dans un cercle coloré */}
+                  <div
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "12px",
+                      background: v.bg,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Icon size={20} color={v.color} strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h4
+                      style={{
+                        fontWeight: "700",
+                        color: "#0EA5E9",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      {v.title}
+                    </h4>
+                    <p
+                      style={{
+                        color: "#0F172A",
+                        fontSize: "0.9rem",
+                        lineHeight: "1.7",
+                      }}
+                    >
+                      {v.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -343,123 +437,154 @@ export function AboutPage() {
             >
               Les visages derrière Revyon Tech
             </h2>
-            <p style={{ color: "#0F172A", maxWidth: "500px", margin: "0 auto", lineHeight: "1.8" }}>
-              Une équipe complémentaire et passionnée, unie par une seule ambition : votre réussite digitale.
+            <p
+              style={{
+                color: "#0F172A",
+                maxWidth: "500px",
+                margin: "0 auto",
+                lineHeight: "1.8",
+              }}
+            >
+              Une équipe complémentaire et passionnée, unie par une seule
+              ambition : votre réussite digitale.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, i) => (
-              <div
-                key={i}
-                style={{
-                  background: "#fff",
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  border: "1px solid #E2E8F0",
-                  transition: "all 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 40px rgba(0,0,0,0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                }}
-              >
-                {/* ── AVATAR INITIALES (remplace la photo) ── */}
+            {team.map((member, i) => {
+              const MemberIcon = member.Icon;
+              return (
                 <div
+                  key={i}
                   style={{
-                    position: "relative",
-                    height: "220px",
-                    background: member.bg,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    background: "#fff",
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                    border: "1px solid #E2E8F0",
+                    transition: "all 0.3s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform =
+                      "translateY(-6px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow =
+                      "0 16px 40px rgba(0,0,0,0.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform =
+                      "translateY(0)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
                   }}
                 >
-                  {/* Cercle décoratif de fond */}
+                  {/* ── AVATAR INITIALES ── */}
                   <div
                     style={{
-                      position: "absolute",
-                      width: "180px",
-                      height: "180px",
-                      borderRadius: "50%",
-                      background: member.avatarGradient,
-                      opacity: 0.08,
-                    }}
-                  />
-                  {/* Cercle principal avec initiales */}
-                  <div
-                    style={{
-                      width: "110px",
-                      height: "110px",
-                      borderRadius: "50%",
-                      background: member.avatarGradient,
+                      position: "relative",
+                      height: "220px",
+                      background: member.bg,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: `0 8px 32px ${member.color}40`,
-                      border: "4px solid #fff",
-                      position: "relative",
-                      zIndex: 1,
                     }}
                   >
-                    <span
+                    {/* Cercle décoratif de fond */}
+                    <div
                       style={{
-                        fontSize: "2rem",
-                        fontWeight: "800",
-                        color: "#fff",
-                        letterSpacing: "0.05em",
-                        fontFamily: "Georgia, serif",
-                        lineHeight: 1,
+                        position: "absolute",
+                        width: "180px",
+                        height: "180px",
+                        borderRadius: "50%",
+                        background: member.avatarGradient,
+                        opacity: 0.08,
+                      }}
+                    />
+                    {/* Cercle principal avec initiales */}
+                    <div
+                      style={{
+                        width: "110px",
+                        height: "110px",
+                        borderRadius: "50%",
+                        background: member.avatarGradient,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: `0 8px 32px ${member.color}40`,
+                        border: "4px solid #fff",
+                        position: "relative",
+                        zIndex: 1,
                       }}
                     >
-                      {member.initials}
-                    </span>
-                  </div>
-                  {/* Badge emoji */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      background: "#fff",
-                      borderRadius: "10px",
-                      padding: "6px 12px",
-                      fontSize: "0.75rem",
-                      fontWeight: "700",
-                      color: member.color,
-                      border: `1px solid ${member.bg}`,
-                    }}
-                  >
-                    {/* {member.emoji} */}
-                  </div>
-                </div>
+                      <span
+                        style={{
+                          fontSize: "2rem",
+                          fontWeight: "800",
+                          color: "#fff",
+                          letterSpacing: "0.05em",
+                          fontFamily: "Georgia, serif",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {member.initials}
+                      </span>
+                    </div>
 
-                <div style={{ padding: "20px" }}>
-                  <h3 style={{ fontWeight: "700", color: "#0EA5E9", marginBottom: "4px", fontSize: "1rem" }}>
-                    {member.name}
-                  </h3>
-                  <div
-                    style={{
-                      display: "inline-block",
-                      background: member.bg,
-                      color: member.color,
-                      padding: "3px 10px",
-                      borderRadius: "6px",
-                      fontSize: "0.75rem",
-                      fontWeight: "600",
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {member.role}
+                    {/* Badge icône du rôle (remplace emoji) */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "12px",
+                        right: "12px",
+                        background: "#fff",
+                        borderRadius: "10px",
+                        padding: "6px 10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        border: `1px solid ${member.bg}`,
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                      }}
+                    >
+                      
+                    </div>
                   </div>
-                  <p style={{ color: "#0F172A", fontSize: "0.87rem", lineHeight: "1.7" }}></p>
+
+                  <div style={{ padding: "20px" }}>
+                    <h3
+                      style={{
+                        fontWeight: "700",
+                        color: "#0EA5E9",
+                        marginBottom: "4px",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {member.name}
+                    </h3>
+                    <div
+                      style={{
+                        display: "inline-block",
+                        background: member.bg,
+                        color: member.color,
+                        padding: "3px 10px",
+                        borderRadius: "6px",
+                        fontSize: "0.75rem",
+                        fontWeight: "600",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      {member.role}
+                    </div>
+                    <p
+                      style={{
+                        color: "#64748B",
+                        fontSize: "0.87rem",
+                        lineHeight: "1.7",
+                      }}
+                    >
+                      
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -472,11 +597,25 @@ export function AboutPage() {
         }}
       >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: "800", color: "#fff", marginBottom: "12px" }}>
+          <h2
+            style={{
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              fontWeight: "800",
+              color: "#fff",
+              marginBottom: "12px",
+            }}
+          >
             Rejoignez l'aventure Revyon Tech
           </h2>
-          <p style={{ color: "#BAE6FD", lineHeight: "1.8", marginBottom: "28px" }}>
-            Discutons de votre projet et trouvons ensemble la solution idéale pour votre transformation digitale.
+          <p
+            style={{
+              color: "#BAE6FD",
+              lineHeight: "1.8",
+              marginBottom: "28px",
+            }}
+          >
+            Discutons de votre projet et trouvons ensemble la solution idéale
+            pour votre transformation digitale.
           </p>
           <Link
             to="/contact"
