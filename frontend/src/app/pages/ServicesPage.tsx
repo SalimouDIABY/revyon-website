@@ -223,7 +223,7 @@ export function ServicesPage() {
                     )}
                   </ul>
                   <Link
-                    to="/contact"
+                    to="/contact#devis"
                     style={{
                       marginTop: "16px",
                       padding: "10px 16px",

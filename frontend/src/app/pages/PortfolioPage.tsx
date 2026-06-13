@@ -616,7 +616,7 @@ export function PortfolioPage() {
                   Vous avez un projet similaire ou une demande spécifique ?
                 </p>
                 <Link
-                  to="/contact"
+                  to="/contact#devis"
                   onClick={() => setSelectedProject(null)}
                   style={{
                     display: "inline-flex",

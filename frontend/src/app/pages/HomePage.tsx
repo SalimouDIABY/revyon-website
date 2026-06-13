@@ -341,7 +341,7 @@ export function HomePage() {
               style={{ animation:"fadeSlideUp 0.7s 0.45s cubic-bezier(.22,.68,0,1.2) forwards", opacity:0 }}
             >
               <Link
-                to="/contact"
+                to="/contact#devis"
                 className="btn-primary"
                 style={{
                   display:"inline-flex", alignItems:"center", gap:"8px",

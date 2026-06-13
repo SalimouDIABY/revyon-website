@@ -163,7 +163,7 @@ export function PrivacyPage() {
               Nous sommes ici pour vous aider. Contactez-nous à tout moment.
             </p>
             <Link
-              to="/contact"
+              to="/contact#devis"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

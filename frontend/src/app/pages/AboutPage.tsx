@@ -625,7 +625,7 @@ export function AboutPage() {
             pour votre transformation digitale.
           </p>
           <Link
-            to="/contact"
+            to="/contact#devis"
             style={{
               display: "inline-flex",
               alignItems: "center",

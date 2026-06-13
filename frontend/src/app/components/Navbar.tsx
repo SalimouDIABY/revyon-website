@@ -60,7 +60,7 @@ export function Navbar() {
               );
             })}
             <Link
-              to="/contact"
+              to="/contact#devis"
               style={{
                 marginLeft: "8px",
                 padding: "9px 22px",
@@ -115,7 +115,7 @@ export function Navbar() {
               );
             })}
             <Link
-              to="/contact"
+              to="/contact#devis"
               onClick={() => setIsOpen(false)}
               style={{
                 marginTop: "8px",

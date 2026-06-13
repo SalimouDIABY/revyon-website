@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function ContactPage() {
+  const location = useLocation();
+
+  // Défile en douceur jusqu'au formulaire quand on arrive avec #devis
+  useEffect(() => {
+    if (location.hash === "#devis") {
+      // petit délai pour laisser le rendu se faire
+      const t = setTimeout(() => {
+        document.getElementById("devis")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+      return () => clearTimeout(t);
+    }
+  }, [location.hash]);
+
   usePageMeta(
     "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
     "Contactez Revyon Tech pour votre projet web, logiciel ou marketing digital en Guinée. Réponse en moins de 24h. Téléphone et WhatsApp : +224 627 33 07 09.",
@@ -168,7 +182,7 @@ export function ContactPage() {
             </div>
 
             {/* RIGHT - FORM */}
-            <div style={{ gridColumn: "span 2", background: "#fff", borderRadius: "16px", padding: "32px", border: "1px solid #E2E8F0" }}>
+            <div id="devis" style={{ gridColumn: "span 2", background: "#fff", borderRadius: "16px", padding: "32px", border: "1px solid #E2E8F0", scrollMarginTop: "100px" }}>
               <h3 style={{ fontSize: "1.35rem", fontWeight: "800", color: "#0F172A", marginBottom: "8px" }}>
                 Envoyez-nous un message
               </h3>

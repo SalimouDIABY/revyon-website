@@ -130,7 +130,7 @@ export function Footer() {
                 textAlign: "center",
               }}
             >
-              <Link to="/contact" style={{ color: "#fff", textDecoration: "none", fontWeight: "600", fontSize: "0.9rem" }}>
+              <Link to="/contact#devis" style={{ color: "#fff", textDecoration: "none", fontWeight: "600", fontSize: "0.9rem" }}>
                 Demander un devis gratuit
               </Link>
             </div>
