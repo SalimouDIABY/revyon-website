@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 // Placeholder URLs - remplacer par vos vraies images
 const logoFull = "https://via.placeholder.com/300x100?text=Logo+Full";
@@ -248,6 +249,12 @@ function RevyonLogoDisplay() {
 }
 
 export function PortfolioPage() {
+  usePageMeta(
+    "Portfolio | Nos réalisations web et logicielles — Revyon Tech",
+    "Découvrez les projets réalisés par Revyon Tech : sites web, applications et solutions digitales pour des entreprises en Guinée et en Afrique de l'Ouest.",
+    "/portfolio"
+  );
+
   const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 

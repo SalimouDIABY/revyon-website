@@ -131,7 +131,14 @@ const services = [
   },
 ];
 
+import { usePageMeta } from "../hooks/usePageMeta";
+
 export function ServicesPage() {
+  usePageMeta(
+    "Nos services | Création de sites web, logiciels et marketing digital en Guinée — Revyon Tech",
+    "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
+    "/services"
+  );
   return (
     <div>
       {/* ── HERO ── */}

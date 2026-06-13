@@ -1,6 +1,8 @@
 import { Link } from "react-router";
-import { Mail, MessageCircle, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
+
+const FACEBOOK_URL = "https://www.facebook.com/share/198dU1h9Gz/";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,34 +20,32 @@ export function Footer() {
               Votre partenaire technologique de confiance. Nous transformons vos idées en solutions digitales performantes.
             </p>
             <div className="flex gap-3 mt-5">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "8px",
-                    background: "#1E293B",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
-                    transition: "all 0.2s",
-                    textDecoration: "none",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#0EA5E9";
-                    (e.currentTarget as HTMLElement).style.color = "#fff";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#1E293B";
-                    (e.currentTarget as HTMLElement).style.color = "#fff";
-                  }}
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Revyon Tech sur Facebook"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "#1E293B",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#fff",
+                  transition: "all 0.2s",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#1877F2";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#1E293B";
+                }}
+              >
+                <Facebook size={16} />
+              </a>
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <Mail size={16} color="#fff" />
-                <a href="mailto:revyontech@gmail.com" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
+                <a href="mailto:contact@revyontech.com" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
                   contact@revyontech.com
                 </a>
               </div>

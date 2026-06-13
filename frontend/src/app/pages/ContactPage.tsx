@@ -1,41 +1,59 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
+import { API_URL, WHATSAPP_URL } from "../config";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function ContactPage() {
+  usePageMeta(
+    "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
+    "Contactez Revyon Tech pour votre projet web, logiciel ou marketing digital en Guinée. Réponse en moins de 24h. Téléphone et WhatsApp : +224 627 33 07 09.",
+    "/contact"
+  );
+
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", service: "", message: "", honeypot: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const apiUrl = import.meta.env.VITE_API_URL || 'https://optimistic-illumination-production-f616.up.railway.app';
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMsg("");
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000); // 15 secondes max
 
     try {
-      await fetch(`${apiUrl}/api/contact`, {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
         signal: controller.signal,
       });
-    } catch (error: any) {
-      // On ignore toutes les erreurs — le visiteur voit toujours le succès
-      console.error('Contact form error (hidden from user):', error);
-    } finally {
-      clearTimeout(timeout);
-      // Dans tous les cas → afficher le succès au visiteur
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        setErrorMsg(
+          data?.errors?.join(" ") ||
+          data?.message ||
+          "L'envoi a échoué. Contactez-nous directement via WhatsApp : +224 627 33 07 09."
+        );
+        return;
+      }
+
       setSubmitted(true);
       setForm({ name: "", email: "", phone: "", subject: "", service: "", message: "", honeypot: "" });
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setErrorMsg("Connexion au serveur impossible. Contactez-nous directement via WhatsApp : +224 627 33 07 09.");
+    } finally {
+      clearTimeout(timeout);
       setLoading(false);
-      setTimeout(() => setSubmitted(false), 6000);
     }
   };
 
@@ -125,7 +143,8 @@ export function ContactPage() {
               </div>
 
               <button
-                onClick={() => window.open('https://wa.me/224627330709', '_blank')}
+                onClick={() => window.open(WHATSAPP_URL, '_blank')}
+                aria-label="Contacter Revyon Tech via WhatsApp"
                 style={{
                   width: "100%",
                   padding: "14px 24px",
@@ -165,7 +184,23 @@ export function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                  <div className="grid grid-cols-2 gap-4">
+                  {errorMsg && (
+                    <div style={{ background: "#FEE2E2", border: "1px solid #FECACA", borderRadius: "12px", padding: "16px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                      <AlertTriangle size={20} color="#B91C1C" style={{ flexShrink: 0, marginTop: "2px" }} />
+                      <div>
+                        <p style={{ color: "#B91C1C", fontWeight: 600, margin: "0 0 8px" }}>{errorMsg}</p>
+                        <a
+                          href={`${WHATSAPP_URL}?text=${encodeURIComponent(`Bonjour Revyon Tech, je suis ${form.name || ''}. ${form.message || ''}`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#15803D", fontWeight: 700, textDecoration: "underline" }}
+                        >
+                          Envoyer ce message via WhatsApp →
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
                         Nom complet <span style={{ color: "#F97316" }}>*</span>
@@ -196,7 +231,7 @@ export function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
                         Téléphone <span style={{ color: "#F97316" }}>*</span>
@@ -248,7 +283,7 @@ export function ContactPage() {
                       rows={5}
                       style={{ width: "100%", padding: "12px 14px", border: "1px solid #E2E8F0", borderRadius: "8px", fontSize: "0.95rem", fontFamily: "inherit", resize: "vertical", boxSizing: "border-box" }}
                     />
-                    <div style={{ fontSize: "0.8rem", color: form.message.length >= 100 ? "#059669" : "#64748B", marginTop: "6px" }}>
+                    <div style={{ fontSize: "0.8rem", color: form.message.length >= 10 ? "#059669" : "#64748B", marginTop: "6px" }}>
                       {form.message.length} / 10 caractères minimum
                       {form.message.length >= 10 && " ✓"}
                     </div>
@@ -294,7 +329,7 @@ export function ContactPage() {
               Questions fréquentes
             </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
               { q: "Quel est le délai moyen de réalisation ?", a: "En général, un site vitrine prend 1 à 2 semaines, une application mobile 4 à 8 semaines selon la complexité." },
               { q: "Comment se déroule le paiement ?", a: "Nous pratiquons généralement un acompte de 50% au démarrage et 50% à la livraison. Modes de paiement flexibles." },

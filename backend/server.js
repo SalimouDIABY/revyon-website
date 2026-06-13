@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import validator from 'validator';
 import nodemailer from 'nodemailer';
 import mysql from 'mysql2/promise';
+import crypto from 'crypto';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import healthRoutes from './routes/health.js';
@@ -23,7 +26,7 @@ const DB_USER = process.env.DB_USER || 'root';
 const DB_PASSWORD = process.env.DB_PASSWORD || '';
 const DB_NAME = process.env.DB_NAME || 'revyontech';
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY || '';
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'revyontech@gmail.com';
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@revyontech.com';
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
 const SMTP_SECURE = process.env.SMTP_SECURE === 'true' || SMTP_PORT === 465;
@@ -43,6 +46,17 @@ const transporter = nodemailer.createTransport({
   secure: SMTP_SECURE,
   auth: SMTP_USER && SMTP_PASS ? { user: SMTP_USER, pass: SMTP_PASS } : undefined,
 });
+
+// Escape user content only when injecting it into HTML emails —
+// data is stored raw in the database
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 async function initDb() {
   try {
@@ -81,6 +95,7 @@ async function initDb() {
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     `);
+    useMySQL = true;
     console.log('✅ MySQL initialisé et table contacts prête.');
   } catch (error) {
     console.warn('⚠️ MySQL non disponible, passage en mode développement avec stockage en mémoire :', error.message);
@@ -93,7 +108,13 @@ function requireAdminAuth(req, res, next) {
   const authHeader = req.headers.authorization || '';
   const token = authHeader.replace(/^Bearer\s+/i, '');
 
-  if (!ADMIN_API_KEY || token !== ADMIN_API_KEY) {
+  const expected = Buffer.from(ADMIN_API_KEY);
+  const received = Buffer.from(token);
+  const valid = ADMIN_API_KEY.length > 0
+    && expected.length === received.length
+    && crypto.timingSafeEqual(expected, received);
+
+  if (!valid) {
     return res.status(401).json({ success: false, message: 'Accès administrateur refusé' });
   }
 
@@ -110,17 +131,18 @@ async function sendAdminNotification(contact) {
   const mailOptions = {
     from: SMTP_FROM,
     to: CONTACT_EMAIL,
+    replyTo: contact.email,
     subject: `Nouveau message de contact Revyon Tech — ${contact.name}`,
     text: `Vous avez reçu un nouveau message de contact.\n\nNom: ${contact.name}\nEmail: ${contact.email}\nTéléphone: ${contact.phone}\nService: ${contact.service}\nSujet: ${contact.subject}\n\nMessage:\n${contact.message}`,
     html: `
       <h2>Nouveau message de contact</h2>
-      <p><strong>Nom:</strong> ${contact.name}</p>
-      <p><strong>Email:</strong> ${contact.email}</p>
-      <p><strong>Téléphone:</strong> ${contact.phone}</p>
-      <p><strong>Service:</strong> ${contact.service}</p>
-      <p><strong>Sujet:</strong> ${contact.subject || '—'}</p>
+      <p><strong>Nom:</strong> ${escapeHtml(contact.name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(contact.email)}</p>
+      <p><strong>Téléphone:</strong> ${escapeHtml(contact.phone)}</p>
+      <p><strong>Service:</strong> ${escapeHtml(contact.service)}</p>
+      <p><strong>Sujet:</strong> ${escapeHtml(contact.subject) || '—'}</p>
       <p><strong>Message:</strong></p>
-      <p>${contact.message.replace(/\n/g, '<br/>')}</p>
+      <p>${escapeHtml(contact.message).replace(/\n/g, '<br/>')}</p>
       <p>Envoyé depuis le formulaire de contact Revyon Tech.</p>
     `,
   };
@@ -142,7 +164,7 @@ async function sendUserConfirmation(contact) {
     text: `Bonjour ${contact.name},\n\nNous avons bien reçu votre message. Notre équipe l'examinera et vous répondra dans les 24 heures.\n\nCordialement,\nL'équipe Revyon Tech`,
     html: `
       <h2>Merci de votre message !</h2>
-      <p>Bonjour ${contact.name},</p>
+      <p>Bonjour ${escapeHtml(contact.name)},</p>
       <p>Nous avons bien reçu votre message et l'avons enregistré dans notre système.</p>
       <p>Notre équipe l'examinera et vous répondra dans les 24 heures par email.</p>
       <p>Si votre demande est urgente, n'hésitez pas à nous contacter via WhatsApp : +224 627330709</p>
@@ -155,32 +177,55 @@ async function sendUserConfirmation(contact) {
   await transporter.sendMail(mailOptions);
 }
 
-// Middleware
-// Middleware
-const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
-  .split(',')
-  .map(o => o.trim());
+// ── Middleware ──
+app.set('trust proxy', 1); // derrière le proxy Railway/Render/Vercel
+app.use(helmet());
 
-// Middleware
-app.use(cors({
-  origin: '*',
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:3000')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Autorise les requêtes sans Origin (curl, monitoring, apps mobiles)
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Origine non autorisée par CORS'));
+  },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+};
 
-app.options('*', cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
-// Gérer les requêtes OPTIONS (preflight)
-app.options('*', cors());
+app.use(express.json({ limit: '50kb' }));
+app.use(express.urlencoded({ extended: true, limit: '50kb' }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Rate limiting : 5 soumissions de formulaire / 15 min / IP,
+// 20 tentatives admin / 15 min / IP
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, errors: ['Trop de tentatives. Veuillez réessayer dans 15 minutes.'] },
+});
+const adminLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Trop de tentatives. Veuillez réessayer dans 15 minutes.' },
+});
 
 // Health check routes
 app.use('/api', healthRoutes);
 
 // Contact form submission endpoint
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', contactLimiter, async (req, res) => {
   try {
     const { name, email, phone, service, subject, message, honeypot } = req.body;
 
@@ -193,37 +238,55 @@ app.post('/api/contact', async (req, res) => {
     // Validation
     const errors = [];
 
-    if (!name || name.trim().length === 0) {
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
       errors.push('Le nom est obligatoire');
+    } else if (name.trim().length > 100) {
+      errors.push('Le nom ne doit pas dépasser 100 caractères');
     }
-    if (!email || !validator.isEmail(email)) {
+
+    if (!email || typeof email !== 'string' || !validator.isEmail(email)) {
       errors.push('L\'email est invalide');
     }
-    // Nouveau check pour les numéros de téléphone guinéens
-    const phoneClean = phone.replace(/[\s\-\.]/g, '');
-    const phoneRegex = /^(\+224|00224)?[6][0-9]{8}$/;
-    if (!phone || !phoneRegex.test(phoneClean)) {
+
+    // Numéros guinéens (+224 6XXXXXXXX) et internationaux (8 à 15 chiffres)
+    if (!phone || typeof phone !== 'string') {
       errors.push('Le numéro de téléphone est invalide');
+    } else {
+      const phoneClean = phone.replace(/[\s\-\.\(\)]/g, '');
+      const phoneRegex = /^(\+|00)?[0-9]{8,15}$/;
+      if (!phoneRegex.test(phoneClean)) {
+        errors.push('Le numéro de téléphone est invalide');
+      }
     }
-    if (!service || service.trim().length === 0) {
+
+    if (!service || typeof service !== 'string' || service.trim().length === 0) {
       errors.push('Veuillez sélectionner un service');
     }
-    if (!message || message.trim().length < 10) {
+
+    if (subject && (typeof subject !== 'string' || subject.length > 200)) {
+      errors.push('Le sujet ne doit pas dépasser 200 caractères');
+    }
+
+    if (!message || typeof message !== 'string' || message.trim().length < 10) {
       errors.push('Le message doit contenir au moins 10 caractères');
+    } else if (message.length > 5000) {
+      errors.push('Le message ne doit pas dépasser 5000 caractères');
     }
 
     if (errors.length > 0) {
       return res.status(400).json({ success: false, errors });
     }
 
+    // Les données sont stockées brutes ; l'échappement HTML se fait à
+    // l'affichage (React) et dans les emails HTML (escapeHtml)
     const contact = {
       id: Date.now(),
-      name: validator.escape(name),
+      name: name.trim(),
       email: validator.normalizeEmail(email),
-      phone: validator.escape(phone),
-      service: validator.escape(service),
-      subject: subject ? validator.escape(subject) : '',
-      message: validator.escape(message),
+      phone: phone.trim(),
+      service: service.trim(),
+      subject: subject ? subject.trim() : '',
+      message: message.trim(),
       createdAt: new Date().toISOString(),
       status: 'new',
     };
@@ -237,8 +300,10 @@ app.post('/api/contact', async (req, res) => {
       contacts.push(contact);
     }
 
+    let emailSent = false;
     try {
       await sendAdminNotification(contact);
+      emailSent = true;
       console.log('✅ Email de notification admin envoyé');
     } catch (emailError) {
       console.error('❌ Erreur d\'envoi d\'email admin :', emailError);
@@ -251,7 +316,15 @@ app.post('/api/contact', async (req, res) => {
       console.error('❌ Erreur d\'envoi d\'email de confirmation :', emailError);
     }
 
-    console.log('New contact submission saved:', contact);
+    // Si ni la base ni l'email n'ont conservé le message, ne pas mentir au visiteur
+    if (!useMySQL && !emailSent && USE_EMAIL) {
+      return res.status(500).json({
+        success: false,
+        message: 'Votre message n\'a pas pu être transmis. Veuillez nous contacter via WhatsApp : +224 627330709.',
+      });
+    }
+
+    console.log('New contact submission saved:', { id: contact.id, name: contact.name, service: contact.service });
 
     res.status(200).json({
       success: true,
@@ -268,7 +341,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // Admin endpoint to get all contacts
-app.get('/api/admin/contacts', requireAdminAuth, async (req, res) => {
+app.get('/api/admin/contacts', adminLimiter, requireAdminAuth, async (req, res) => {
   try {
     let contactsData = [];
 
@@ -298,6 +371,9 @@ app.use((req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
+  if (err && err.message === 'Origine non autorisée par CORS') {
+    return res.status(403).json({ success: false, message: 'Origine non autorisée' });
+  }
   console.error(err.stack);
   res.status(500).json({
     success: false,

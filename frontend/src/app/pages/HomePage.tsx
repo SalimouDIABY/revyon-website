@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { usePageMeta } from "../hooks/usePageMeta";
 import {
   Globe,
   Smartphone,
@@ -210,7 +211,7 @@ const reasons = [
 /* ─────────────────────────────────────────────
    COMPOSANT STAT avec compteur
 ───────────────────────────────────────────── */
-function AnimatedStat({ value, label }: { value: string; label: string }) {
+function AnimatedStat({ value, label, animate = true }: { value: string; label: string; animate?: boolean }) {
   // Parse numeric part
   const numMatch = value.match(/\d+/);
   const num = numMatch ? parseInt(numMatch[0]) : 0;
@@ -220,7 +221,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
   return (
     <div ref={ref}>
       <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#F97316", lineHeight: 1 }}>
-        {displayed || value}
+        {animate ? (displayed || value) : value}
       </div>
       <div style={{ fontSize: "0.8rem", color: "#fff", marginTop: "4px", opacity: 0.9 }}>{label}</div>
     </div>
@@ -231,6 +232,12 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
    PAGE PRINCIPALE
 ───────────────────────────────────────────── */
 export function HomePage() {
+  usePageMeta(
+    "Revyon Tech — Entreprise informatique en Guinée | Développement web, logiciels & digital",
+    "Revyon Tech, entreprise informatique à Conakry : création de sites web, développement de logiciels et d'applications mobiles, marketing digital, maintenance et matériel informatique en Guinée.",
+    "/"
+  );
+
   // Inject CSS once
   useEffect(() => {
     const id = "revyon-anim-css";
@@ -371,8 +378,8 @@ export function HomePage() {
             >
               <AnimatedStat value="100%" label="Satisfaction client" />
               <AnimatedStat value="5+"   label="Services proposés" />
-              <AnimatedStat value="2024" label="Année de création" />
-              <AnimatedStat value="24"   label="Support 24/7" />
+              <AnimatedStat value="2024" label="Année de création" animate={false} />
+              <AnimatedStat value="24/7" label="Support disponible" />
             </div>
           </div>
         </div>

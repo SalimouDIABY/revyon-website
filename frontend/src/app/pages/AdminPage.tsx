@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { ShieldCheck, RefreshCcw, AlertTriangle, Mail, Phone, ClipboardList } from "lucide-react";
+import { API_URL } from "../config";
 
 interface ContactMessage {
   id: number;
@@ -14,7 +15,6 @@ interface ContactMessage {
 }
 
 export function AdminPage() {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [apiKey, setApiKey] = useState("");
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ export function AdminPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${apiUrl}/api/admin/contacts`, {
+      const response = await fetch(`${API_URL}/api/admin/contacts`, {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },

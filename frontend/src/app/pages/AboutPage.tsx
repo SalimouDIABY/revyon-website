@@ -119,7 +119,14 @@ const values = [
   },
 ];
 
+import { usePageMeta } from "../hooks/usePageMeta";
+
 export function AboutPage() {
+  usePageMeta(
+    "À propos | Revyon Tech — Société informatique en Guinée",
+    "Découvrez Revyon Tech, entreprise technologique guinéenne spécialisée en développement web, logiciels, applications mobiles et transformation digitale à Conakry.",
+    "/a-propos"
+  );
   return (
     <div>
       {/* ── HERO ── */}

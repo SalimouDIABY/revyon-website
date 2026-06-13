@@ -1,7 +1,14 @@
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export function PrivacyPage() {
+  usePageMeta(
+    "Politique de confidentialité | Revyon Tech",
+    "Politique de confidentialité de Revyon Tech : collecte, utilisation et protection de vos données personnelles.",
+    "/politique-confidentialite"
+  );
+
   return (
     <div>
       {/* ── HERO ── */}
