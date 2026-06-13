@@ -1,7 +1,8 @@
-// L'API tourne en fonction serverless Vercel, sur le même domaine que le site.
-// On appelle donc des chemins relatifs (/api/...). VITE_API_URL permet de
-// pointer ailleurs en développement local si besoin.
-export const API_URL = import.meta.env.VITE_API_URL || "";
+// L'API tourne en fonction serverless Vercel, co-déployée avec le site sur
+// le même domaine. On appelle donc toujours des chemins relatifs (/api/...).
+// Pas de dépendance à VITE_API_URL : ça évite qu'une ancienne variable
+// d'environnement (ex. URL Railway morte) ne soit injectée dans le build.
+export const API_URL = "";
 
 export const SITE_URL = "https://www.revyontech.com";
 export const WHATSAPP_NUMBER = "224627330709";

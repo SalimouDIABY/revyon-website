@@ -1,24 +1,35 @@
-import logoIcon from "../../assets/843e9c78d08a71866a9c08af7a4a4eb843a53835.png";
+// Logo officiel Revyon Tech (emblème RT + texte), placé dans /public
+const LOGO_SRC = "/logo.jpeg";
 
 export function Logo({ size = "md", color = "text" }: { size?: "sm" | "md" | "lg"; color?: "text" | "white" }) {
-  const sizes = {
-    sm: { height: "48px" },
-    md: { height: "62px" },
-    lg: { height: "78px" },
-  };
+  const heights = { sm: 44, md: 56, lg: 64 };
+  const h = heights[size];
 
-  const filter = color === "white" ? "drop-shadow(0 2px 4px rgba(0,0,0,0.3))" : "none";
-
-  return (
+  const img = (
     <img
-      src={logoIcon}
-      alt="Revyon Tech"
-      style={{
-        height: sizes[size].height,
-        width: "auto",
-        objectFit: "contain",
-        filter: filter,
-      }}
+      src={LOGO_SRC}
+      alt="Revyon Tech — Entreprise informatique en Guinée"
+      style={{ height: `${h}px`, width: "auto", objectFit: "contain", display: "block" }}
     />
   );
+
+  // Sur fond bleu (footer), le logo à fond blanc est posé sur un badge blanc
+  // arrondi pour un rendu propre et intentionnel.
+  if (color === "white") {
+    return (
+      <span
+        style={{
+          display: "inline-flex",
+          background: "#fff",
+          borderRadius: "12px",
+          padding: "8px 14px",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.12)",
+        }}
+      >
+        {img}
+      </span>
+    );
+  }
+
+  return img;
 }
