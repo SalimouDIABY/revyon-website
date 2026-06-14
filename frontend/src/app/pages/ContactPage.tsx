@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { trackEvent } from "../analytics";
 
 export function ContactPage() {
   const location = useLocation();
@@ -59,6 +60,8 @@ export function ContactPage() {
         return;
       }
 
+      // Conversion : demande de devis envoyée
+      trackEvent("generate_lead", { service: form.service || "non_precise" });
       setSubmitted(true);
       setForm({ name: "", email: "", phone: "", subject: "", service: "", message: "", honeypot: "" });
       setTimeout(() => setSubmitted(false), 8000);

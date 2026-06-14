@@ -1,4 +1,5 @@
 import { createBrowserRouter, Outlet } from "react-router";
+import { usePageTracking } from "./analytics";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
@@ -11,6 +12,7 @@ import { PrivacyPage } from "./pages/PrivacyPage";
 import { AdminPage } from "./pages/AdminPage";
 
 function Root() {
+  usePageTracking();
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
