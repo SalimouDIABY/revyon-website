@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Mail, MessageCircle, MapPin, Facebook } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Facebook, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 
 const FACEBOOK_URL = "https://www.facebook.com/share/198dU1h9Gz/";
@@ -110,9 +110,16 @@ export function Footer() {
                   contact@revyontech.com
                 </a>
               </div>
+              <div className="flex items-start gap-3">
+                <Phone size={16} color="#fff" style={{ marginTop: "2px", flexShrink: 0 }} />
+                <span className="flex flex-col" style={{ fontSize: "0.9rem" }}>
+                  <a href="tel:+224627330709" style={{ color: "#fff", textDecoration: "none" }}>+224 627 33 07 09</a>
+                  <a href="tel:+224613059938" style={{ color: "#fff", textDecoration: "none" }}>+224 613 05 99 38</a>
+                </span>
+              </div>
               <div className="flex items-center gap-3">
                 <MessageCircle size={16} color="#25D366" />
-                <a href="https://wa.me/+224627330709" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
+                <a href="https://wa.me/224627330709" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
                   WhatsApp disponible
                 </a>
               </div>

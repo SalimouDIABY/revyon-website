@@ -131,6 +131,25 @@ const services = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Qu'est-ce que Revyon Tech ?",
+    a: "Revyon Tech est une entreprise informatique basée à Conakry, en Guinée. Elle est spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation.",
+  },
+  {
+    q: "Où se trouve Revyon Tech ?",
+    a: "Revyon Tech est basée à Conakry, en Guinée, et accompagne ses clients dans toute la Guinée ainsi qu'en Afrique francophone.",
+  },
+  {
+    q: "Quels services propose Revyon Tech ?",
+    a: "Revyon Tech propose la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, des services multimédia, la vente et la maintenance de matériel informatique, ainsi que des formations en informatique et au numérique.",
+  },
+  {
+    q: "Comment contacter Revyon Tech ?",
+    a: "Vous pouvez contacter Revyon Tech par téléphone ou WhatsApp au +224 627 33 07 09 ou au +224 613 05 99 38, par email à contact@revyontech.com, ou via le formulaire de devis sur revyontech.com/contact.",
+  },
+];
+
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function ServicesPage() {
@@ -279,6 +298,38 @@ export function ServicesPage() {
                 </h3>
                 <p style={{ color: "#475569", fontSize: "0.9rem" }}>
                   {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ (réponse d'abord — visibilité IA / GEO-AEO) ── */}
+      <section style={{ background: "#F8FAFC", padding: "clamp(60px, 10vw, 100px) 0" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", textAlign: "center" }}>
+            Questions fréquentes
+          </h2>
+          <p style={{ textAlign: "center", color: "#475569", marginBottom: "48px", fontSize: "1rem" }}>
+            Tout ce qu'il faut savoir sur Revyon Tech et ses services.
+          </p>
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, i) => (
+              <div
+                key={i}
+                style={{
+                  background: "#fff",
+                  borderRadius: "12px",
+                  padding: "20px 24px",
+                  border: "1px solid #E2E8F0",
+                }}
+              >
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "700", color: "#0F172A", marginBottom: "8px" }}>
+                  {faq.q}
+                </h3>
+                <p style={{ color: "#475569", fontSize: "0.95rem", lineHeight: "1.6", margin: 0 }}>
+                  {faq.a}
                 </p>
               </div>
             ))}

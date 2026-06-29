@@ -150,7 +150,7 @@ export function PrivacyPage() {
               <strong>Adresse :</strong> Conakry, Guinée
             </p>
             <p style={{ margin: "0" }}>
-              <strong>WhatsApp :</strong> +224 627330709
+              <strong>Téléphone / WhatsApp :</strong> +224 627 33 07 09 — +224 613 05 99 38
             </p>
           </div>
 
