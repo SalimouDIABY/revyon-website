@@ -1,5 +1,13 @@
-import { createRoot } from "react-dom/client";
-import App from "./app/App.tsx";
+import { hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router";
+import { App } from "./app/routes";
 import "./styles/index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Le HTML est pré-rendu au build (SSG) : on hydrate au lieu de monter à neuf,
+// pour que le contenu soit présent dans le HTML brut (visibilité IA + SEO).
+hydrateRoot(
+  document.getElementById("root")!,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
