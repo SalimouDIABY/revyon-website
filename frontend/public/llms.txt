@@ -11,6 +11,5 @@
 - [Accueil](https://www.revyontech.com/) : présentation de Revyon Tech et de ses services
 - [Services](https://www.revyontech.com/services) : détail des prestations (web, logiciel, mobile, marketing, multimédia, matériel, formation)
 - [À propos](https://www.revyontech.com/a-propos) : histoire, mission et équipe de Revyon Tech
-- [Portfolio](https://www.revyontech.com/portfolio) : réalisations et projets
 - [Contact](https://www.revyontech.com/contact) : coordonnées et formulaire de devis
 - [Politique de confidentialité](https://www.revyontech.com/politique-confidentialite)

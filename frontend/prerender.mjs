@@ -33,11 +33,9 @@ const pages = {
     description:
       "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
   },
-  "/portfolio": {
-    title: "Portfolio | Nos réalisations web et logicielles — Revyon Tech",
-    description:
-      "Découvrez les projets réalisés par Revyon Tech : sites web, applications et solutions digitales pour des entreprises en Guinée et en Afrique de l'Ouest.",
-  },
+  // /portfolio est volontairement exclu du pré-rendu et du sitemap : la page
+  // n'est pas encore prête et reste masquée (non listée). La route fonctionne
+  // toujours côté client pour quand elle sera publiée.
   "/contact": {
     title: "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
     description:
