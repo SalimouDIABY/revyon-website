@@ -151,7 +151,11 @@ function useReveal(selector: string) {
    HOOK : Compteur animé
 ───────────────────────────────────────────── */
 function useCounter(target: number, suffix: string, duration = 1400) {
-  const [value, setValue] = useState("0");
+  // Valeur finale par défaut : elle est ainsi présente dans le HTML pré-rendu
+  // (les crawlers/IA lisent « 100% », pas « 0 ») et cohérente à l'hydratation.
+  // L'animation part de 0 côté client, une fois la section visible.
+  const finalValue = `${target}${suffix}`;
+  const [value, setValue] = useState(finalValue);
   const ref = useRef<HTMLDivElement>(null);
   const started = useRef(false);
 
