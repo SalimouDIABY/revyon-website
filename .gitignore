@@ -12,6 +12,7 @@ yarn-error.log*
 
 # Build outputs
 dist/
+dist-server/
 build/
 .next/
 out/

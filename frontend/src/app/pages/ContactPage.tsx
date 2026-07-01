@@ -130,7 +130,12 @@ export function ContactPage() {
                   <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#F97316" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Téléphone</div>
-                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627330709</p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>
+                      <a href="tel:+224627330709" style={{ color: "#0F172A", textDecoration: "none" }}>+224 627 33 07 09</a>
+                    </p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: "2px 0 0" }}>
+                      <a href="tel:+224613059938" style={{ color: "#0F172A", textDecoration: "none" }}>+224 613 05 99 38</a>
+                    </p>
                   </div>
                 </div>
 
@@ -138,7 +143,7 @@ export function ContactPage() {
                   <div style={{ flexShrink: 0, marginTop: "2px" }}><MessageCircle size={20} color="#25D366" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>WhatsApp</div>
-                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627330709</p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627 33 07 09</p>
                   </div>
                 </div>
 

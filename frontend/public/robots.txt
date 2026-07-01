@@ -1,6 +1,51 @@
+# Revyon Tech — robots.txt
+# Objectif : maximiser la visibilité sur les moteurs classiques ET les IA.
+
+# ── Bots de recherche / citation IA (visibilité directe) ──
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+# ── Bots d'entraînement (notoriété de marque) ──
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
+# ── Moteurs de recherche classiques ──
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# ── Règle générale ──
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api
+Disallow: /portfolio
 
 Sitemap: https://www.revyontech.com/sitemap.xml

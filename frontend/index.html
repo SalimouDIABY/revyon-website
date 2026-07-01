@@ -37,25 +37,108 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Revyon Tech",
-      "alternateName": ["Revyon", "Revyon Technologies"],
-      "url": "https://www.revyontech.com",
-      "logo": "https://www.revyontech.com/favicon.svg",
-      "image": "https://www.revyontech.com/og-image.png",
-      "description": "Entreprise informatique en Guinée : développement web et logiciel, applications mobiles, marketing digital, maintenance et vente de matériel informatique.",
-      "email": "contact@revyontech.com",
-      "telephone": "+224627330709",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Conakry",
-        "addressCountry": "GN"
-      },
-      "geo": { "@type": "GeoCoordinates", "latitude": 9.6412, "longitude": -13.5784 },
-      "openingHours": "Mo-Sa 08:00-18:00",
-      "priceRange": "$$",
-      "areaServed": "Guinée",
-      "sameAs": ["https://www.facebook.com/share/198dU1h9Gz/"]
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://www.revyontech.com/#organization",
+          "name": "Revyon Tech",
+          "alternateName": ["Revyon", "Revyon Technologies"],
+          "url": "https://www.revyontech.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.revyontech.com/logo.jpeg"
+          },
+          "image": "https://www.revyontech.com/og-image.png",
+          "description": "Revyon Tech est une entreprise informatique basée à Conakry, en Guinée, spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation. Elle intervient en Guinée et en Afrique francophone.",
+          "email": "contact@revyontech.com",
+          "telephone": "+224627330709",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+224627330709",
+              "contactType": "customer service",
+              "availableLanguage": ["fr"],
+              "areaServed": "GN"
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+224613059938",
+              "contactType": "sales",
+              "availableLanguage": ["fr"],
+              "areaServed": "GN"
+            }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Conakry",
+            "addressCountry": "GN"
+          },
+          "geo": { "@type": "GeoCoordinates", "latitude": 9.6412, "longitude": -13.5784 },
+          "openingHours": "Mo-Sa 08:00-18:00",
+          "priceRange": "$$",
+          "areaServed": ["GN", "Afrique francophone"],
+          "knowsLanguage": ["fr"],
+          "sameAs": ["https://www.facebook.com/share/198dU1h9Gz/"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services Revyon Tech",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de sites web" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Développement de logiciels et d'applications mobiles" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing digital" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Multimédia" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vente et maintenance de matériel informatique" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Formation" } }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.revyontech.com/#website",
+          "url": "https://www.revyontech.com",
+          "name": "Revyon Tech",
+          "inLanguage": "fr",
+          "publisher": { "@id": "https://www.revyontech.com/#organization" }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.revyontech.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Qu'est-ce que Revyon Tech ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Revyon Tech est une entreprise informatique basée à Conakry, en Guinée. Elle est spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Où se trouve Revyon Tech ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Revyon Tech est basée à Conakry, en Guinée, et accompagne ses clients dans toute la Guinée ainsi qu'en Afrique francophone."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quels services propose Revyon Tech ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Revyon Tech propose la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, des services multimédia, la vente et la maintenance de matériel informatique, ainsi que des formations en informatique et au numérique."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment contacter Revyon Tech ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vous pouvez contacter Revyon Tech par téléphone ou WhatsApp au +224 627 33 07 09 ou au +224 613 05 99 38, par email à contact@revyontech.com, ou via le formulaire de devis sur revyontech.com/contact."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
   </head>

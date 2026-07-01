@@ -1,4 +1,5 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import type { RouteObject } from "react-router";
+import { Outlet, useRoutes } from "react-router";
 import { usePageTracking } from "./analytics";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -42,7 +43,7 @@ function NotFound() {
   );
 }
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
     Component: Root,
@@ -57,4 +58,14 @@ export const router = createBrowserRouter([
       { path: "*", Component: NotFound },
     ],
   },
-]);
+];
+
+/**
+ * Rend l'arbre de routes via useRoutes. Doit être monté à l'intérieur d'un
+ * routeur (BrowserRouter côté client, StaticRouter au pré-rendu). On utilise
+ * les routeurs « non-data » : aucune route n'a de loader/action, et leur
+ * hydratation est déterministe (pas de script de données injecté).
+ */
+export function App() {
+  return useRoutes(routes);
+}
