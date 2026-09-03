@@ -1,0 +1,15 @@
+# {{SITE_NAME}}
+
+> {{DESCRIPTION_UNE_PHRASE — qui est l'entité, ce qu'elle fait, où elle intervient.}}
+
+## Coordonnées
+- Téléphone / WhatsApp : {{TEL_1}} et {{TEL_2}}
+- Email : {{EMAIL}}
+- Localisation : {{VILLE}}, {{PAYS}}
+
+## Pages
+- [Accueil]({{SITE_URL}}/) : présentation de {{SITE_NAME}} et de son offre
+- [Services / Formations]({{SITE_URL}}/services) : détail de l'offre
+- [À propos]({{SITE_URL}}/a-propos) : histoire, mission et équipe
+- [Contact]({{SITE_URL}}/contact) : coordonnées et formulaire
+- [Politique de confidentialité]({{SITE_URL}}/politique-confidentialite)

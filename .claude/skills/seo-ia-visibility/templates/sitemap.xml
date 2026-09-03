@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Remplacer {{SITE_URL}} et les dates. Une <url> par page PUBLIQUE.
+     Exclure les pages masquées / non prêtes. priority : accueil 1.0,
+     pages clés 0.8-0.9, légal 0.5. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{SITE_URL}}/</loc>
+    <lastmod>{{YYYY-MM-DD}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{{SITE_URL}}/services</loc>
+    <lastmod>{{YYYY-MM-DD}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>{{SITE_URL}}/a-propos</loc>
+    <lastmod>{{YYYY-MM-DD}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SITE_URL}}/contact</loc>
+    <lastmod>{{YYYY-MM-DD}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{SITE_URL}}/politique-confidentialite</loc>
+    <lastmod>{{YYYY-MM-DD}}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

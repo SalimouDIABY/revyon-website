@@ -1,0 +1,71 @@
+<!--
+  Données structurées JSON-LD — à placer dans le <head> de index.html.
+  Invisible pour les humains, lu par Google/Bing et les IA.
+  Remplacer tous les {{PLACEHOLDERS}}. Garder cohérent avec le contenu VISIBLE.
+
+  Pour une ENTREPRISE de services  : "@type": ["Organization", "ProfessionalService"]
+  Pour une ÉCOLE / centre de formation : "@type": ["Organization", "EducationalOrganization"]
+  Valider ensuite sur https://validator.schema.org et Google Rich Results Test.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "{{TYPE_PRECIS}}"],
+      "@id": "{{SITE_URL}}/#organization",
+      "name": "{{SITE_NAME}}",
+      "alternateName": ["{{ALIAS_1}}", "{{ALIAS_2}}"],
+      "url": "{{SITE_URL}}",
+      "logo": { "@type": "ImageObject", "url": "{{SITE_URL}}/logo.png" },
+      "image": "{{SITE_URL}}/og-image.png",
+      "description": "{{DESCRIPTION}}",
+      "email": "{{EMAIL}}",
+      "telephone": "{{TEL_E164_1}}",
+      "contactPoint": [
+        { "@type": "ContactPoint", "telephone": "{{TEL_E164_1}}", "contactType": "customer service", "availableLanguage": ["fr"], "areaServed": "{{PAYS_ISO}}" },
+        { "@type": "ContactPoint", "telephone": "{{TEL_E164_2}}", "contactType": "sales", "availableLanguage": ["fr"], "areaServed": "{{PAYS_ISO}}" }
+      ],
+      "address": { "@type": "PostalAddress", "addressLocality": "{{VILLE}}", "addressCountry": "{{PAYS_ISO}}" },
+      "geo": { "@type": "GeoCoordinates", "latitude": {{LAT}}, "longitude": {{LON}} },
+      "openingHours": "Mo-Sa 08:00-18:00",
+      "priceRange": "$$",
+      "areaServed": ["{{PAYS_ISO}}", "{{ZONE}}"],
+      "knowsLanguage": ["fr"],
+      "foundingDate": "{{ANNEE}}",
+      "sameAs": ["{{URL_FACEBOOK}}", "{{URL_LINKEDIN_ENTREPRISE}}"],
+      "founder": { "@type": "Person", "name": "{{FONDATEUR}}", "jobTitle": "{{TITRE}}" },
+      "employee": [
+        { "@type": "Person", "name": "{{NOM_1}}", "jobTitle": "{{TITRE_1}}" },
+        { "@type": "Person", "name": "{{NOM_2}}", "jobTitle": "{{TITRE_2}}" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "{{NOM_CATALOGUE}}",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "{{Service_ou_Course}}", "name": "{{OFFRE_1}}" } },
+          { "@type": "Offer", "itemOffered": { "@type": "{{Service_ou_Course}}", "name": "{{OFFRE_2}}" } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{SITE_URL}}/#website",
+      "url": "{{SITE_URL}}",
+      "name": "{{SITE_NAME}}",
+      "inLanguage": "fr",
+      "publisher": { "@id": "{{SITE_URL}}/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "{{SITE_URL}}/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Qu'est-ce que {{SITE_NAME}} ?", "acceptedAnswer": { "@type": "Answer", "text": "{{REPONSE_QUI}}" } },
+        { "@type": "Question", "name": "Où se trouve {{SITE_NAME}} ?", "acceptedAnswer": { "@type": "Answer", "text": "{{REPONSE_OU}}" } },
+        { "@type": "Question", "name": "Que propose {{SITE_NAME}} ?", "acceptedAnswer": { "@type": "Answer", "text": "{{REPONSE_OFFRE}}" } },
+        { "@type": "Question", "name": "Comment contacter {{SITE_NAME}} ?", "acceptedAnswer": { "@type": "Answer", "text": "{{REPONSE_CONTACT}}" } }
+      ]
+    }
+  ]
+}
+</script>
