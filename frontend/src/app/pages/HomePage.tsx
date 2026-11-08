@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { products } from "../data/products";
 import {
   Globe,
   Smartphone,
@@ -14,6 +15,8 @@ import {
   Users,
   Award,
   Clock,
+  ArrowUpRight,
+  Check,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────
@@ -113,6 +116,13 @@ const CSS = `
   /* Floating badges sur l'image */
   .float-a { animation: floatA 4s ease-in-out infinite; }
   .float-b { animation: floatB 4.5s ease-in-out infinite; }
+
+  /* Sur petit écran, les badges débordaient de 4px à droite et créaient un
+     défilement horizontal : on les ramène dans la largeur de l'image. */
+  @media (max-width: 640px) {
+    .float-a { top: -14px !important; right: 0 !important; }
+    .float-b { bottom: -14px !important; left: 0 !important; }
+  }
 
   /* Point pulsant */
   .pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
@@ -381,7 +391,7 @@ export function HomePage() {
               style={{ animation:"fadeSlideUp 0.7s 0.6s cubic-bezier(.22,.68,0,1.2) forwards", opacity:0 }}
             >
               <AnimatedStat value="100%" label="Satisfaction client" />
-              <AnimatedStat value="5+"   label="Services proposés" />
+              <AnimatedStat value="3"    label="Logiciels édités" />
               <AnimatedStat value="2024" label="Année de création" animate={false} />
               <AnimatedStat value="24/7" label="Support disponible" />
             </div>
@@ -452,8 +462,8 @@ export function HomePage() {
                   boxShadow:"0 8px 30px rgba(0,0,0,0.12)", border:"1px solid #E2E8F0",
                 }}
               >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#F97316" }}>5+</div>
-                <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Services digitaux</div>
+                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#F97316" }}>3</div>
+                <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Logiciels édités</div>
               </div>
               {/* Badge haut-droite — flotte vers le haut */}
               <div
@@ -536,9 +546,105 @@ export function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          WHY CHOOSE US
+          NOS PRODUITS
       ══════════════════════════════════════ */}
       <section style={{ background:"#fff", padding:"clamp(40px,8vw,80px) 0" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center mb-14 reveal">
+            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+              Nos produits
+            </div>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+              Des logiciels que nous éditons nous-mêmes
+            </h2>
+            <p style={{ color:"#0F172A", maxWidth:"620px", margin:"0 auto", lineHeight:"1.8" }}>
+              Trois plateformes conçues, développées et maintenues à Conakry, aujourd'hui utilisées
+              au quotidien par des écoles, des commerces et des markaz.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {products.map((product, i) => (
+              <article
+                key={product.slug}
+                className="service-card reveal"
+                style={{
+                  background:"#fff", borderRadius:"18px",
+                  border:"1px solid #E2E8F0", overflow:"hidden",
+                  display:"flex", flexDirection:"column",
+                  animationDelay: `${i * 0.1}s`,
+                }}
+              >
+                <div style={{ background: product.theme.deep, padding:"22px 24px" }}>
+                  <div
+                    style={{
+                      display:"inline-block",
+                      background: product.theme.accent,
+                      color: product.theme.onAccent, fontSize:"0.62rem", fontWeight:"700",
+                      letterSpacing:"0.08em", textTransform:"uppercase",
+                      borderRadius:"100px", padding:"3px 10px", marginBottom:"12px",
+                    }}
+                  >
+                    {product.audience}
+                  </div>
+                  <h3 style={{ color:"#fff", fontWeight:"800", fontSize:"1.25rem", letterSpacing:"-0.02em", marginBottom:"8px" }}>
+                    {product.name}
+                  </h3>
+                  <p style={{ color:"rgba(255,255,255,0.82)", fontSize:"0.88rem", lineHeight:"1.6" }}>
+                    {product.tagline}
+                  </p>
+                </div>
+
+                <div style={{ padding:"22px 24px", display:"flex", flexDirection:"column", flex:1 }}>
+                  <ul style={{ listStyle:"none", padding:0, margin:"0 0 20px" }} className="flex flex-col gap-2.5">
+                    {product.modules.slice(0, 3).map((module) => (
+                      <li key={module} className="flex items-start gap-2.5">
+                        <Check size={15} color={product.theme.accentText} style={{ marginTop:"3px", flexShrink:0 }} />
+                        <span style={{ fontSize:"0.85rem", color:"#475569", lineHeight:"1.6" }}>
+                          {module.split(" : ")[0]}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div style={{ marginTop:"auto" }} className="flex flex-col gap-2">
+                    <Link
+                      to={`/portfolio#${product.slug}`}
+                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#0284C7", fontWeight:"600", fontSize:"0.88rem", textDecoration:"none" }}
+                    >
+                      En savoir plus <ArrowRight size={14} />
+                    </Link>
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener"
+                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#64748B", fontWeight:"500", fontSize:"0.82rem", textDecoration:"none" }}
+                    >
+                      {product.domain} <ArrowUpRight size={13} />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center mt-10 reveal">
+            <Link
+              to="/portfolio"
+              className="btn-primary"
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+            >
+              Découvrir nos réalisations <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          WHY CHOOSE US
+      ══════════════════════════════════════ */}
+      <section style={{ background:"#F8FAFC", padding:"clamp(40px,8vw,80px) 0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
@@ -559,7 +665,7 @@ export function HomePage() {
                   className="reason-card reveal reveal-scale"
                   style={{
                     textAlign:"center", padding:"32px 20px",
-                    borderRadius:"16px", background:"#F8FAFC",
+                    borderRadius:"16px", background:"#fff",
                     border:"1px solid #E2E8F0",
                     animationDelay: `${i * 0.12}s`,
                   }}
@@ -611,13 +717,13 @@ export function HomePage() {
             >
               Nous contacter <ArrowRight size={18} />
             </Link>
-            {/* <Link
+            <Link
               to="/portfolio"
               className="btn-secondary"
               style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
             >
-              Voir notre portfolio
-            </Link> */}
+              Voir nos réalisations
+            </Link>
           </div>
         </div>
       </section>

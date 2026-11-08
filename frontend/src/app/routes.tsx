@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import type { RouteObject } from "react-router";
-import { Outlet, useRoutes } from "react-router";
+import { Outlet, useLocation, useRoutes } from "react-router";
 import { usePageTracking } from "./analytics";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -12,10 +13,36 @@ import { ContactPage } from "./pages/ContactPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { AdminPage } from "./pages/AdminPage";
 
+/**
+ * Gère le défilement à chaque navigation.
+ *
+ * React Router ne restaure ni ne réinitialise le scroll, et n'honore pas
+ * l'ancre d'une URL : sans ça, « Devis gratuit » (/contact#devis) ouvrait la
+ * page de contact en haut, loin du formulaire, et changer de page conservait
+ * la position précédente.
+ */
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const target = document.getElementById(hash.slice(1));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, left: 0 });
+  }, [pathname, hash]);
+
+  return null;
+}
+
 function Root() {
   usePageTracking();
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollManager />
       <Navbar />
       <main className="flex-1">
         <Outlet />

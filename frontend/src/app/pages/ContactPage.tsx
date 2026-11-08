@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle, Linkedin } from "lucide-react";
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { LINKEDIN_URL } from "../data/products";
 import { trackEvent } from "../analytics";
 
 export function ContactPage() {
@@ -154,6 +155,19 @@ export function ContactPage() {
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Conakry, Guinée</p>
                   </div>
                 </div>
+
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start", textDecoration: "none" }}
+                >
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Linkedin size={20} color="#0A66C2" /></div>
+                  <div>
+                    <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>LinkedIn</div>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Suivre Revyon Tech</p>
+                  </div>
+                </a>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
                   <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#8B5CF6" /></div>
