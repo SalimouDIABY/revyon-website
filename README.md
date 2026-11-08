@@ -1,75 +1,59 @@
-
 # Revyon Tech
 
-Site web et API pour Revyon Tech, avec un frontend Vite/React et un backend Express.js.
+Site web de Revyon Tech — https://www.revyontech.com
 
-## 📌 Présentation
-
-Ce dépôt contient :
-- `frontend/` : application client Vite + React + TypeScript
-- `backend/` : API Express.js pour la gestion des contacts et l’envoi d’e-mails
-
-## 🚀 Installation
-
-### Frontend
-```bash
-cd frontend
-npm install
-```
-
-### Backend
-```bash
-cd backend
-npm install
-```
-
-## ▶️ Démarrage
-
-### Lancer le frontend
-```bash
-cd frontend
-npm run dev
-```
-
-### Lancer le backend
-```bash
-cd backend
-npm start
-```
-
-Le frontend tourne généralement sur `http://localhost:5173` et le backend sur `http://localhost:5000`.
-
-## ⚙️ Configuration
-
-Copiez le fichier `.env.example` dans `backend/.env` puis adaptez les valeurs :
-```bash
-cd backend
-copy .env.example .env
-```
-
-Principales variables à définir :
-- `SERVER_PORT` : port du backend
-- `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` : configuration MySQL
-- `ADMIN_API_KEY` : clé pour accéder aux endpoints admin
-- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_EMAIL` : configuration email
-- `CORS_ORIGIN` : URL du frontend autorisé
-
-## 📂 Structure du dépôt
+## Structure
 
 ```text
-frontend/      # Application frontend React + Vite
-backend/       # API Express.js et configuration serveur
-guidelines/    # Documentation et consignes projet
+frontend/           Application React + Vite + TypeScript (tout le site)
+  src/app/pages/      Pages : accueil, à propos, services, réalisations, contact, confidentialité
+  src/app/data/       Données des produits édités par Revyon Tech
+  api/contact.js      Fonction serverless Vercel du formulaire de contact
+  prerender.mjs       Pré-rendu (SSG) de chaque route après le build
+guidelines/         Consignes projet
 ```
 
-## 💡 Notes
+Il n'y a **pas de serveur backend**. L'API se limite à une fonction serverless
+Vercel, `frontend/api/contact.js`, déployée sur le même domaine que le site :
+le front appelle donc toujours des chemins relatifs (`/api/...`).
 
-- Le backend peut basculer en stockage mémoire si MySQL n’est pas disponible.
-- Utilise une adresse e-mail valide ou un service SMTP de test pour l’envoi des messages de contact.
+## Développement
 
-## 🧪 Tests locaux
+```bash
+cd frontend
+npm install
+npm run dev          # http://localhost:5173
+```
 
-1. Démarre d’abord le backend
-2. Démarre ensuite le frontend
-3. Vérifie que le formulaire de contact fonctionne et que les requêtes vers `/api/contact` passent
-  
+## Build
+
+```bash
+cd frontend
+npm run build        # build client + build SSR + pré-rendu
+```
+
+Le build produit `dist/`, avec un `index.html` complet par route. **Toute
+nouvelle route doit être ajoutée à la liste `pages` de `prerender.mjs`** :
+sans cela elle renvoie 404 en production, car il n'y a pas de repli SPA.
+
+## Déploiement
+
+Vercel, avec `frontend/` comme répertoire racine du projet. La configuration
+(`cleanUrls`, en-têtes de sécurité, cache des assets) vit dans
+`frontend/vercel.json`.
+
+## Variables d'environnement (fonction de contact)
+
+| Variable | Rôle |
+| --- | --- |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Envoi des e-mails |
+| `SMTP_FROM`, `CONTACT_EMAIL` | Expéditeur et destinataire |
+| `CORS_ORIGIN` | Origines autorisées, séparées par des virgules |
+
+Sans configuration SMTP, la fonction valide la soumission sans envoyer d'e-mail.
+
+## Couleurs
+
+Le texte et les fonds porteurs de texte utilisent le bleu profond `#0C4A6E`
+(9,46:1 sur blanc). Le bleu clair `#0EA5E9` ne doit plus servir qu'à des
+aplats décoratifs : en texte il ne donne que 2,77:1, sous le seuil WCAG AA.

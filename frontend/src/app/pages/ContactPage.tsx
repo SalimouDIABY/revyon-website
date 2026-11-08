@@ -78,7 +78,7 @@ export function ContactPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #0096D6 100%)", padding: "clamp(50px, 10vw, 100px) 0", minHeight: "50vh", display: "flex", alignItems: "center" }}>
+      <section style={{ background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)", padding: "clamp(50px, 10vw, 100px) 0", minHeight: "50vh", display: "flex", alignItems: "center" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
           <div
             style={{
@@ -120,7 +120,7 @@ export function ContactPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Mail size={20} color="#0EA5E9" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Mail size={20} color="#0369A1" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Email</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>contact@revyontech.com</p>
@@ -128,7 +128,7 @@ export function ContactPage() {
                 </div>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#F97316" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#C2410C" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Téléphone</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>
@@ -141,7 +141,7 @@ export function ContactPage() {
                 </div>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MessageCircle size={20} color="#25D366" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MessageCircle size={20} color="#0F7A6C" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>WhatsApp</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627 33 07 09</p>
@@ -149,7 +149,7 @@ export function ContactPage() {
                 </div>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MapPin size={20} color="#F97316" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MapPin size={20} color="#C2410C" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Localisation</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Conakry, Guinée</p>
@@ -170,7 +170,7 @@ export function ContactPage() {
                 </a>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#8B5CF6" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#6D28D9" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Disponibilité</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lun – Sam : 8h00 – 18h00</p>
@@ -184,7 +184,7 @@ export function ContactPage() {
                 style={{
                   width: "100%",
                   padding: "14px 24px",
-                  background: "#25D366",
+                  background: "#0F7A6C",
                   color: "#fff",
                   border: "none",
                   borderRadius: "12px",
@@ -209,7 +209,7 @@ export function ContactPage() {
                 Envoyez-nous un message
               </h3>
               <p style={{ color: "#0F172A", marginBottom: "24px", fontSize: "0.95rem" }}>
-                Tous les champs marqués d'un <span style={{ color: "#F97316" }}>*</span> sont obligatoires.
+                Tous les champs marqués d'un <span style={{ color: "#C2410C" }}>*</span> sont obligatoires.
               </p>
 
               {submitted ? (
@@ -239,7 +239,7 @@ export function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
-                        Nom complet <span style={{ color: "#F97316" }}>*</span>
+                        Nom complet <span style={{ color: "#C2410C" }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -253,7 +253,7 @@ export function ContactPage() {
                     </div>
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
-                        Email <span style={{ color: "#F97316" }}>*</span>
+                        Email <span style={{ color: "#C2410C" }}>*</span>
                       </label>
                       <input
                         type="email"
@@ -270,7 +270,7 @@ export function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
-                        Téléphone <span style={{ color: "#F97316" }}>*</span>
+                        Téléphone <span style={{ color: "#C2410C" }}>*</span>
                       </label>
                       <input
                         type="tel"
@@ -284,7 +284,7 @@ export function ContactPage() {
                     </div>
                     <div>
                       <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
-                        Service <span style={{ color: "#F97316" }}>*</span>
+                        Service <span style={{ color: "#C2410C" }}>*</span>
                       </label>
                       <select
                         name="service"
@@ -308,7 +308,7 @@ export function ContactPage() {
 
                   <div>
                     <label style={{ display: "block", color: "#0F172A", fontWeight: "600", marginBottom: "6px", fontSize: "0.9rem" }}>
-                      Votre message <span style={{ color: "#F97316" }}>*</span>
+                      Votre message <span style={{ color: "#C2410C" }}>*</span>
                     </label>
                     <textarea
                       name="message"
@@ -333,7 +333,7 @@ export function ContactPage() {
                     disabled={loading}
                     style={{
                       padding: "14px 32px",
-                      background: loading ? "#94A3B8" : "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+                      background: loading ? "#94A3B8" : "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
                       color: "#fff",
                       border: "none",
                       borderRadius: "8px",
@@ -361,7 +361,7 @@ export function ContactPage() {
       <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 80px) 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div style={{ textAlign: "center", marginBottom: "40px" }}>
-            <h2 style={{ fontSize: "1.75rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "12px" }}>
+            <h2 style={{ fontSize: "1.75rem", fontWeight: "800", color: "#0C4A6E", marginBottom: "12px" }}>
               Questions fréquentes
             </h2>
           </div>
@@ -373,7 +373,7 @@ export function ContactPage() {
               { q: "Travaillez-vous avec des clients hors de Guinée ?", a: "Absolument ! Nous collaborons avec des clients dans toute l'Afrique de l'Ouest et la diaspora guinéenne." },
             ].map((item, i) => (
               <div key={i} style={{ background: "#F8FAFC", borderRadius: "12px", padding: "20px", border: "1px solid #E2E8F0" }}>
-                <h3 style={{ color: "#0EA5E9", fontWeight: "700", marginBottom: "8px" }}>{item.q}</h3>
+                <h3 style={{ color: "#0C4A6E", fontWeight: "700", marginBottom: "8px" }}>{item.q}</h3>
                 <p style={{ color: "#0F172A", lineHeight: "1.7", fontSize: "0.95rem" }}>{item.a}</p>
               </div>
             ))}

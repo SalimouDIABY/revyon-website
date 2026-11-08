@@ -35,7 +35,7 @@ export function PortfolioPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+          background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
           padding: "clamp(48px, 8vw, 88px) 0",
           position: "relative",
           overflow: "hidden",
@@ -343,7 +343,7 @@ export function PortfolioPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             style={{
-              background: "linear-gradient(135deg, #0EA5E9 0%, #0C4A6E 100%)",
+              background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
               borderRadius: "24px",
               padding: "clamp(28px, 5vw, 48px)",
             }}
@@ -385,9 +385,9 @@ export function PortfolioPage() {
               <div className="flex flex-wrap gap-2.5">
                 {[
                   { color: "#0C2340", name: "Bleu nuit" },
-                  { color: "#0EA5E9", name: "Bleu vif" },
+                  { color: "#0C4A6E", name: "Bleu vif" },
                   { color: "#38BDF8", name: "Bleu clair" },
-                  { color: "#F97316", name: "Orange" },
+                  { color: "#C2410C", name: "Orange" },
                   { color: "#FFFFFF", name: "Blanc" },
                 ].map((c) => (
                   <div key={c.name} className="flex flex-col items-center gap-1.5">
@@ -431,7 +431,7 @@ export function PortfolioPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)", padding: "clamp(40px, 7vw, 68px) 0" }}>
+      <section style={{ background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)", padding: "clamp(40px, 7vw, 68px) 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2.1rem)", fontWeight: 800, color: "#fff", marginBottom: "14px" }}>
             Votre métier mérite son propre outil
@@ -447,7 +447,7 @@ export function PortfolioPage() {
               alignItems: "center",
               gap: "8px",
               padding: "14px 32px",
-              background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+              background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
               color: "#fff",
               borderRadius: "10px",
               textDecoration: "none",

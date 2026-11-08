@@ -11,7 +11,6 @@ import { ServicesPage } from "./pages/ServicesPage";
 import { PortfolioPage } from "./pages/PortfolioPage";
 import { ContactPage } from "./pages/ContactPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
-import { AdminPage } from "./pages/AdminPage";
 
 /**
  * Gère le défilement à chaque navigation.
@@ -56,13 +55,13 @@ function Root() {
 function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      <h1 style={{ fontSize: "6rem", color: "#0EA5E9", fontWeight: "700" }}>404</h1>
+      <h1 style={{ fontSize: "6rem", color: "#0C4A6E", fontWeight: "700" }}>404</h1>
       <p style={{ fontSize: "1.25rem", color: "#64748B" }} className="mb-6">
         Page introuvable
       </p>
       <a
         href="/"
-        style={{ background: "#F97316", color: "#fff", padding: "12px 32px", borderRadius: "8px", textDecoration: "none", fontWeight: "600" }}
+        style={{ background: "#C2410C", color: "#fff", padding: "12px 32px", borderRadius: "8px", textDecoration: "none", fontWeight: "600" }}
       >
         Retour à l'accueil
       </a>
@@ -81,7 +80,6 @@ export const routes: RouteObject[] = [
       { path: "portfolio", Component: PortfolioPage },
       { path: "contact", Component: ContactPage },
       { path: "politique-confidentialite", Component: PrivacyPage },
-      { path: "admin", Component: AdminPage },
       { path: "*", Component: NotFound },
     ],
   },

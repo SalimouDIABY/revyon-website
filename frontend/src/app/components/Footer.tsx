@@ -13,7 +13,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ background: "#0EA5E9", color: "#fff" }}>
+    <footer style={{ background: "#0C4A6E", color: "#fff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
@@ -180,7 +180,7 @@ export function Footer() {
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <MessageCircle size={16} color="#25D366" />
+                <MessageCircle size={16} color="#4ADE80" />
                 <a href="https://wa.me/224627330709" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
                   WhatsApp disponible
                 </a>
@@ -194,7 +194,7 @@ export function Footer() {
               style={{
                 marginTop: "20px",
                 padding: "12px 16px",
-                background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+                background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
                 borderRadius: "8px",
                 textAlign: "center",
               }}

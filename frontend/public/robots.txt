@@ -44,7 +44,6 @@ Allow: /
 # ── Règle générale ──
 User-agent: *
 Allow: /
-Disallow: /admin
 Disallow: /api
 
 Sitemap: https://www.revyontech.com/sitemap.xml

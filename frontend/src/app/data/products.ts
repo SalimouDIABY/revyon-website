@@ -37,8 +37,6 @@ export type Product = {
     accent: string;
     /** Variante de l'accent lisible en texte sur fond clair (contraste AA). */
     accentText: string;
-    /** Couleur de texte à poser sur l'accent (contraste AA). */
-    onAccent: string;
     soft: string;
   };
   /** Chiffres d'illustration affichés dans l'aperçu (jamais des données client). */
@@ -76,7 +74,7 @@ export const products: Product[] = [
       "Communication et portail parent : annonces ciblées et espace dédié aux familles",
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Multi-établissements", "Rôles et permissions"],
-    theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#D9480F", accentText: "#A8370B", onAccent: "#FFFFFF", soft: "#E3ECF7" },
+    theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#D9480F", accentText: "#A8370B", soft: "#E3ECF7" },
     preview: {
       label: "Tableau de bord établissement",
       nav: ["Scolarité", "Notes", "Présences", "Finance", "Communication"],
@@ -113,7 +111,7 @@ export const products: Product[] = [
       "Charges et trésorerie, caisses multiples",
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Synchronisation automatique", "Comptes validés"],
-    theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#C2410C", accentText: "#9A3412", onAccent: "#FFFFFF", soft: "#E3ECF7" },
+    theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#C2410C", accentText: "#9A3412", soft: "#E3ECF7" },
     preview: {
       label: "Activité du commerce",
       nav: ["Stock", "Ventes", "Achats", "Comptes", "Trésorerie"],
@@ -150,7 +148,7 @@ export const products: Product[] = [
       "Contributions et suivi administratif",
     ],
     tech: ["Application web", "PWA installable", "Hors ligne par défaut", "Interface française et arabe", "Multi-markaz"],
-    theme: { deep: "#10284F", surface: "#F4F2EC", accent: "#C9A227", accentText: "#7A5E0C", onAccent: "#10284F", soft: "#E7E2D5" },
+    theme: { deep: "#10284F", surface: "#F4F2EC", accent: "#C9A227", accentText: "#7A5E0C", soft: "#E7E2D5" },
     preview: {
       label: "Suivi d'un groupe",
       nav: ["Markaz", "Séances", "Hifz", "Évaluations", "Contributions"],

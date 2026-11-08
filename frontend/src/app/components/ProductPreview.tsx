@@ -57,8 +57,8 @@ export function ProductPreview({ product }: { product: Product }) {
           </span>
           <span
             style={{
-              background: theme.accent,
-              color: theme.onAccent,
+              background: theme.accentText,
+              color: "#fff",
               fontSize: "0.62rem",
               fontWeight: 700,
               letterSpacing: "0.08em",
