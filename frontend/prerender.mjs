@@ -17,9 +17,10 @@ const { render } = await import(
 // Titre + description par route (alignés sur usePageMeta côté client).
 const pages = {
   "/": {
-    title: "Revyon Tech — Éditeur de logiciels métier à Conakry, Guinée",
+    title:
+      "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
     description:
-      "Revyon Tech conçoit et maintient à Conakry ses propres logiciels métier : Revyon School (gestion scolaire), Revyon Gestock (gestion commerciale) et MarkaGest (écoles coraniques). Également sites web, applications mobiles, marketing digital et matériel informatique en Guinée.",
+      "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
   },
   "/a-propos": {
     title: "À propos | Revyon Tech — Société informatique en Guinée",
