@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { products } from "../data/products";
 import {
   Globe,
   Smartphone,
@@ -14,6 +15,8 @@ import {
   Users,
   Award,
   Clock,
+  ArrowUpRight,
+  Check,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────
@@ -113,6 +116,13 @@ const CSS = `
   /* Floating badges sur l'image */
   .float-a { animation: floatA 4s ease-in-out infinite; }
   .float-b { animation: floatB 4.5s ease-in-out infinite; }
+
+  /* Sur petit écran, les badges débordaient de 4px à droite et créaient un
+     défilement horizontal : on les ramène dans la largeur de l'image. */
+  @media (max-width: 640px) {
+    .float-a { top: -14px !important; right: 0 !important; }
+    .float-b { bottom: -14px !important; left: 0 !important; }
+  }
 
   /* Point pulsant */
   .pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
@@ -224,7 +234,7 @@ function AnimatedStat({ value, label, animate = true }: { value: string; label: 
 
   return (
     <div ref={ref}>
-      <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#F97316", lineHeight: 1 }}>
+      <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#FDBA74", lineHeight: 1 }}>
         {animate ? (displayed || value) : value}
       </div>
       <div style={{ fontSize: "0.8rem", color: "#fff", marginTop: "4px", opacity: 0.9 }}>{label}</div>
@@ -237,8 +247,8 @@ function AnimatedStat({ value, label, animate = true }: { value: string; label: 
 ───────────────────────────────────────────── */
 export function HomePage() {
   usePageMeta(
-    "Revyon Tech — Entreprise informatique en Guinée | Développement web, logiciels & digital",
-    "Revyon Tech, entreprise informatique à Conakry : création de sites web, développement de logiciels et d'applications mobiles, marketing digital, maintenance et matériel informatique en Guinée.",
+    "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
+    "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
     "/"
   );
 
@@ -265,7 +275,7 @@ export function HomePage() {
       ══════════════════════════════════════ */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #0096D6 100%)",
+          background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
           minHeight: "90vh",
           display: "flex",
           alignItems: "center",
@@ -302,9 +312,9 @@ export function HomePage() {
                 opacity: 0,
               }}
             >
-              <div className="pulse-dot" style={{ width:"8px", height:"8px", borderRadius:"50%", background:"#7DD3FC" }} />
-              <span style={{ color:"#7DD3FC", fontSize:"0.85rem", fontWeight:"500" }}>
-                Votre partenaire digital en Guinée
+              <div className="pulse-dot" style={{ width:"8px", height:"8px", borderRadius:"50%", background:"#E0F2FE" }} />
+              <span style={{ color:"#E0F2FE", fontSize:"0.85rem", fontWeight:"500" }}>
+                Entreprise informatique · Conakry, Guinée
               </span>
             </div>
 
@@ -319,12 +329,12 @@ export function HomePage() {
                 opacity: 0,
               }}
             >
-              Transformez vos{" "}
-              <span style={{ background:"linear-gradient(135deg,#F97316 0%,#FBBF24 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-                idées
-              </span>{" "}
-              en solutions{" "}
-              <span style={{ color:"#38BDF8" }}>digitales</span>
+              Tout votre{" "}
+              <span style={{ background:"linear-gradient(135deg,#FDBA74 0%,#FCD34D 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+                numérique
+              </span>,{" "}
+              conçu et accompagné depuis{" "}
+              <span style={{ color:"#BAE6FD" }}>Conakry</span>
             </h1>
 
             {/* Paragraphe — animation 3 */}
@@ -335,8 +345,10 @@ export function HomePage() {
                 animation: "fadeSlideUp 0.7s 0.3s cubic-bezier(.22,.68,0,1.2) forwards",
               }}
             >
-              Revyon Tech est votre agence technologique de référence. Nous créons des expériences digitales modernes,
-              performantes et sur mesure pour propulser votre entreprise vers le succès.
+              Sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel
+              informatique : Revyon Tech accompagne les entreprises et les institutions guinéennes sur l'ensemble de
+              leur numérique. Nous éditons aussi nos propres plateformes métier, utilisées chaque jour par des écoles,
+              des commerces et des markaz.
             </p>
 
             {/* Boutons — animation 4 */}
@@ -350,7 +362,7 @@ export function HomePage() {
                 style={{
                   display:"inline-flex", alignItems:"center", gap:"8px",
                   padding:"14px 32px",
-                  background:"linear-gradient(135deg,#F97316 0%,#EA580C 100%)",
+                  background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)",
                   color:"#fff", borderRadius:"10px", textDecoration:"none",
                   fontWeight:"700", fontSize:"1rem",
                   boxShadow:"0 4px 20px rgba(249,115,22,0.4)",
@@ -380,10 +392,10 @@ export function HomePage() {
               className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14"
               style={{ animation:"fadeSlideUp 0.7s 0.6s cubic-bezier(.22,.68,0,1.2) forwards", opacity:0 }}
             >
-              <AnimatedStat value="100%" label="Satisfaction client" />
-              <AnimatedStat value="5+"   label="Services proposés" />
+              <AnimatedStat value="7"    label="Services proposés" />
+              <AnimatedStat value="3"    label="Logiciels édités" />
               <AnimatedStat value="2024" label="Année de création" animate={false} />
-              <AnimatedStat value="24/7" label="Support disponible" />
+              <AnimatedStat value="24h"  label="Délai de réponse" />
             </div>
           </div>
         </div>
@@ -398,10 +410,10 @@ export function HomePage() {
 
             {/* Texte — slide depuis la gauche */}
             <div className="reveal-left">
-              <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+              <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
                 À propos de nous
               </div>
-              <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", lineHeight:"1.2", marginBottom:"16px", letterSpacing:"-0.02em" }}>
+              <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", lineHeight:"1.2", marginBottom:"16px", letterSpacing:"-0.02em" }}>
                 Une agence tech au cœur de l'Afrique
               </h2>
               <p style={{ color:"#0F172A", lineHeight:"1.8", marginBottom:"20px" }}>
@@ -421,7 +433,7 @@ export function HomePage() {
                     className="check-item flex items-center gap-3"
                     style={{ animationDelay: `${0.1 + i * 0.15}s` }}
                   >
-                    <CheckCircle2 size={18} color="#0EA5E9" />
+                    <CheckCircle2 size={18} color="#0369A1" />
                     <span style={{ color:"#334155", fontWeight:"500" }}>{item}</span>
                   </div>
                 ))}
@@ -430,7 +442,7 @@ export function HomePage() {
               <Link
                 to="/a-propos"
                 className="btn-primary"
-                style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"12px 28px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+                style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"12px 28px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
               >
                 En savoir plus <ArrowRight size={16} />
               </Link>
@@ -452,21 +464,21 @@ export function HomePage() {
                   boxShadow:"0 8px 30px rgba(0,0,0,0.12)", border:"1px solid #E2E8F0",
                 }}
               >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#F97316" }}>5+</div>
-                <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Services digitaux</div>
+                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#C2410C" }}>3</div>
+                <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Logiciels édités</div>
               </div>
               {/* Badge haut-droite — flotte vers le haut */}
               <div
                 className="float-a"
                 style={{
                   position:"absolute", top:"-20px", right:"-20px",
-                  background:"linear-gradient(135deg,#0EA5E9,#0284C7)",
+                  background:"linear-gradient(135deg,#0C4A6E,#075985)",
                   borderRadius:"16px", padding:"16px 20px",
                   boxShadow:"0 8px 30px rgba(14,165,233,0.3)",
                 }}
               >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#fff" }}>100%</div>
-                <div style={{ fontSize:"0.8rem", color:"#BAE6FD", fontWeight:"500" }}>Satisfaction</div>
+                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#fff" }}>Conakry</div>
+                <div style={{ fontSize:"0.8rem", color:"#BAE6FD", fontWeight:"500" }}>Conçu et développé ici</div>
               </div>
             </div>
 
@@ -481,10 +493,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#FFF7ED", color:"#EA580C", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+            <div style={{ display:"inline-block", background:"#FFF7ED", color:"#9A3412", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
               Nos Services
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
               Ce que nous faisons pour vous
             </h2>
             <p style={{ color:"#0F172A", maxWidth:"550px", margin:"0 auto", lineHeight:"1.8" }}>
@@ -514,9 +526,9 @@ export function HomePage() {
                       marginBottom:"16px",
                     }}
                   >
-                    <Icon size={24} color={i % 2 === 0 ? "#0EA5E9" : "#F97316"} />
+                    <Icon size={24} color={i % 2 === 0 ? "#0369A1" : "#C2410C"} />
                   </div>
-                  <h3 style={{ fontWeight:"700", color:"#0EA5E9", marginBottom:"8px" }}>{service.title}</h3>
+                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"8px" }}>{service.title}</h3>
                   <p style={{ color:"#0F172A", fontSize:"0.9rem", lineHeight:"1.7" }}>{service.desc}</p>
                 </div>
               );
@@ -527,7 +539,7 @@ export function HomePage() {
             <Link
               to="/services"
               className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
             >
               Voir tous nos services <ArrowRight size={16} />
             </Link>
@@ -536,16 +548,112 @@ export function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          WHY CHOOSE US
+          NOS PRODUITS
       ══════════════════════════════════════ */}
       <section style={{ background:"#fff", padding:"clamp(40px,8vw,80px) 0" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+              Nos produits
+            </div>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+              Et des logiciels que nous éditons nous-mêmes
+            </h2>
+            <p style={{ color:"#0F172A", maxWidth:"620px", margin:"0 auto", lineHeight:"1.8" }}>
+              Trois plateformes conçues, développées et maintenues à Conakry, aujourd'hui utilisées
+              au quotidien par des écoles, des commerces et des markaz.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {products.map((product, i) => (
+              <article
+                key={product.slug}
+                className="service-card reveal"
+                style={{
+                  background:"#fff", borderRadius:"18px",
+                  border:"1px solid #E2E8F0", overflow:"hidden",
+                  display:"flex", flexDirection:"column",
+                  animationDelay: `${i * 0.1}s`,
+                }}
+              >
+                <div style={{ background: product.theme.deep, padding:"22px 24px" }}>
+                  <div
+                    style={{
+                      display:"inline-block",
+                      background: product.theme.accentText,
+                      color:"#fff", fontSize:"0.62rem", fontWeight:"700",
+                      letterSpacing:"0.08em", textTransform:"uppercase",
+                      borderRadius:"100px", padding:"3px 10px", marginBottom:"12px",
+                    }}
+                  >
+                    {product.audience}
+                  </div>
+                  <h3 style={{ color:"#fff", fontWeight:"800", fontSize:"1.25rem", letterSpacing:"-0.02em", marginBottom:"8px" }}>
+                    {product.name}
+                  </h3>
+                  <p style={{ color:"rgba(255,255,255,0.82)", fontSize:"0.88rem", lineHeight:"1.6" }}>
+                    {product.tagline}
+                  </p>
+                </div>
+
+                <div style={{ padding:"22px 24px", display:"flex", flexDirection:"column", flex:1 }}>
+                  <ul style={{ listStyle:"none", padding:0, margin:"0 0 20px" }} className="flex flex-col gap-2.5">
+                    {product.modules.slice(0, 3).map((module) => (
+                      <li key={module} className="flex items-start gap-2.5">
+                        <Check size={15} color={product.theme.accentText} style={{ marginTop:"3px", flexShrink:0 }} />
+                        <span style={{ fontSize:"0.85rem", color:"#475569", lineHeight:"1.6" }}>
+                          {module.split(" : ")[0]}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div style={{ marginTop:"auto" }} className="flex flex-col gap-2">
+                    <Link
+                      to={`/portfolio#${product.slug}`}
+                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#075985", fontWeight:"600", fontSize:"0.88rem", textDecoration:"none" }}
+                    >
+                      En savoir plus <ArrowRight size={14} />
+                    </Link>
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener"
+                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#64748B", fontWeight:"500", fontSize:"0.82rem", textDecoration:"none" }}
+                    >
+                      {product.domain} <ArrowUpRight size={13} />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center mt-10 reveal">
+            <Link
+              to="/portfolio"
+              className="btn-primary"
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+            >
+              Découvrir nos réalisations <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          WHY CHOOSE US
+      ══════════════════════════════════════ */}
+      <section style={{ background:"#F8FAFC", padding:"clamp(40px,8vw,80px) 0" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center mb-14 reveal">
+            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
               Pourquoi nous choisir
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
               Notre engagement envers l'excellence
             </h2>
           </div>
@@ -559,7 +667,7 @@ export function HomePage() {
                   className="reason-card reveal reveal-scale"
                   style={{
                     textAlign:"center", padding:"32px 20px",
-                    borderRadius:"16px", background:"#F8FAFC",
+                    borderRadius:"16px", background:"#fff",
                     border:"1px solid #E2E8F0",
                     animationDelay: `${i * 0.12}s`,
                   }}
@@ -568,7 +676,7 @@ export function HomePage() {
                     className="reason-icon"
                     style={{
                       width:"64px", height:"64px", borderRadius:"50%",
-                      background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)",
+                      background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)",
                       display:"flex", alignItems:"center", justifyContent:"center",
                       margin:"0 auto 16px",
                       boxShadow:"0 4px 16px rgba(14,165,233,0.3)",
@@ -576,7 +684,7 @@ export function HomePage() {
                   >
                     <Icon size={26} color="#fff" />
                   </div>
-                  <h3 style={{ fontWeight:"700", color:"#0EA5E9", marginBottom:"10px" }}>{reason.title}</h3>
+                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"10px" }}>{reason.title}</h3>
                   <p style={{ color:"#0F172A", fontSize:"0.88rem", lineHeight:"1.7" }}>{reason.desc}</p>
                 </div>
               );
@@ -590,7 +698,7 @@ export function HomePage() {
       ══════════════════════════════════════ */}
       <section
         style={{
-          background:"linear-gradient(135deg,#0EA5E9 0%,#06B6D4 100%)",
+          background:"linear-gradient(135deg,#0C4A6E 0%,#0E7490 100%)",
           padding:"clamp(40px,8vw,80px) 0",
           position:"relative", overflow:"hidden",
         }}
@@ -607,17 +715,17 @@ export function HomePage() {
             <Link
               to="/contact"
               className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"linear-gradient(135deg,#F97316 0%,#EA580C 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"700", fontSize:"1.05rem", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"700", fontSize:"1.05rem", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}
             >
               Nous contacter <ArrowRight size={18} />
             </Link>
-            {/* <Link
+            <Link
               to="/portfolio"
               className="btn-secondary"
               style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
             >
-              Voir notre portfolio
-            </Link> */}
+              Voir nos réalisations
+            </Link>
           </div>
         </div>
       </section>

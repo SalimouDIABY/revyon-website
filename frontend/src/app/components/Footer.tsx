@@ -1,16 +1,21 @@
 import { Link } from "react-router";
-import { Mail, MessageCircle, MapPin, Facebook, Phone } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Facebook, Linkedin, Phone } from "lucide-react";
 import { Logo } from "./Logo";
+import { products, LINKEDIN_URL } from "../data/products";
 
 const FACEBOOK_URL = "https://www.facebook.com/share/198dU1h9Gz/";
+
+// Sur le fond bleu du footer, le survol doit éclaircir le texte : un bleu
+// identique au fond rendait les liens invisibles au passage de la souris.
+const HOVER = "#FDBA74";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ background: "#0EA5E9", color: "#fff" }}>
+    <footer style={{ background: "#0C4A6E", color: "#fff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -46,6 +51,32 @@ export function Footer() {
               >
                 <Facebook size={16} />
               </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Revyon Tech sur LinkedIn"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "#1E293B",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#fff",
+                  transition: "all 0.2s",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#0A66C2";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#1E293B";
+                }}
+              >
+                <Linkedin size={16} />
+              </a>
             </div>
           </div>
 
@@ -57,14 +88,14 @@ export function Footer() {
                 { label: "Accueil", path: "/" },
                 { label: "À propos", path: "/a-propos" },
                 { label: "Services", path: "/services" },
-                //{ label: "Portfolio", path: "/portfolio" },
+                { label: "Réalisations", path: "/portfolio" },
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
                     style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#0EA5E9")}
+                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = HOVER)}
                     onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#fff")}
                   >
                     {link.label}
@@ -90,13 +121,44 @@ export function Footer() {
                   <Link
                     to="/services"
                     style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#F97316")}
+                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = HOVER)}
                     onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#fff")}
                   >
                     {service}
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Produits */}
+          <div>
+            <h4 style={{ color: "#fff", fontWeight: "600", marginBottom: "16px" }}>Nos produits</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }} className="flex flex-col gap-2">
+              {products.map((product) => (
+                <li key={product.slug}>
+                  <a
+                    href={product.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem", transition: "color 0.2s" }}
+                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = HOVER)}
+                    onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#fff")}
+                  >
+                    {product.name}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/portfolio"
+                  style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem", opacity: 0.85 }}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.color = HOVER)}
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#fff")}
+                >
+                  Toutes nos réalisations
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -118,7 +180,7 @@ export function Footer() {
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <MessageCircle size={16} color="#25D366" />
+                <MessageCircle size={16} color="#4ADE80" />
                 <a href="https://wa.me/224627330709" style={{ color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}>
                   WhatsApp disponible
                 </a>
@@ -132,7 +194,7 @@ export function Footer() {
               style={{
                 marginTop: "20px",
                 padding: "12px 16px",
-                background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+                background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
                 borderRadius: "8px",
                 textAlign: "center",
               }}
@@ -155,7 +217,7 @@ export function Footer() {
             <Link
               to="/politique-confidentialite"
               style={{ fontSize: "0.85rem", color: "#fff", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#F97316")}
+              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = HOVER)}
               onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#fff")}
             >
               Politique de confidentialité

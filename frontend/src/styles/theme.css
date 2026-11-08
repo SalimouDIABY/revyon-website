@@ -179,3 +179,10 @@
     line-height: 1.5;
   }
 }
+
+/* Filet de sécurité : aucun élément décoratif ne doit créer de défilement
+   horizontal sur mobile (badges flottants, cercles de fond, etc.). */
+html,
+body {
+  overflow-x: hidden;
+}

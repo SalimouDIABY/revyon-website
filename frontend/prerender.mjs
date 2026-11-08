@@ -18,9 +18,9 @@ const { render } = await import(
 const pages = {
   "/": {
     title:
-      "Revyon Tech — Entreprise informatique en Guinée | Développement web, logiciels & digital",
+      "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
     description:
-      "Revyon Tech, entreprise informatique à Conakry : création de sites web, développement de logiciels et d'applications mobiles, marketing digital, maintenance et matériel informatique en Guinée.",
+      "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
   },
   "/a-propos": {
     title: "À propos | Revyon Tech — Société informatique en Guinée",
@@ -33,9 +33,12 @@ const pages = {
     description:
       "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
   },
-  // /portfolio est volontairement exclu du pré-rendu et du sitemap : la page
-  // n'est pas encore prête et reste masquée (non listée). La route fonctionne
-  // toujours côté client pour quand elle sera publiée.
+  "/portfolio": {
+    title:
+      "Nos réalisations | Logiciels édités par Revyon Tech — Revyon School, Gestock, MarkaGest",
+    description:
+      "Découvrez les logiciels conçus et développés par Revyon Tech à Conakry : Revyon School (gestion scolaire), Revyon Gestock (stock et trésorerie) et MarkaGest (gestion des markaz et suivi du hifz).",
+  },
   "/contact": {
     title: "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
     description:

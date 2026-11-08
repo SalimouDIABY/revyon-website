@@ -1,15 +1,23 @@
 # Revyon Tech
 
-> Revyon Tech est une entreprise informatique basée à Conakry, en Guinée, spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation. Elle intervient en Guinée et en Afrique francophone.
+> Revyon Tech est une entreprise informatique basée à Conakry, en Guinée, spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation. Elle intervient en Guinée et en Afrique francophone. Revyon Tech est également éditeur de ses propres logiciels métier : Revyon School, Revyon Gestock et MarkaGest.
 
 ## Coordonnées
 - Téléphone / WhatsApp : +224 627 33 07 09 et +224 613 05 99 38
 - Email : contact@revyontech.com
 - Localisation : Conakry, Guinée
+- LinkedIn : https://www.linkedin.com/company/revyon-tech/
+- Facebook : https://www.facebook.com/share/198dU1h9Gz/
+
+## Logiciels édités par Revyon Tech
+- [Revyon School](https://www.revyonschool.com) : logiciel de gestion scolaire pour les écoles de Guinée, du préscolaire à la terminale. Élèves, inscriptions, notes et bulletins, présences, frais de scolarité et recouvrement, communication et portail parent. Multi-établissements, utilisable hors connexion, installable sur téléphone, programme national guinéen intégré.
+- [Revyon Gestock](https://www.revyongestock.com) : logiciel de gestion commerciale pour les commerces, boutiques et PME. Stock, ventes, achats, comptes clients et fournisseurs, dettes, charges et trésorerie, avec factures et reçus partageables. Fonctionne sans internet et se synchronise au retour du réseau.
+- [MarkaGest](https://markagest.com) : plateforme de gestion des écoles coraniques et markaz. Organisation des séances, suivi de la mémorisation du Coran (hifz) élève par élève, évaluations et contributions. Hors ligne par défaut, utilisable sur téléphone.
 
 ## Pages
-- [Accueil](https://www.revyontech.com/) : présentation de Revyon Tech et de ses services
+- [Accueil](https://www.revyontech.com/) : présentation de Revyon Tech, de ses services et de ses produits
 - [Services](https://www.revyontech.com/services) : détail des prestations (web, logiciel, mobile, marketing, multimédia, matériel, formation)
+- [Réalisations](https://www.revyontech.com/portfolio) : logiciels édités par Revyon Tech et travaux d'identité visuelle
 - [À propos](https://www.revyontech.com/a-propos) : histoire, mission et équipe de Revyon Tech
 - [Contact](https://www.revyontech.com/contact) : coordonnées et formulaire de devis
 - [Politique de confidentialité](https://www.revyontech.com/politique-confidentialite)

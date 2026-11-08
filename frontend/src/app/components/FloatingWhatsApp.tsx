@@ -20,7 +20,7 @@ export function FloatingWhatsApp() {
         width: "56px",
         height: "56px",
         borderRadius: "50%",
-        background: "#25D366",
+        background: "#128C7E",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
