@@ -1,4 +1,4 @@
-# Revyon Tech — robots.txt
+# Revyon Tech, robots.txt
 # Objectif : maximiser la visibilité sur les moteurs classiques ET les IA.
 
 # ── Bots de recherche / citation IA (visibilité directe) ──

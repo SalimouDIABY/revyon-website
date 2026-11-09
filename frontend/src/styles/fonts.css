@@ -3,7 +3,7 @@
  * Auparavant : @import vers fonts.googleapis.com. Le navigateur devait
  * télécharger notre CSS, y découvrir l'import, ouvrir deux connexions
  * externes (googleapis puis gstatic), et seulement ensuite récupérer la
- * police — une cascade coûteuse sur réseau mobile.
+ * police. La cascade est coûteuse sur réseau mobile.
  *
  * Le fichier est maintenant servi depuis notre propre domaine, avec le
  * même cache d'un an que les autres assets. On ne déclare que le latin :

@@ -1,4 +1,4 @@
-// Pré-rendu (SSG) — exécuté après les builds Vite (client + serveur).
+// Pré-rendu (SSG), exécuté après les builds Vite (client + serveur).
 // Pour chaque route, génère un index.html contenant le HTML complet de la
 // page, afin que le contenu soit lisible sans exécuter de JavaScript
 // (robots d'IA : GPTBot, ClaudeBot, PerplexityBot… + moteurs classiques).
@@ -18,29 +18,29 @@ const { render } = await import(
 const pages = {
   "/": {
     title:
-      "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
+      "Revyon Tech, entreprise informatique à Conakry : web, logiciels, design et marketing",
     description:
       "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
   },
   "/a-propos": {
-    title: "À propos | Revyon Tech — Société informatique en Guinée",
+    title: "À propos | Revyon Tech, société informatique en Guinée",
     description:
       "Découvrez Revyon Tech, entreprise technologique guinéenne spécialisée en développement web, logiciels, applications mobiles et transformation digitale à Conakry.",
   },
   "/services": {
     title:
-      "Nos services | Création de sites web, logiciels et marketing digital en Guinée — Revyon Tech",
+      "Nos services | Création de sites web, logiciels et marketing digital en Guinée | Revyon Tech",
     description:
       "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
   },
   "/portfolio": {
     title:
-      "Nos réalisations | Logiciels édités par Revyon Tech — Revyon School, Gestock, MarkaGest",
+      "Nos réalisations | Logiciels édités par Revyon Tech : Revyon School, Gestock, MarkaGest",
     description:
       "Découvrez les logiciels conçus et développés par Revyon Tech à Conakry : Revyon School (gestion scolaire), Revyon Gestock (stock et trésorerie) et MarkaGest (gestion des markaz et suivi du hifz).",
   },
   "/contact": {
-    title: "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
+    title: "Contact | Revyon Tech, entreprise informatique à Conakry, Guinée",
     description:
       "Contactez Revyon Tech pour votre projet web, logiciel ou marketing digital en Guinée. Réponse en moins de 24h. Téléphone et WhatsApp : +224 627 33 07 09.",
   },

@@ -25,7 +25,7 @@ export type Product = {
   cardLine: string;
   /** Paragraphe de présentation. */
   description: string;
-  /** Ce que le produit apporte concrètement — formulé en bénéfices. */
+  /** Ce que le produit apporte concrètement, formulé en bénéfices. */
   outcomes: string[];
   /** Modules / périmètre fonctionnel. */
   modules: string[];
@@ -64,7 +64,7 @@ export const products: Product[] = [
       "Logiciel de gestion scolaire conçu pour les écoles de Guinée, du préscolaire à la terminale. Élèves, notes, présences, frais de scolarité et communication aux familles sont réunis dans une seule plateforme, multi-établissements, utilisable depuis un ordinateur, une tablette ou un téléphone.",
     outcomes: [
       "Les bulletins d'une classe se préparent en une séance : moyennes, rangs et moyenne de classe sont calculés à partir des notes déjà saisies.",
-      "Chaque inscription crée son échéancier et chaque encaissement produit un reçu numéroté, en francs guinéens — la liste des familles à relancer se tient à jour toute seule.",
+      "Chaque inscription crée son échéancier et chaque encaissement produit un reçu numéroté, en francs guinéens. La liste des familles à relancer se tient à jour toute seule.",
       "L'appel, les notes, les inscriptions et la caisse continuent hors connexion, puis se synchronisent au retour du réseau, sans double saisie.",
       "Les matières et coefficients du programme national guinéen sont proposés dès qu'un cycle est activé, et restent modifiables par l'école.",
     ],

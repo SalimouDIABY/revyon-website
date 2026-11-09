@@ -186,3 +186,135 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Mouvement et interactions
+   Le mouvement sert à deux choses ici : situer (ce qui est actif,
+   ce qui répond au clic) et signer (l'orbite du logo). Rien ne se
+   déclenche au défilement, et tout s'arrête si le système demande
+   à réduire les animations.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Entrée du héros : une seule fois, au chargement ── */
+@keyframes rt-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rt-rise {
+  opacity: 0;
+  animation: rt-rise 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: var(--rt-delay, 0s);
+}
+
+/* ── Orbite de la marque : un arc de lumière parcourt l'anneau ── */
+@keyframes rt-travel {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1600; }
+}
+.rt-orbit-arc {
+  stroke-dasharray: 150 1450;
+  animation: rt-travel 18s linear infinite;
+}
+@keyframes rt-pulse {
+  0%, 100% { opacity: 0.9; r: 7; }
+  50%      { opacity: 1;   r: 8.5; }
+}
+.rt-orbit-dot { animation: rt-pulse 3.2s ease-in-out infinite; }
+
+/* ── Boutons : la flèche avance, le fond se densifie ── */
+.rt-btn {
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+              color 0.18s ease, transform 0.18s ease;
+}
+.rt-btn:hover { transform: translateY(-1px); }
+.rt-btn:active { transform: translateY(0); }
+.rt-btn svg { transition: transform 0.18s ease; }
+.rt-btn:hover svg { transform: translateX(3px); }
+
+.rt-btn-solid:hover { background-color: #0A3A57 !important; }
+.rt-btn-accent:hover { background-color: #9A3412 !important; }
+.rt-btn-ghost:hover { border-color: #0C4A6E !important; background-color: #F3F7FA !important; }
+
+/* ── Liens de texte : le soulignement se trace ── */
+.rt-link {
+  position: relative;
+  transition: color 0.18s ease;
+}
+.rt-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.rt-link:hover::after { transform: scaleX(1); }
+.rt-link svg { transition: transform 0.18s ease; }
+.rt-link:hover svg { transform: translateX(3px); }
+
+/* ── Cartes produit : le trait d'accent s'allonge ── */
+.rt-card { transition: transform 0.2s ease; }
+.rt-card .rt-rule {
+  transition: width 0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.rt-card:hover .rt-rule { width: 54px; }
+.rt-card .rt-card-title { transition: color 0.18s ease; }
+
+/* ── Captures d'écran : léger relief au survol ── */
+.rt-shot {
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.25s ease;
+  box-shadow: 0 1px 2px rgba(12, 35, 64, 0.05);
+}
+.rt-shot:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(12, 35, 64, 0.12);
+}
+
+/* ── Navigation : indicateur de page active et ombre au défilement ── */
+.rt-nav { transition: box-shadow 0.2s ease, border-color 0.2s ease; }
+.rt-nav[data-scrolled="true"] {
+  box-shadow: 0 1px 14px rgba(12, 35, 64, 0.08);
+  border-color: transparent;
+}
+.rt-navlink { position: relative; transition: color 0.18s ease; }
+.rt-navlink::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: #C2410C;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.rt-navlink:hover::after { transform: scaleX(0.55); }
+.rt-navlink[data-active="true"]::after { transform: scaleX(1); }
+
+/* ── Ancrages : le défilement doux est géré en CSS ── */
+html { scroll-behavior: smooth; }
+
+/* ── Respect du réglage système ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rt-rise { opacity: 1; animation: none; }
+  .rt-orbit-arc, .rt-orbit-dot { animation: none; }
+  .rt-btn, .rt-btn svg, .rt-link::after, .rt-link svg,
+  .rt-card, .rt-card .rt-rule, .rt-shot, .rt-nav, .rt-navlink::after {
+    transition: none !important;
+  }
+  .rt-btn:hover, .rt-shot:hover { transform: none; }
+}
+
+/* Bouton fantôme posé sur le bleu profond du héros */
+.rt-btn-ghost-dark:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}

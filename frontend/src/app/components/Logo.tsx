@@ -8,7 +8,7 @@ export function Logo({ size = "md", color = "text" }: { size?: "sm" | "md" | "lg
   const img = (
     <img
       src={LOGO_SRC}
-      alt="Revyon Tech — Entreprise informatique en Guinée"
+      alt="Revyon Tech, entreprise informatique en Guinée"
       style={{ height: `${h}px`, width: "auto", objectFit: "contain", display: "block" }}
     />
   );

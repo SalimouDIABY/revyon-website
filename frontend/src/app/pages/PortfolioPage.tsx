@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
 import { products } from "../data/products";
 import { ProductPreview } from "../components/ProductPreview";
 import { trackEvent } from "../analytics";
@@ -31,7 +32,7 @@ const pillars = [
 
 export function PortfolioPage() {
   usePageMeta(
-    "Nos réalisations | Logiciels édités par Revyon Tech — Revyon School, Gestock, MarkaGest",
+    "Nos réalisations | Logiciels édités par Revyon Tech : Revyon School, Gestock, MarkaGest",
     "Découvrez les logiciels conçus et développés par Revyon Tech à Conakry : Revyon School (gestion scolaire), Revyon Gestock (stock et trésorerie) et MarkaGest (gestion des markaz et suivi du hifz).",
     "/portfolio"
   );
@@ -39,29 +40,24 @@ export function PortfolioPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+        <BrandOrbit
+          className="pointer-events-none select-none absolute hidden md:block"
+          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
+        />
         <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(36px, 5vw, 60px)" }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
+          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
-          <div style={{ maxWidth: "720px" }}>
-            <p style={EYEBROW}>Nos réalisations</p>
-            <h1
-              style={{
-                fontSize: "clamp(2rem, 7vw, 3.1rem)",
-                fontWeight: 700,
-                color: "#111827",
-                lineHeight: 1.15,
-                letterSpacing: "-0.022em",
-                margin: "0 0 18px",
-              }}
-            >
+          <div style={{ maxWidth: "700px" }}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
+              Nos réalisations
+            </p>
+            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Trois logiciels en production, écrits à Conakry
             </h1>
-            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
-              Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui
-              au quotidien. Nous les éditons nous-mêmes : conception, développement, mises à jour
-              et support.
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
+              Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui au quotidien. Nous les éditons nous-mêmes : conception, développement, mises à jour et support.
             </p>
           </div>
         </div>
@@ -183,7 +179,7 @@ export function PortfolioPage() {
                         >
                           <span style={{ fontSize: "0.93rem", color: "#111827", fontWeight: 600 }}>{head}</span>
                           {rest.length > 0 && (
-                            <span style={{ fontSize: "0.9rem", color: "#6B7280" }}> — {rest.join(" : ")}</span>
+                            <span style={{ fontSize: "0.9rem", color: "#6B7280" }}> : {rest.join(" : ")}</span>
                           )}
                         </li>
                       );
@@ -200,6 +196,7 @@ export function PortfolioPage() {
                       target="_blank"
                       rel="noopener"
                       onClick={() => trackEvent("product_visit", { product: product.slug })}
+                      className="rt-btn rt-btn-solid"
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
@@ -219,6 +216,7 @@ export function PortfolioPage() {
                     <Link
                       to="/contact#devis"
                       onClick={() => trackEvent("product_demo_request", { product: product.slug })}
+                      className="rt-btn rt-btn-ghost"
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
@@ -349,6 +347,7 @@ export function PortfolioPage() {
             </div>
             <Link
               to="/contact#devis"
+              className="rt-btn rt-btn-accent"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

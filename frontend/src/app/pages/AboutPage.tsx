@@ -120,29 +120,34 @@ const values = [
 ];
 
 import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
 
 export function AboutPage() {
   usePageMeta(
-    "À propos | Revyon Tech — Société informatique en Guinée",
+    "À propos | Revyon Tech, société informatique en Guinée",
     "Découvrez Revyon Tech, entreprise technologique guinéenne spécialisée en développement web, logiciels, applications mobiles et transformation digitale à Conakry.",
     "/a-propos"
   );
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+        <BrandOrbit
+          className="pointer-events-none select-none absolute hidden md:block"
+          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
+        />
         <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
+          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
-          <div style={{ maxWidth: "720px" }}>
-            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+          <div style={{ maxWidth: "700px" }}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               À propos
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Une équipe technique, à Conakry
             </h1>
-            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions guinéennes n'aient plus à choisir entre un outil étranger inadapté et un cahier. Nous concevons, développons et maintenons nos solutions ici.
             </p>
           </div>

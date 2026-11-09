@@ -13,6 +13,7 @@ export function ProductPreview({ product }: { product: Product }) {
   return (
     <figure style={{ margin: 0 }}>
       <div
+        className="rt-shot"
         style={{
           borderRadius: "10px",
           overflow: "hidden",
