@@ -206,20 +206,53 @@ body {
   animation-delay: var(--rt-delay, 0s);
 }
 
-/* ── Orbite de la marque : un arc de lumière parcourt l'anneau ── */
-@keyframes rt-travel {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -1600; }
+/* ── Orbite de la marque ──────────────────────────────────
+   Les anneaux se tracent au chargement, puis deux arcs de lumière les
+   parcourent en sens inverse. Les trois points des produits respirent
+   en décalé. Périmètres approchés : anneau 1 ≈ 1250, anneau 2 ≈ 1045.
+   ─────────────────────────────────────────────────────── */
+@keyframes rt-draw {
+  from { stroke-dashoffset: var(--rt-len); }
+  to   { stroke-dashoffset: 0; }
 }
-.rt-orbit-arc {
-  stroke-dasharray: 150 1450;
-  animation: rt-travel 18s linear infinite;
+.rt-ring {
+  stroke-dasharray: var(--rt-len);
+  stroke-dashoffset: var(--rt-len);
+  animation: rt-draw 1.5s cubic-bezier(0.33, 0.9, 0.3, 1) forwards;
+  animation-delay: var(--rt-delay, 0s);
 }
-@keyframes rt-pulse {
-  0%, 100% { opacity: 0.9; r: 7; }
-  50%      { opacity: 1;   r: 8.5; }
+.rt-ring-1 { --rt-len: 1250; --rt-delay: 0.15s; }
+.rt-ring-2 { --rt-len: 1045; --rt-delay: 0.32s; }
+.rt-ring-3 { --rt-len: 860;  --rt-delay: 0.46s; }
+
+@keyframes rt-sweep-fwd { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1250; } }
+@keyframes rt-sweep-rev { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 1045; } }
+.rt-arc { opacity: 0; animation-fill-mode: forwards; }
+@keyframes rt-arc-in { to { opacity: 1; } }
+.rt-arc-1 {
+  stroke-dasharray: 170 1080;
+  stroke-dashoffset: 0;
+  animation: rt-arc-in 0.6s ease 1.2s forwards, rt-sweep-fwd 11s linear 1.2s infinite;
 }
-.rt-orbit-dot { animation: rt-pulse 3.2s ease-in-out infinite; }
+.rt-arc-2 {
+  stroke-dasharray: 120 925;
+  stroke-dashoffset: 0;
+  animation: rt-arc-in 0.6s ease 1.4s forwards, rt-sweep-rev 15s linear 1.4s infinite;
+}
+
+@keyframes rt-node-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.rt-node {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rt-node-in 0.5s cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+}
+.rt-node-1 { animation-delay: 1.15s; }
+.rt-node-2 { animation-delay: 1.3s; }
+.rt-node-3 { animation-delay: 1.45s; }
 
 /* ── Boutons : la flèche avance, le fond se densifie ── */
 .rt-btn {
@@ -318,3 +351,74 @@ html { scroll-behavior: smooth; }
   background-color: rgba(255, 255, 255, 0.14) !important;
   border-color: rgba(255, 255, 255, 0.55) !important;
 }
+
+/* ── Titre du héros : chaque mot se lève derrière une coupe ──
+   Plus net qu'un fondu : le mot glisse depuis le bas d'un masque, ce qui
+   donne une seule intention au lieu d'une suite d'apparitions molles. */
+@keyframes rt-word {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+.rt-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* laisse passer les jambages (p, g, j) sans les rogner */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.rt-word > span {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: rt-word 0.72s cubic-bezier(0.22, 0.75, 0.2, 1) forwards;
+  animation-delay: var(--rt-delay, 0s);
+}
+
+/* ── Filet qui se trace sous le sur-titre ── */
+@keyframes rt-rule-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.rt-eyebrow-rule {
+  display: block;
+  height: 2px;
+  width: 34px;
+  border-radius: 2px;
+  background: #E84C1E;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: rt-rule-in 0.6s cubic-bezier(0.22, 0.75, 0.2, 1) 0.1s forwards;
+}
+
+/* ── Invite à faire défiler ── */
+@keyframes rt-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+.rt-scroll-cue { animation: rt-bob 2.4s ease-in-out 1.8s infinite; }
+
+/* ── Entrée à l'arrivée dans le champ de vision ──
+   La classe masquante n'est posée que si le script a confirmé pouvoir la
+   retirer. Sans JavaScript, ou si l'observateur ne se déclenche pas, le
+   contenu reste visible : il n'est jamais caché « en attendant ». */
+html.rt-io .rt-enter { opacity: 0; transform: translateY(16px); }
+html.rt-io .rt-enter.rt-seen {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.75, 0.2, 1);
+  transition-delay: var(--rt-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-ring, .rt-arc, .rt-node, .rt-word > span,
+  .rt-eyebrow-rule, .rt-scroll-cue {
+    animation: none !important;
+  }
+  .rt-ring { stroke-dashoffset: 0; }
+  .rt-arc { opacity: 1; }
+  .rt-node { opacity: 1; }
+  .rt-word > span { transform: none; }
+  .rt-eyebrow-rule { transform: scaleX(1); }
+  html.rt-io .rt-enter { opacity: 1; transform: none; }
+}
+
+/* Sur téléphone, l'orbite ne garde que ses anneaux : les points produit,
+   plus opaques, venaient se poser sur les boutons. */
+.rt-orbit-quiet .rt-node { display: none; }
