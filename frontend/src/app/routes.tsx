@@ -38,12 +38,16 @@ function ScrollManager() {
 }
 
 function Root() {
+  const location = useLocation();
   usePageTracking();
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollManager />
       <Navbar />
-      <main className="flex-1">
+      {/* La clé force le remontage à chaque route : le contenu monte de
+          quelques pixels en s'éclaircissant, ce qui lie les pages sans
+          retarder leur affichage. */}
+      <main key={location.pathname} className="rt-page flex-1">
         <Outlet />
       </main>
       <Footer />

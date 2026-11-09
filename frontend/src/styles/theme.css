@@ -499,3 +499,74 @@ html.rt-io .rt-enter.rt-seen {
 .rt-orbit-full .rt-ring-1 { stroke-opacity: 0.38; }
 .rt-orbit-full .rt-ring-2 { stroke-opacity: 0.22; }
 .rt-orbit-full .rt-ring-3 { stroke-opacity: 0.15; }
+
+/* ═══════════════════════════════════════════════════════════
+   Finitions
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Équilibre des titres ──
+   Évite le mot orphelin sur la dernière ligne d'un titre. */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* ── Focus clavier ──
+   Un anneau net et visible, y compris sur le bleu profond. Sans cela, la
+   navigation au clavier se faisait à l'aveugle. */
+:focus-visible {
+  outline: 2px solid #C2410C;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.rt-on-dark :focus-visible { outline-color: #FDBA74; }
+
+/* ── Barre de progression de lecture ── */
+.rt-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, #C2410C, #E8873F);
+  width: var(--rt-progress, 0%);
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ── Menu mobile ── */
+@keyframes rt-panel {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rt-panel { animation: rt-panel 0.22s cubic-bezier(0.22, 0.75, 0.2, 1) forwards; }
+@keyframes rt-panel-item {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rt-panel-item {
+  opacity: 0;
+  animation: rt-panel-item 0.26s cubic-bezier(0.22, 0.75, 0.2, 1) forwards;
+  animation-delay: var(--rt-delay, 0s);
+}
+.rt-burger span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: #334155;
+  transition: transform 0.26s cubic-bezier(0.22, 0.75, 0.2, 1), opacity 0.18s ease, width 0.26s ease;
+}
+
+/* ── Changement de page ──
+   Le contenu ne part pas de zéro : il monte de quelques pixels en
+   s'éclaircissant, ce qui lie les pages sans jamais retarder l'affichage. */
+@keyframes rt-page {
+  from { opacity: 0.55; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rt-page { animation: rt-page 0.26s cubic-bezier(0.22, 0.75, 0.2, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-progress, .rt-panel, .rt-panel-item, .rt-burger span, .rt-page {
+    animation: none !important;
+    transition: none !important;
+  }
+  .rt-panel-item { opacity: 1; }
+}
