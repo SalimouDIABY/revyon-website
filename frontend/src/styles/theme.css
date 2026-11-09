@@ -180,11 +180,13 @@
   }
 }
 
-/* Filet de sécurité : aucun élément décoratif ne doit créer de défilement
-   horizontal sur mobile (badges flottants, cercles de fond, etc.). */
+/* Filet de sécurité contre le défilement horizontal.
+   `clip` et non `hidden` : `overflow-x: hidden` force `overflow-y` à
+   `auto`, ce qui crée un conteneur de défilement et casse silencieusement
+   `position: sticky` de l'entête. `clip` coupe sans créer ce conteneur. */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -612,4 +614,16 @@ p { text-wrap: pretty; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rt-service .rt-service-cta { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Entête : toujours visible, et plus compacte dès qu'on défile ──
+   Une barre fixe mange de la hauteur sur un téléphone. Elle se resserre
+   donc au défilement : on la garde sous la main sans sacrifier l'écran. */
+.rt-nav-inner { transition: height 0.24s cubic-bezier(0.22, 0.75, 0.2, 1); }
+.rt-nav-logo img { transition: height 0.24s cubic-bezier(0.22, 0.75, 0.2, 1); }
+.rt-nav[data-scrolled="true"] .rt-nav-inner { height: 62px; }
+.rt-nav[data-scrolled="true"] .rt-nav-logo img { height: 44px !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-nav-inner, .rt-nav-logo img { transition: none !important; }
 }
