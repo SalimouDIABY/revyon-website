@@ -1,5 +1,10 @@
 import { Link } from "react-router";
-import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
+import {
+  ArrowRight, ArrowUpRight, Check, ChevronDown,
+  Globe, Code2, PenTool, Megaphone, Clapperboard, GraduationCap, Cpu,
+  PenLine, MapPinned, LifeBuoy,
+} from "lucide-react";
+import { IconMark } from "../components/IconMark";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { MaskedWords, useInViewReveal } from "../components/Reveal";
@@ -41,19 +46,26 @@ const TEAM_IMAGE =
   "https://images.unsplash.com/photo-1573167627769-e201a7ddf409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZyUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzUzMDc3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
 const services = [
-  { title: "Sites web", desc: "Vitrines, e-commerce et plateformes, livrés en 5 à 14 jours avec hébergement et nom de domaine." },
-  { title: "Logiciels et applications", desc: "Outils métier sur mesure quand les logiciels du marché ne couvrent pas votre activité." },
-  { title: "Design et identité visuelle", desc: "Logo, charte graphique et déclinaisons web, mobile et impression." },
-  { title: "Marketing digital", desc: "Réseaux sociaux, contenus, campagnes ciblées et rapport mensuel." },
-  { title: "Multimédia et vidéo", desc: "Vidéos publicitaires, motion design et présentations d'entreprise." },
-  { title: "Formation", desc: "Bureautique, outils web et ateliers pratiques, en ligne ou sur place." },
-  { title: "Matériel informatique", desc: "Postes sélectionnés, configurés et testés avant livraison." },
+  { icon: Globe, title: "Sites web", desc: "Vitrines, e-commerce et plateformes, livrés en 5 à 14 jours avec hébergement et nom de domaine." },
+  { icon: Code2, title: "Logiciels et applications", desc: "Outils métier sur mesure quand les logiciels du marché ne couvrent pas votre activité." },
+  { icon: PenTool, title: "Design et identité visuelle", desc: "Logo, charte graphique et déclinaisons web, mobile et impression." },
+  { icon: Megaphone, title: "Marketing digital", desc: "Réseaux sociaux, contenus, campagnes ciblées et rapport mensuel." },
+  { icon: Clapperboard, title: "Multimédia et vidéo", desc: "Vidéos publicitaires, motion design et présentations d'entreprise." },
+  { icon: GraduationCap, title: "Formation", desc: "Bureautique, outils web et ateliers pratiques, en ligne ou sur place." },
+  { icon: Cpu, title: "Matériel informatique", desc: "Postes sélectionnés, configurés et testés avant livraison." },
 ];
 
 const reasons = [
-  { title: "Nous écrivons le code que nous vendons", desc: "Pas de sous-traitance : l'équipe qui vous répond est celle qui développe. Une correction part le jour même." },
-  { title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau et paiements en espèces : nos outils sont pensés pour ici, pas adaptés après coup." },
-  { title: "Nous restons après la livraison", desc: "Formation de vos équipes, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
+  { icon: PenLine, title: "Nous écrivons le code que nous vendons", desc: "Pas de sous-traitance : l'équipe qui vous répond est celle qui développe. Une correction part le jour même." },
+  { icon: MapPinned, title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau et paiements en espèces : nos outils sont pensés pour ici, pas adaptés après coup." },
+  { icon: LifeBuoy, title: "Nous restons après la livraison", desc: "Formation de vos équipes, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
+];
+
+const figures = [
+  { k: "7", l: "métiers couverts" },
+  { k: "3", l: "logiciels en production" },
+  { k: "24h", l: "pour vous répondre" },
+  { k: "2024", l: "année de création" },
 ];
 
 export function HomePage() {
@@ -82,7 +94,7 @@ export function HomePage() {
           style={{ width: "165%", height: "auto", left: "50%", top: "46%", transform: "translate(-50%, -50%)" }}
         />
         <BrandOrbit
-          className="pointer-events-none select-none absolute hidden sm:block"
+          className="rt-orbit-full pointer-events-none select-none absolute hidden sm:block"
           style={{ width: "min(680px, 56vw)", height: "auto", right: "-60px", top: "50%", transform: "translateY(-50%)" }}
         />
         {/* Voile : l'orbite reste nette en haut, puis s'efface sous le texte
@@ -92,7 +104,7 @@ export function HomePage() {
           className="pointer-events-none absolute inset-0 sm:hidden"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(10,39,64,0) 0%, rgba(10,39,64,0.18) 36%, rgba(10,39,64,0.66) 58%, rgba(10,39,64,0.86) 80%)",
+              "linear-gradient(to bottom, rgba(10,39,64,0) 0%, rgba(10,39,64,0.08) 40%, rgba(10,39,64,0.62) 62%, rgba(10,39,64,0.88) 82%)",
           }}
         />
 
@@ -185,6 +197,22 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* ── CHIFFRES ── */}
+      <Section tone="white" compact>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-7 gap-x-6">
+          {figures.map((f, i) => (
+            <Enter key={f.l} delay={i * 0.06}>
+              <div style={{ borderLeft: `2px solid ${i === 0 ? C.accent : C.lineStrong}`, paddingLeft: "16px" }}>
+                <div style={{ fontSize: "clamp(1.7rem, 5vw, 2.3rem)", fontWeight: 700, color: C.navy, lineHeight: 1, letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>
+                  {f.k}
+                </div>
+                <div style={{ fontSize: "0.86rem", color: C.muted, marginTop: "7px", lineHeight: 1.45 }}>{f.l}</div>
+              </div>
+            </Enter>
+          ))}
+        </div>
+      </Section>
+
       {/* ── SERVICES ── */}
       <Section tone="tint">
         <SectionHead
@@ -193,28 +221,57 @@ export function HomePage() {
           lead="Du premier croquis à la mise en ligne, puis à la formation de vos équipes. Vous n'avez qu'un interlocuteur."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.lineStrong}` }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, i) => (
-            <Enter
-              key={service.title}
-              delay={(i % 3) * 0.07}
-              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "20px 0" }}
-            >
-              <h3 style={H3}>{service.title}</h3>
-              <p style={TEXT}>{service.desc}</p>
+            <Enter key={service.title} delay={(i % 3) * 0.07} style={{ height: "100%" }}>
+              <article
+                className="rt-tile"
+                style={{
+                  background: C.surface,
+                  border: `1px solid ${C.lineStrong}`,
+                  borderRadius: "14px",
+                  padding: "22px",
+                  height: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <IconMark icon={service.icon} />
+                <h3 style={{ ...H3, marginTop: "16px" }}>{service.title}</h3>
+                <p style={TEXT}>{service.desc}</p>
+              </article>
             </Enter>
           ))}
-        </div>
 
-        <Enter delay={0.1}>
-          <Link
-            to="/services"
-            className="rt-link"
-            style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "26px", color: C.navy, fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
-          >
-            Le détail de chaque service <ArrowRight size={16} />
-          </Link>
-        </Enter>
+          <Enter delay={0.21} style={{ height: "100%" }}>
+            <Link
+              to="/services"
+              className="rt-tile"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                background: C.navy,
+                border: `1px solid ${C.navy}`,
+                borderRadius: "14px",
+                padding: "22px",
+                height: "100%",
+                minHeight: "170px",
+                overflow: "hidden",
+                textDecoration: "none",
+              }}
+            >
+              <IconMark icon={ArrowRight} tone="light" />
+              <div style={{ marginTop: "16px" }}>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#fff", margin: "0 0 7px", letterSpacing: "-0.01em" }}>
+                  Le détail de chaque service
+                </h3>
+                <p style={{ fontSize: "0.93rem", lineHeight: 1.55, color: "#CFE0EC", margin: 0 }}>
+                  Ce qui est inclus, les délais et la méthode.
+                </p>
+              </div>
+            </Link>
+          </Enter>
+        </div>
       </Section>
 
       {/* ── NOS PRODUITS ── */}
@@ -281,9 +338,14 @@ export function HomePage() {
 
             <div style={{ borderTop: `1px solid ${C.lineStrong}` }}>
               {reasons.map((reason, i) => (
-                <Enter key={reason.title} delay={i * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "16px 0" }}>
-                  <h3 style={H3}>{reason.title}</h3>
-                  <p style={TEXT}>{reason.desc}</p>
+                <Enter key={reason.title} delay={i * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
+                  <div className="flex items-start gap-4">
+                    <IconMark icon={reason.icon} size={40} />
+                    <div>
+                      <h3 style={H3}>{reason.title}</h3>
+                      <p style={TEXT}>{reason.desc}</p>
+                    </div>
+                  </div>
                 </Enter>
               ))}
             </div>

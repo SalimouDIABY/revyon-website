@@ -1,5 +1,9 @@
 import { Link } from "react-router";
-import { ArrowRight, Check } from "lucide-react";
+import {
+  ArrowRight, Check,
+  Globe, Code2, PenTool, Megaphone, Clapperboard, GraduationCap, Cpu,
+} from "lucide-react";
+import { IconMark } from "../components/IconMark";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { MaskedWords, useInViewReveal } from "../components/Reveal";
@@ -7,6 +11,7 @@ import { C, EYEBROW, H3, LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 
 const services = [
   {
+    icon: Globe,
     title: "Création de sites web",
     tagline: "Votre vitrine ouverte jour et nuit",
     problem:
@@ -22,6 +27,7 @@ const services = [
     delay: "Livraison en 5 à 14 jours",
   },
   {
+    icon: Code2,
     title: "Logiciels et applications",
     tagline: "Un outil taillé pour votre métier",
     problem:
@@ -37,6 +43,7 @@ const services = [
     delay: "Support après la mise en service",
   },
   {
+    icon: PenTool,
     title: "Design et identité visuelle",
     tagline: "Ce que l'on retient de vous",
     problem:
@@ -52,6 +59,7 @@ const services = [
     delay: "Déclinaisons web, mobile et impression",
   },
   {
+    icon: Megaphone,
     title: "Marketing digital",
     tagline: "Être vu, puis être choisi",
     problem:
@@ -67,6 +75,7 @@ const services = [
     delay: "Engagement mensuel, sans durée imposée",
   },
   {
+    icon: Clapperboard,
     title: "Multimédia et vidéo",
     tagline: "Montrer plutôt que décrire",
     problem:
@@ -82,6 +91,7 @@ const services = [
     delay: "Tournage sur site ou production à distance",
   },
   {
+    icon: GraduationCap,
     title: "Formation",
     tagline: "L'outil ne sert que s'il est maîtrisé",
     problem:
@@ -97,6 +107,7 @@ const services = [
     delay: "Partout en Guinée, déplacement possible",
   },
   {
+    icon: Cpu,
     title: "Matériel informatique",
     tagline: "Prêt à travailler dès la livraison",
     problem:
@@ -159,7 +170,7 @@ export function ServicesPage() {
       {/* ── HERO ── */}
       <section style={{ background: "radial-gradient(130% 110% at 78% 12%, #10507A 0%, #0C3C5E 48%, #0A2740 100%)", position: "relative", overflow: "hidden" }}>
         <BrandOrbit
-          className="rt-orbit-quiet pointer-events-none select-none absolute hidden md:block"
+          className="rt-orbit-full pointer-events-none select-none absolute hidden md:block"
           style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
         />
         <div
@@ -195,19 +206,25 @@ export function ServicesPage() {
             <Enter
               key={service.title}
               delay={(i % 3) * 0.06}
+              className="rt-card"
               style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "clamp(22px, 3vw, 32px) 0" }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8">
                 <div className="lg:col-span-4">
-                  <div className="flex items-baseline gap-3">
-                    <span style={{ fontSize: "0.82rem", fontWeight: 700, color: C.accent, fontVariantNumeric: "tabular-nums" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 style={{ ...H3, fontSize: "1.18rem", margin: 0 }}>{service.title}</h3>
+                  <div className="flex items-start gap-4">
+                    <IconMark icon={service.icon} size={44} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="flex items-baseline gap-2.5">
+                        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: C.accent, fontVariantNumeric: "tabular-nums" }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 style={{ ...H3, fontSize: "1.15rem", margin: 0 }}>{service.title}</h3>
+                      </div>
+                      <p style={{ fontSize: "0.92rem", color: C.muted, margin: "5px 0 0", fontWeight: 500 }}>
+                        {service.tagline}
+                      </p>
+                    </div>
                   </div>
-                  <p style={{ fontSize: "0.92rem", color: C.muted, margin: "6px 0 0 29px", fontWeight: 500 }}>
-                    {service.tagline}
-                  </p>
                 </div>
 
                 <div className="lg:col-span-4">
@@ -250,18 +267,33 @@ export function ServicesPage() {
           title="Six étapes, et vous savez toujours où en est votre projet"
           lead="La même marche à suivre pour un site vitrine comme pour un logiciel métier. Rien ne démarre sans un périmètre écrit."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {process.map((step, i) => (
             <Enter
               key={step.n}
               delay={(i % 3) * 0.07}
-              style={{ borderTop: `2px solid ${i === 0 ? C.accent : C.lineStrong}`, padding: "16px 0 22px" }}
+              style={{ height: "100%" }}
             >
-              <div style={{ fontSize: "0.8rem", fontWeight: 700, color: C.accent, fontVariantNumeric: "tabular-nums", marginBottom: "8px" }}>
-                {step.n}
+              <div
+                className="rt-tile"
+                style={{ background: C.surface, border: `1px solid ${C.lineStrong}`, borderRadius: "14px", padding: "20px", height: "100%", overflow: "hidden" }}
+              >
+                <div className="flex items-center gap-3" style={{ marginBottom: "12px" }}>
+                  <span
+                    style={{
+                      width: "34px", height: "34px", borderRadius: "50%",
+                      background: i === 0 ? C.accent : "#F1F6FA",
+                      color: i === 0 ? "#fff" : C.navy,
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "0.78rem", fontWeight: 700, fontVariantNumeric: "tabular-nums", flexShrink: 0,
+                    }}
+                  >
+                    {step.n}
+                  </span>
+                  <h3 style={{ ...H3, margin: 0 }}>{step.title}</h3>
+                </div>
+                <p style={TEXT}>{step.desc}</p>
               </div>
-              <h3 style={H3}>{step.title}</h3>
-              <p style={TEXT}>{step.desc}</p>
             </Enter>
           ))}
         </div>

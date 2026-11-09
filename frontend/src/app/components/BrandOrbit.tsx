@@ -51,6 +51,15 @@ export function BrandOrbit({
           <circle cx="58" cy="310" r="15" fill="#C9A227" fillOpacity="0.2" />
           <circle cx="58" cy="310" r="5.5" fill="#E8C35A" />
         </g>
+
+        {/* Point de marque réservé au téléphone. Sa position a été calculée
+            pour tomber en haut à droite, à côté du sur-titre, là où aucun
+            texte ne passe. Les autres points y sont masqués. */}
+        <g className="rt-node-mobile">
+          <circle cx="505" cy="221" r="26" fill="#E84C1E" fillOpacity="0.14" />
+          <circle cx="505" cy="221" r="15" fill="#E84C1E" fillOpacity="0.22" />
+          <circle className="rt-node-core" cx="505" cy="221" r="7.5" fill="#F2622C" />
+        </g>
       </g>
 
       {/* Anneau intermédiaire, parcouru en sens inverse */}
