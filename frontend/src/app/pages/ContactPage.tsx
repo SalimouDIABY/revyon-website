@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle, Linkedin } from "lucide-react";
+import { IconMark } from "../components/IconMark";
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
@@ -121,16 +122,16 @@ export function ContactPage() {
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
-                <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Mail size={20} color="#0C4A6E" /></div>
+                <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
+                  <IconMark icon={Mail} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Email</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>contact@revyontech.com</p>
                   </div>
                 </div>
 
-                <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#0C4A6E" /></div>
+                <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
+                  <IconMark icon={Phone} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Téléphone</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>
@@ -142,16 +143,16 @@ export function ContactPage() {
                   </div>
                 </div>
 
-                <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MessageCircle size={20} color="#0F7A6C" /></div>
+                <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
+                  <IconMark icon={MessageCircle} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>WhatsApp</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627 33 07 09</p>
                   </div>
                 </div>
 
-                <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MapPin size={20} color="#0C4A6E" /></div>
+                <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
+                  <IconMark icon={MapPin} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Localisation</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>Conakry, Guinée</p>
@@ -163,17 +164,18 @@ export function ContactPage() {
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start", textDecoration: "none" }}
+                  className="rt-tile"
+                  style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", textDecoration: "none", overflow: "hidden" }}
                 >
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Linkedin size={20} color="#0A66C2" /></div>
+                  <IconMark icon={Linkedin} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>LinkedIn</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Suivre Revyon Tech</p>
                   </div>
                 </a>
 
-                <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#0C4A6E" /></div>
+                <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
+                  <IconMark icon={Clock} size={40} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Disponibilité</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lundi au samedi, 8h00 à 18h00</p>
