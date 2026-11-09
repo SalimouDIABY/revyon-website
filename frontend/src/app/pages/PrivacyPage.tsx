@@ -36,10 +36,10 @@ export function PrivacyPage() {
             <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Mentions légales
             </p>
-            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 650, color: "#0C2340", lineHeight: 1.18, letterSpacing: "-0.022em", margin: "0 0 18px", "--rt-delay": "0.13s" } as React.CSSProperties}>
+            <h1 className="rt-rise" style={{ fontFamily: "'Revyon Serif', Georgia, serif", fontSize: "clamp(2.1rem, 7vw, 3.1rem)", fontWeight: 600, color: "#0C2340", lineHeight: 1.12, letterSpacing: "-0.018em", margin: "0 0 18px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Politique de confidentialité
             </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#102A44", fontWeight: 420, lineHeight: 1.74, margin: 0, maxWidth: "560px", "--rt-delay": "0.21s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#1E293B", fontWeight: 420, lineHeight: 1.74, margin: 0, maxWidth: "560px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Comment Revyon Tech collecte, utilise et protège les données que vous nous confiez.
             </p>
           </div>

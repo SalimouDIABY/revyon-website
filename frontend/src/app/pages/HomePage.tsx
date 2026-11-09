@@ -134,15 +134,21 @@ export function HomePage() {
 
             <h1
               style={{
-                fontSize: "clamp(2.2rem, 8.2vw, 3.7rem)",
-                fontWeight: 650,
+                fontFamily: "'Revyon Serif', Georgia, serif",
+                fontSize: "clamp(2.35rem, 8.6vw, 4rem)",
+                fontWeight: 600,
                 color: "#0C2340",
-                lineHeight: 1.16,
-                letterSpacing: "-0.022em",
+                lineHeight: 1.1,
+                letterSpacing: "-0.018em",
                 margin: "0 0 24px",
               }}
             >
-              <MaskedWords text="Nous construisons les outils numériques dont votre activité a besoin" delay={0.12} />
+              <MaskedWords text="Nous construisons les outils numériques" delay={0.12} />{" "}
+              <MaskedWords
+                text="dont votre activité a besoin"
+                delay={0.12 + 5 * 0.045}
+                style={{ fontStyle: "italic", color: "#123A5C" }}
+              />
             </h1>
 
             <p
@@ -151,7 +157,7 @@ export function HomePage() {
                 fontSize: "1.075rem",
                 lineHeight: 1.74,
                 fontWeight: 420,
-                color: "#102A44",
+                color: "#1E293B",
                 margin: "0 0 32px",
                 maxWidth: "556px",
                 "--rt-delay": "0.62s",
@@ -184,23 +190,33 @@ export function HomePage() {
             </div>
 
             <ul
-              className="rt-rise flex flex-col gap-2.5"
-              style={{ listStyle: "none", padding: 0, margin: 0, "--rt-delay": "0.82s" } as React.CSSProperties}
+              className="rt-rise grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3"
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: "18px 20px",
+                background: "rgba(255,255,255,0.92)",
+                border: "1px solid rgba(255,255,255,0.9)",
+                borderRadius: "14px",
+                maxWidth: "640px",
+                boxShadow: "0 8px 26px rgba(8,38,64,0.12)",
+                "--rt-delay": "0.82s",
+              } as React.CSSProperties}
             >
               {[
                 "Sept métiers, du site web au matériel informatique",
                 "Partout en Guinée, à distance ou chez vous",
-                "Trois logiciels en production, écrits et maintenus par nous",
+                "Trois logiciels en production, écrits par nous",
                 "Une réponse à votre demande sous 24 heures",
               ].map((fact) => (
                 <li key={fact} className="flex items-start gap-2.5">
-                  <Check size={16} color="#0C2340" strokeWidth={2.6} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <span style={{ fontSize: "0.94rem", color: "#0C2340", lineHeight: 1.62 }}>{fact}</span>
+                  <Check size={15} color="#0369A1" strokeWidth={2.8} style={{ marginTop: "4px", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9rem", color: "#334155", lineHeight: 1.55 }}>{fact}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="rt-scroll-cue" style={{ marginTop: "38px", display: "flex", alignItems: "center", gap: "9px", color: "#0C2340" }}>
+            <div className="rt-scroll-cue" style={{ marginTop: "38px", display: "flex", alignItems: "center", gap: "9px", color: "#0C2340", opacity: 0.75 }}>
               <ChevronDown size={18} />
               <span style={{ fontSize: "0.82rem", letterSpacing: "0.03em" }}>Nos services</span>
             </div>
