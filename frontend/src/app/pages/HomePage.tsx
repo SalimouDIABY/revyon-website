@@ -7,7 +7,7 @@ import {
 import { IconMark } from "../components/IconMark";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
-import { MaskedWords, useInViewReveal } from "../components/Reveal";
+import { MaskedWords, useInViewReveal, CountUp } from "../components/Reveal";
 import { C, EYEBROW as UI_EYEBROW, H3, LEAD as UI_LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 import { products } from "../data/products";
 
@@ -62,10 +62,10 @@ const reasons = [
 ];
 
 const figures = [
-  { k: "7", l: "métiers couverts" },
-  { k: "3", l: "logiciels en production" },
-  { k: "24h", l: "pour vous répondre" },
-  { k: "2024", l: "année de création" },
+  { k: "7", l: "métiers couverts", count: true },
+  { k: "3", l: "logiciels en production", count: true },
+  { k: "24h", l: "pour vous répondre", count: true },
+  { k: "2024", l: "année de création", count: false },
 ];
 
 export function HomePage() {
@@ -204,7 +204,7 @@ export function HomePage() {
             <Enter key={f.l} delay={Math.min(i, 5) * 0.085}>
               <div style={{ borderLeft: `2px solid ${i === 0 ? C.accent : C.lineStrong}`, paddingLeft: "16px" }}>
                 <div style={{ fontSize: "clamp(1.7rem, 5vw, 2.3rem)", fontWeight: 700, color: C.navy, lineHeight: 1, letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>
-                  {f.k}
+                  <CountUp value={f.k} animate={f.count} />
                 </div>
                 <div style={{ fontSize: "0.86rem", color: C.muted, marginTop: "7px", lineHeight: 1.45 }}>{f.l}</div>
               </div>
