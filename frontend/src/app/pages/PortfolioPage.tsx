@@ -47,7 +47,17 @@ export function PortfolioPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(160deg, #38BDF8 0%, #0EA5E9 46%, #0796D8 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(165deg, #0A6E9E 0%, #07628C 48%, #054F72 100%)", position: "relative", overflow: "hidden" }}>
+        {/* Halo du bleu vif, réservé aux grands écrans : sur un téléphone,
+            aucune zone n'est assez loin du texte pour l'accueillir. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden xl:block"
+          style={{
+            background:
+              "radial-gradient(58% 120% at 101% -14%, rgba(38,190,255,0.92) 0%, rgba(20,156,220,0.62) 34%, rgba(10,110,160,0.22) 62%, rgba(6,79,112,0) 80%)",
+          }}
+        />
         <BrandOrbit
           className="pointer-events-none select-none absolute hidden md:block"
           style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
@@ -57,13 +67,13 @@ export function PortfolioPage() {
           style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
           <div style={{ maxWidth: "700px" }}>
-            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#0B2742", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FFE7CC", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Nos réalisations
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#0B2742", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
               <MaskedWords text="Trois logiciels en production, écrits en Guinée" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#0C2340", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#E2F1FA", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui
               au quotidien, à Conakry comme à l'intérieur du pays. Nous les éditons nous-mêmes :
               conception, développement, mises à jour et support.
