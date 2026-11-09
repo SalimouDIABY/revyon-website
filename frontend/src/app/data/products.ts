@@ -33,6 +33,8 @@ export type Product = {
   tech: string[];
   /** Capture publique du produit, servie depuis /public/produits. */
   screenshot: string;
+  /** Vignette allégée, pour les cartes de l'accueil. */
+  thumb: string;
   /** Ce que montre la capture, pour ne pas laisser croire que c'est tout le produit. */
   screenshotCaption: string;
   /** Palette du produit. */
@@ -77,6 +79,7 @@ export const products: Product[] = [
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Multi-établissements", "Rôles et permissions"],
     screenshot: "/produits/revyon-school.jpg",
+    thumb: "/produits/revyon-school-vignette.jpg",
     screenshotCaption:
       "La page publique de Revyon School. L'application de gestion s'ouvre après connexion.",
     theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#D9480F", accentText: "#A8370B", soft: "#E3ECF7" },
@@ -110,6 +113,7 @@ export const products: Product[] = [
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Synchronisation automatique", "Comptes validés"],
     screenshot: "/produits/revyon-gestock.jpg",
+    thumb: "/produits/revyon-gestock-vignette.jpg",
     screenshotCaption:
       "L'accès à Gestock. Chaque compte est validé par Revyon Tech avant la première connexion.",
     theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#C2410C", accentText: "#9A3412", soft: "#E3ECF7" },
@@ -143,6 +147,7 @@ export const products: Product[] = [
     ],
     tech: ["Application web", "PWA installable", "Hors ligne par défaut", "Interface française et arabe", "Multi-markaz"],
     screenshot: "/produits/markagest.jpg",
+    thumb: "/produits/markagest-vignette.jpg",
     screenshotCaption:
       "L'accès à MarkaGest. Les identifiants sont remis par le directeur du markaz.",
     theme: { deep: "#10284F", surface: "#F4F2EC", accent: "#C9A227", accentText: "#7A5E0C", soft: "#E7E2D5" },

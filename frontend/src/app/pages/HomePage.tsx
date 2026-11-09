@@ -201,7 +201,7 @@ export function HomePage() {
       <Section tone="white" compact>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-7 gap-x-6">
           {figures.map((f, i) => (
-            <Enter key={f.l} delay={i * 0.06}>
+            <Enter key={f.l} delay={Math.min(i, 5) * 0.085}>
               <div style={{ borderLeft: `2px solid ${i === 0 ? C.accent : C.lineStrong}`, paddingLeft: "16px" }}>
                 <div style={{ fontSize: "clamp(1.7rem, 5vw, 2.3rem)", fontWeight: 700, color: C.navy, lineHeight: 1, letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>
                   {f.k}
@@ -223,7 +223,7 @@ export function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, i) => (
-            <Enter key={service.title} delay={(i % 3) * 0.07} style={{ height: "100%" }}>
+            <Enter key={service.title} delay={Math.min(i, 5) * 0.085} style={{ height: "100%" }}>
               <article
                 className="rt-tile"
                 style={{
@@ -282,39 +282,66 @@ export function HomePage() {
           lead="Au-delà des projets sur mesure, nous développons et maintenons nos propres plateformes métier. Elles tournent aujourd'hui chez nos clients, et c'est la même équipe qui écrit le code et répond au téléphone."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.line}` }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {products.map((product, i) => (
-            <Enter key={product.slug} delay={(i % 3) * 0.08}>
-              <article
-                className="rt-card"
-                style={{ borderBottom: `1px solid ${C.line}`, padding: "26px 0", height: "100%" }}
+            <Enter key={product.slug} delay={Math.min(i, 5) * 0.085} style={{ height: "100%" }}>
+              <Link
+                to={`/portfolio#${product.slug}`}
+                className="rt-tile rt-product"
+                aria-label={`${product.name} : ${product.tagline}`}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                  background: C.surface,
+                  border: `1px solid ${C.lineStrong}`,
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  textDecoration: "none",
+                }}
               >
-                <div className="rt-rule" style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
-                <h3 className="rt-card-title" style={{ fontSize: "1.15rem", fontWeight: 700, color: C.ink, margin: "0 0 5px", letterSpacing: "-0.01em" }}>
-                  {product.name}
-                </h3>
-                <p style={{ fontSize: "0.875rem", color: C.muted, margin: "0 0 14px", fontWeight: 500 }}>
-                  {product.audience}
-                </p>
-                <p style={{ ...TEXT, marginBottom: "18px" }}>{product.cardLine}</p>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <Link
-                    to={`/portfolio#${product.slug}`}
-                    className="rt-link"
-                    style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: C.navy, fontWeight: 600, fontSize: "0.93rem", textDecoration: "none" }}
-                  >
-                    En savoir plus <ArrowRight size={15} />
-                  </Link>
-                  <a
-                    href={product.url}
-                    target="_blank"
-                    rel="noopener"
-                    style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: C.muted, fontSize: "0.88rem", textDecoration: "none" }}
-                  >
-                    {product.domain} <ArrowUpRight size={13} />
-                  </a>
-                </div>
-              </article>
+                {/* L'interface du produit, telle qu'elle est publique */}
+                <span
+                  style={{
+                    display: "block",
+                    overflow: "hidden",
+                    background: C.tintStrong,
+                    borderBottom: `1px solid ${C.line}`,
+                  }}
+                >
+                  <img
+                    className="rt-product-shot"
+                    src={product.thumb}
+                    alt={`Interface de ${product.name}`}
+                    width={1280}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ display: "block", width: "100%", height: "auto", aspectRatio: "16 / 10", objectFit: "cover", objectPosition: "top center" }}
+                  />
+                </span>
+
+                <span style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px 22px 22px" }}>
+                  <span className="rt-rule" style={{ display: "block", width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "14px" }} />
+
+                  <span className="rt-card-title" style={{ display: "block", fontSize: "1.18rem", fontWeight: 700, color: C.ink, letterSpacing: "-0.012em", marginBottom: "4px" }}>
+                    {product.name}
+                  </span>
+                  <span style={{ display: "block", fontSize: "0.84rem", color: C.muted, fontWeight: 500, marginBottom: "12px" }}>
+                    {product.audience}
+                  </span>
+                  <span style={{ display: "block", fontSize: "0.93rem", lineHeight: 1.6, color: C.body, marginBottom: "18px" }}>
+                    {product.cardLine}
+                  </span>
+
+                  <span className="flex items-center justify-between" style={{ marginTop: "auto", paddingTop: "14px", borderTop: `1px solid ${C.line}` }}>
+                    <span className="rt-product-cta" style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: C.navy, fontWeight: 600, fontSize: "0.93rem" }}>
+                      Découvrir <ArrowRight size={15} />
+                    </span>
+                    <span style={{ fontSize: "0.82rem", color: C.muted }}>{product.domain}</span>
+                  </span>
+                </span>
+              </Link>
             </Enter>
           ))}
         </div>
@@ -338,7 +365,7 @@ export function HomePage() {
 
             <div style={{ borderTop: `1px solid ${C.lineStrong}` }}>
               {reasons.map((reason, i) => (
-                <Enter key={reason.title} delay={i * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
+                <Enter key={reason.title} delay={Math.min(i, 5) * 0.085} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
                   <div className="flex items-start gap-4">
                     <IconMark icon={reason.icon} size={40} />
                     <div>

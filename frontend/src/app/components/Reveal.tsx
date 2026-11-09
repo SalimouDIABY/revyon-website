@@ -70,11 +70,11 @@ export function useInViewReveal() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.01, rootMargin: "0px 0px -14% 0px" }
     );
 
     targets().forEach((el) => observer.observe(el));
-    const failsafe = window.setTimeout(revealAll, 2000);
+    const failsafe = window.setTimeout(revealAll, 2600);
 
     return () => {
       observer.disconnect();

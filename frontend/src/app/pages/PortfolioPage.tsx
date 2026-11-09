@@ -86,7 +86,7 @@ export function PortfolioPage() {
                   borderRadius: "14px",
                   padding: "22px",
                   overflow: "hidden",
-                  "--rt-delay": `${i * 0.07}s`,
+                  "--rt-delay": `${Math.min(i, 5) * 0.085}s`,
                 } as React.CSSProperties}
               >
                 <IconMark icon={pillar.icon} />
