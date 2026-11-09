@@ -423,10 +423,14 @@ html.rt-io .rt-enter.rt-seen {
    plus opaques, venaient se poser sur les boutons. */
 .rt-orbit-quiet .rt-node { display: none; }
 
-/* ── Pastille d'icône : l'arc pivote au survol de la carte ── */
-.rt-mark-ring { transition: transform 0.45s cubic-bezier(0.22, 0.75, 0.2, 1); transform-origin: center; }
+/* ── Pastille d'icône : les arcs pivotent, le point grandit ── */
+.rt-mark-ring { transition: transform 0.5s cubic-bezier(0.22, 0.75, 0.2, 1); transform-origin: center; }
+.rt-mark-dot { transition: r 0.3s ease, opacity 0.3s ease; }
 .rt-tile:hover .rt-mark-ring,
-.rt-card:hover .rt-mark-ring { transform: rotate(32deg); }
+.rt-card:hover .rt-mark-ring,
+.rt-product:hover .rt-mark-ring { transform: rotate(38deg); }
+.rt-tile:hover .rt-mark-dot,
+.rt-card:hover .rt-mark-dot { r: 4.6; }
 
 /* ── Carte : relief discret et filet d'accent qui apparaît ── */
 .rt-tile {
@@ -587,4 +591,25 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .rt-product-shot, .rt-product .rt-product-cta svg { transition: none !important; }
   .rt-product:hover .rt-product-shot { transform: none; }
+}
+
+/* ── Bouton WhatsApp ── */
+.rt-wa:hover { background: #1FBA59 !important; box-shadow: 0 10px 26px rgba(37, 211, 102, 0.38) !important; }
+@media (prefers-reduced-motion: reduce) { .rt-wa { transition: none !important; } }
+
+/* ── Carte de service : l'appel apparaît au survol ── */
+.rt-service .rt-service-cta {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.24s ease, transform 0.24s cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+.rt-service:hover .rt-service-cta,
+.rt-service:focus-visible .rt-service-cta { opacity: 1; transform: translateY(0); }
+.rt-service:hover .rt-card-title { color: #0C4A6E; }
+/* Au doigt, il n'y a pas de survol : l'appel reste visible. */
+@media (hover: none) {
+  .rt-service .rt-service-cta { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rt-service .rt-service-cta { opacity: 1; transform: none; transition: none; }
 }

@@ -46,13 +46,13 @@ const TEAM_IMAGE =
   "https://images.unsplash.com/photo-1573167627769-e201a7ddf409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZyUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzUzMDc3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
 const services = [
-  { icon: Globe, title: "Sites web", desc: "Vitrines, e-commerce et plateformes, livrés en 5 à 14 jours avec hébergement et nom de domaine." },
-  { icon: Code2, title: "Logiciels et applications", desc: "Outils métier sur mesure quand les logiciels du marché ne couvrent pas votre activité." },
-  { icon: PenTool, title: "Design et identité visuelle", desc: "Logo, charte graphique et déclinaisons web, mobile et impression." },
-  { icon: Megaphone, title: "Marketing digital", desc: "Réseaux sociaux, contenus, campagnes ciblées et rapport mensuel." },
-  { icon: Clapperboard, title: "Multimédia et vidéo", desc: "Vidéos publicitaires, motion design et présentations d'entreprise." },
-  { icon: GraduationCap, title: "Formation", desc: "Bureautique, outils web et ateliers pratiques, en ligne ou sur place." },
-  { icon: Cpu, title: "Matériel informatique", desc: "Postes sélectionnés, configurés et testés avant livraison." },
+  { icon: Globe, slug: "sites-web", title: "Sites web", desc: "Vitrines, e-commerce et plateformes, livrés en 5 à 14 jours avec hébergement et nom de domaine." },
+  { icon: Code2, slug: "logiciels", title: "Logiciels et applications", desc: "Outils métier sur mesure quand les logiciels du marché ne couvrent pas votre activité." },
+  { icon: PenTool, slug: "design", title: "Design et identité visuelle", desc: "Logo, charte graphique et déclinaisons web, mobile et impression." },
+  { icon: Megaphone, slug: "marketing", title: "Marketing digital", desc: "Réseaux sociaux, contenus, campagnes ciblées et rapport mensuel." },
+  { icon: Clapperboard, slug: "multimedia", title: "Multimédia et vidéo", desc: "Vidéos publicitaires, motion design et présentations d'entreprise." },
+  { icon: GraduationCap, slug: "formation", title: "Formation", desc: "Bureautique, outils web et ateliers pratiques, en ligne ou sur place." },
+  { icon: Cpu, slug: "materiel", title: "Matériel informatique", desc: "Postes sélectionnés, configurés et testés avant livraison." },
 ];
 
 const reasons = [
@@ -224,21 +224,32 @@ export function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, i) => (
             <Enter key={service.title} delay={Math.min(i, 5) * 0.085} style={{ height: "100%" }}>
-              <article
-                className="rt-tile"
+              <Link
+                to={`/services#${service.slug}`}
+                className="rt-tile rt-service"
                 style={{
+                  display: "flex",
+                  flexDirection: "column",
                   background: C.surface,
                   border: `1px solid ${C.lineStrong}`,
-                  borderRadius: "14px",
-                  padding: "22px",
+                  borderRadius: "16px",
+                  padding: "24px 22px 20px",
                   height: "100%",
                   overflow: "hidden",
+                  textDecoration: "none",
                 }}
               >
                 <IconMark icon={service.icon} />
-                <h3 style={{ ...H3, marginTop: "16px" }}>{service.title}</h3>
-                <p style={TEXT}>{service.desc}</p>
-              </article>
+                <span className="rt-card-title" style={{ display: "block", fontSize: "1.05rem", fontWeight: 700, color: C.ink, letterSpacing: "-0.01em", margin: "18px 0 7px" }}>
+                  {service.title}
+                </span>
+                <span style={{ display: "block", fontSize: "0.93rem", lineHeight: 1.6, color: C.body }}>
+                  {service.desc}
+                </span>
+                <span className="rt-service-cta" style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "auto", paddingTop: "16px", color: C.navy, fontWeight: 600, fontSize: "0.88rem" }}>
+                  Le détail <ArrowRight size={14} />
+                </span>
+              </Link>
             </Enter>
           ))}
 
@@ -367,7 +378,7 @@ export function HomePage() {
               {reasons.map((reason, i) => (
                 <Enter key={reason.title} delay={Math.min(i, 5) * 0.085} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
                   <div className="flex items-start gap-4">
-                    <IconMark icon={reason.icon} size={40} />
+                    <IconMark icon={reason.icon} size={44} />
                     <div>
                       <h3 style={H3}>{reason.title}</h3>
                       <p style={TEXT}>{reason.desc}</p>
