@@ -453,9 +453,12 @@ html.rt-io .rt-enter.rt-seen {
 .rt-tile:hover::after { transform: scaleX(1); }
 
 /* L'entrée au défilement part d'un peu plus bas pour être perceptible. */
-html.rt-io .rt-enter { opacity: 0; transform: translateY(22px); }
+html.rt-io .rt-enter { opacity: 0; transform: translateY(30px); }
 html.rt-io .rt-enter.rt-seen {
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.75, 0.2, 1);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.62s ease, transform 0.72s cubic-bezier(0.17, 0.78, 0.2, 1);
+  transition-delay: var(--rt-delay, 0s);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -569,4 +572,19 @@ p { text-wrap: pretty; }
     transition: none !important;
   }
   .rt-panel-item { opacity: 1; }
+}
+
+/* ── Carte produit : l'interface se rapproche au survol ── */
+.rt-product-shot {
+  transition: transform 0.55s cubic-bezier(0.22, 0.75, 0.2, 1);
+  transform-origin: top center;
+}
+.rt-product:hover .rt-product-shot { transform: scale(1.045); }
+.rt-product .rt-product-cta svg { transition: transform 0.2s ease; }
+.rt-product:hover .rt-product-cta svg { transform: translateX(4px); }
+.rt-product:hover .rt-card-title { color: #0C4A6E; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-product-shot, .rt-product .rt-product-cta svg { transition: none !important; }
+  .rt-product:hover .rt-product-shot { transform: none; }
 }

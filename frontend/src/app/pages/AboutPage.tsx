@@ -127,7 +127,7 @@ export function AboutPage() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {values.map((value, i) => (
-            <Enter key={value.title} delay={(i % 3) * 0.07} style={{ height: "100%" }}>
+            <Enter key={value.title} delay={Math.min(i, 5) * 0.085} style={{ height: "100%" }}>
               <article
                 className="rt-tile"
                 style={{ background: C.surface, border: `1px solid ${C.lineStrong}`, borderRadius: "14px", padding: "22px", height: "100%", overflow: "hidden" }}
@@ -150,7 +150,7 @@ export function AboutPage() {
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {team.map((member, i) => (
-            <Enter key={member.name} delay={(i % 3) * 0.07}>
+            <Enter key={member.name} delay={Math.min(i, 5) * 0.085}>
               <article
                 className="rt-tile"
                 style={{

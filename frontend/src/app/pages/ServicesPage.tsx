@@ -205,7 +205,7 @@ export function ServicesPage() {
           {services.map((service, i) => (
             <Enter
               key={service.title}
-              delay={(i % 3) * 0.06}
+              delay={Math.min(i, 5) * 0.085}
               className="rt-card"
               style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "clamp(22px, 3vw, 32px) 0" }}
             >
@@ -271,7 +271,7 @@ export function ServicesPage() {
           {process.map((step, i) => (
             <Enter
               key={step.n}
-              delay={(i % 3) * 0.07}
+              delay={Math.min(i, 5) * 0.085}
               style={{ height: "100%" }}
             >
               <div
@@ -321,7 +321,7 @@ export function ServicesPage() {
 
           <dl style={{ margin: 0, borderTop: `1px solid ${C.lineStrong}` }}>
             {faqs.map((faq, i) => (
-              <Enter key={faq.q} delay={(i % 3) * 0.05} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
+              <Enter key={faq.q} delay={Math.min(i, 5) * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
                 <dt style={{ ...H3, marginBottom: "8px" }}>{faq.q}</dt>
                 <dd style={{ ...TEXT, margin: 0 }}>{faq.a}</dd>
               </Enter>
