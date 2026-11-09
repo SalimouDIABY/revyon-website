@@ -1,608 +1,213 @@
 import { Link } from "react-router";
-import {
-  Target,
-  Eye,
-  Heart,
-  ArrowRight,
-  Crown,
-  Zap,
-  Lightbulb,
-  Globe,
-  Clock,
-  Award,
-  ShieldCheck,
-  Briefcase,
-  BarChart2,
-  Megaphone,
-  Handshake,
-  Settings,
-} from "lucide-react";
-
-const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1594098882270-66ce9399b040?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwdGVjaCUyMHN0YXJ0dXAlMjBjb21wYW55JTIwb2ZmaWNlfGVufDF8fHx8MTc3NTMwNzcxMHww&ixlib=rb-4.1.0&q=80&w=1080";
+import { ArrowRight } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
+import { MaskedWords, useInViewReveal } from "../components/Reveal";
+import { C, EYEBROW, H3, LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 
 const team = [
-  {
-    name: "Salimou DIABY",
-    role: "Directeur Général",
-    Icon: Crown,
-    desc: "Assure la supervision globale du projet, valide le contenu, le design et la structure de l'entreprise.",
-    color: "#C2410C",
-    bg: "#FFF7ED",
-    initials: "SD",
-    avatarGradient: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
-  },
-  {
-    name: "Mamadou Ramadane Condé",
-    role: "Directeur des Opérations",
-    Icon: Settings,
-    desc: "Gère le projet site web, assure le suivi des tâches et coordonne l'équipe des directeurs.",
-    color: "#0C4A6E",
-    bg: "#E0F2FE",
-    initials: "MC",
-    avatarGradient: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
-  },
-  {
-    name: "Fatoumata Kanny Diallo",
-    role: "Directrice Administrative & Financière",
-    Icon: BarChart2,
-    desc: "Gère les dépenses, prévoit le budget et documente les processus pour les futurs projets.",
-    color: "#6D28D9",
-    bg: "#EDE9FE",
-    initials: "FD",
-    avatarGradient: "linear-gradient(135deg, #6D28D9 0%, #7C3AED 100%)",
-  },
-  {
-    name: "Ibrahima Sory Barry",
-    role: "Directeur Communication & Marketing",
-    Icon: Megaphone,
-    desc: "Rédige les contenus, gère les textes et images, et adapte le message marketing.",
-    color: "#047857",
-    bg: "#D1FAE5",
-    initials: "IB",
-    avatarGradient: "linear-gradient(135deg, #047857 0%, #059669 100%)",
-  },
-  {
-    name: "Ousmane Kanté",
-    role: "Directeur Commercial & Développement",
-    Icon: Handshake,
-    desc: "Définit les services à proposer, rédige les offres commerciales et oriente les relations clients.",
-    color: "#C2410C",
-    bg: "#FFF7ED",
-    initials: "OK",
-    avatarGradient: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
-  },
+  { name: "Salimou Diaby", role: "Directeur Général", initials: "SD", desc: "Supervise la direction de l'entreprise, la cohérence des produits et la relation avec les clients." },
+  { name: "Mamadou Ramadane Condé", role: "Directeur des Opérations", initials: "MC", desc: "Pilote les projets, suit les livraisons et coordonne le travail de l'équipe." },
+  { name: "Fatoumata Kanny Diallo", role: "Directrice Administrative et Financière", initials: "FD", desc: "Gère les budgets, la facturation et les processus internes." },
+  { name: "Ibrahima Sory Barry", role: "Directeur Communication et Marketing", initials: "IB", desc: "Conçoit les contenus, porte la marque et accompagne les campagnes des clients." },
+  { name: "Ousmane Kanté", role: "Directeur Commercial et Développement", initials: "OK", desc: "Définit les offres, rédige les propositions et développe le portefeuille clients." },
 ];
 
 const values = [
-  {
-    Icon: Zap,
-    color: "#C2410C",
-    bg: "#FFF7ED",
-    title: "Innovation",
-    desc: "Nous adoptons les dernières technologies pour offrir des solutions avant-gardistes.",
-  },
-  {
-    Icon: Award,
-    color: "#0C4A6E",
-    bg: "#E0F2FE",
-    title: "Excellence",
-    desc: "Chaque projet est traité avec le plus haut niveau de qualité et d'attention aux détails.",
-  },
-  {
-    Icon: ShieldCheck,
-    color: "#6D28D9",
-    bg: "#EDE9FE",
-    title: "Intégrité",
-    desc: "Nous bâtissons des relations durables fondées sur la confiance et la transparence.",
-  },
-  {
-    Icon: Lightbulb,
-    color: "#B45309",
-    bg: "#FFFBEB",
-    title: "Créativité",
-    desc: "Nous pensons différemment pour créer des solutions uniques et impactantes.",
-  },
-  {
-    Icon: Globe,
-    color: "#047857",
-    bg: "#D1FAE5",
-    title: "Impact Local",
-    desc: "Nous contribuons au développement du numérique en Afrique et en Guinée.",
-  },
-  {
-    Icon: Clock,
-    color: "#0C4A6E",
-    bg: "#E0F2FE",
-    title: "Réactivité",
-    desc: "Nous répondons rapidement aux besoins de nos clients pour ne jamais perdre de temps.",
-  },
+  { title: "Nous écrivons ce que nous vendons", desc: "Pas de sous-traitance. L'équipe qui répond au téléphone est celle qui développe, et une correction peut partir le jour même." },
+  { title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau, paiements en espèces. Nos outils sont pensés pour ce contexte, pas adaptés après coup." },
+  { title: "Nous restons après la livraison", desc: "Formation, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
+  { title: "Nous écrivons les choses", desc: "Périmètre, délai et budget sont posés avant de commencer. Pas de surprise en cours de route." },
+  { title: "Nous allons sur place", desc: "Conakry, les régions, l'intérieur du pays. Quand un déplacement est nécessaire pour comprendre un métier, nous le faisons." },
+  { title: "Nous construisons pour durer", desc: "Un outil doit survivre au départ de celui qui l'a commandé. Documentation, reprise de données, comptes transmis." },
 ];
 
-import { usePageMeta } from "../hooks/usePageMeta";
-import { BrandOrbit } from "../components/BrandOrbit";
+const reach = [
+  { k: "Conakry", v: "Siège et équipe de développement" },
+  { k: "Régions", v: "Déplacements pour cadrage, installation et formation" },
+  { k: "À distance", v: "Suivi, support et mises à jour partout dans le pays" },
+  { k: "Afrique francophone", v: "Projets et produits accessibles au-delà des frontières" },
+];
 
 export function AboutPage() {
+  useInViewReveal();
+
   usePageMeta(
     "À propos | Revyon Tech, société informatique en Guinée",
-    "Découvrez Revyon Tech, entreprise technologique guinéenne spécialisée en développement web, logiciels, applications mobiles et transformation digitale à Conakry.",
+    "Revyon Tech est une entreprise informatique guinéenne : développement web, logiciels, applications mobiles et transformation digitale, pour des clients à Conakry comme à l'intérieur du pays.",
     "/a-propos"
   );
+
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "radial-gradient(130% 110% at 78% 12%, #10507A 0%, #0C3C5E 48%, #0A2740 100%)", position: "relative", overflow: "hidden" }}>
         <BrandOrbit
-          className="pointer-events-none select-none absolute hidden md:block"
-          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
+          className="rt-orbit-quiet pointer-events-none select-none absolute hidden md:block"
+          style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
         />
         <div
           className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
-          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
+          style={{ paddingTop: "clamp(42px, 5.5vw, 72px)", paddingBottom: "clamp(42px, 5.5vw, 72px)" }}
         >
-          <div style={{ maxWidth: "700px" }}>
-            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
+          <div style={{ maxWidth: "720px" }}>
+            <span className="rt-eyebrow-rule" style={{ marginBottom: "16px" }} />
+            <p className="rt-rise" style={{ ...EYEBROW, color: "#FDBA74", "--rt-delay": "0.28s" } as React.CSSProperties}>
               À propos
             </p>
-            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
-              Une équipe technique, à Conakry
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+              <MaskedWords text="Une équipe technique guinéenne" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
-              Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions guinéennes n'aient plus à choisir entre un outil étranger inadapté et un cahier. Nous concevons, développons et maintenons nos solutions ici.
+            <p className="rt-rise" style={{ ...LEAD, color: "#CFE0EC", maxWidth: "580px", "--rt-delay": "0.5s" } as React.CSSProperties}>
+              Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions
+              du pays n'aient plus à choisir entre un outil étranger inadapté et un cahier.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── PRÉSENTATION ── */}
-      <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <div>
-              <h2
+      {/* ── QUI NOUS SOMMES ── */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,420px)] gap-10 lg:gap-16 items-start">
+          <div className="rt-enter">
+            <p style={EYEBROW}>Qui nous sommes</p>
+            <h2 style={{ fontSize: "clamp(1.6rem, 5.2vw, 2.2rem)", fontWeight: 700, color: C.ink, letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 18px" }}>
+              Le numérique guinéen, fait par des Guinéens
+            </h2>
+            <p style={{ ...LEAD, marginBottom: "16px" }}>
+              Nous concevons des sites web, des logiciels et des identités de marque pour les
+              entrepreneurs, les PME, les écoles et les institutions de Guinée. Notre équipe
+              est à Conakry, nos clients sont dans tout le pays.
+            </p>
+            <p style={{ ...TEXT, marginBottom: "16px" }}>
+              Notre nom porte notre ambition : <em>Révolution et Innovation</em>. Nous pensons
+              que la technologie est un levier de développement, à condition qu'elle soit écrite
+              par ceux qui connaissent le terrain sur lequel elle sera utilisée.
+            </p>
+            <p style={TEXT}>
+              Cinq directeurs aux compétences complémentaires, et trois logiciels que nous
+              éditons nous-mêmes pour des écoles, des commerces et des markaz.
+            </p>
+          </div>
+
+          <Enter delay={0.08}>
+            <div style={{ border: `1px solid ${C.lineStrong}`, borderRadius: "12px", overflow: "hidden" }}>
+              <div style={{ background: C.navy, padding: "16px 20px" }}>
+                <p style={{ fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: 0 }}>
+                  Où nous intervenons
+                </p>
+              </div>
+              <dl style={{ margin: 0 }}>
+                {reach.map((r, i) => (
+                  <div
+                    key={r.k}
+                    style={{
+                      padding: "14px 20px",
+                      borderTop: i === 0 ? "none" : `1px solid ${C.line}`,
+                      background: C.surface,
+                    }}
+                  >
+                    <dt style={{ fontSize: "0.93rem", fontWeight: 700, color: C.ink, marginBottom: "3px" }}>{r.k}</dt>
+                    <dd style={{ fontSize: "0.88rem", color: C.body, margin: 0, lineHeight: 1.55 }}>{r.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Enter>
+        </div>
+      </Section>
+
+      {/* ── CE QUI NOUS TIENT ── */}
+      <Section tone="tint">
+        <SectionHead
+          eyebrow="Notre façon de travailler"
+          title="Six principes, tenus sur chaque projet"
+          lead="Ce ne sont pas des valeurs affichées : ce sont les règles que nous nous appliquons, et sur lesquelles vous pouvez nous juger."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.lineStrong}` }}>
+          {values.map((value, i) => (
+            <Enter
+              key={value.title}
+              delay={(i % 3) * 0.07}
+              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "20px 0" }}
+            >
+              <h3 style={H3}>{value.title}</h3>
+              <p style={TEXT}>{value.desc}</p>
+            </Enter>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── ÉQUIPE ── */}
+      <Section>
+        <SectionHead
+          eyebrow="L'équipe dirigeante"
+          title="Cinq personnes, cinq responsabilités"
+          lead="Une structure volontairement petite : chaque projet a un interlocuteur, et cet interlocuteur décide."
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {team.map((member, i) => (
+            <Enter key={member.name} delay={(i % 3) * 0.07}>
+              <article
                 style={{
-                  fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
-                  fontWeight: "800",
-                  color: "#0C4A6E",
-                  letterSpacing: "-0.02em",
-                  marginBottom: "20px",
+                  border: `1px solid ${C.lineStrong}`,
+                  borderRadius: "12px",
+                  padding: "22px",
+                  height: "100%",
+                  background: C.surface,
                 }}
               >
-                Qui sommes-nous ?
-              </h2>
-              <p style={{ color: "#0F172A", lineHeight: "1.8", marginBottom: "16px" }}>
-                <strong style={{ color: "#0C4A6E" }}>Revyon Tech</strong> est
-                une agence technologique guinéenne spécialisée dans la création
-                de solutions digitales sur mesure. Nous accompagnons les
-                entrepreneurs, les PME et les grandes entreprises dans leur
-                transformation numérique.
-              </p>
-              <p style={{ color: "#0F172A", lineHeight: "1.8", marginBottom: "16px" }}>
-                Notre nom incarne notre ambition :{" "}
-                <em>Révolution &amp; Innovation</em>. Nous croyons fermement que
-                la technologie est un levier puissant pour le développement
-                économique de l'Afrique.
-              </p>
-              <p style={{ color: "#0F172A", lineHeight: "1.8" }}>
-                Composée d'une équipe dynamique de cinq directeurs aux
-                compétences complémentaires, Revyon Tech place l'excellence et
-                l'innovation au cœur de chaque projet.
-              </p>
-            </div>
-            <div>
-              <img
-                src={ABOUT_IMAGE}
-                alt="Revyon Tech bureau"
-                style={{
-                  width: "100%",
-                  height: "380px",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── VISION / MISSION ── */}
-      <section style={{ background: "#F8FAFC", padding: "clamp(40px, 8vw, 80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Eye,
-                title: "Notre Vision",
-                color: "#0C4A6E",
-                bg: "#E0F2FE",
-                content:
-                  "Devenir l'agence technologique de référence en Afrique de l'Ouest, reconnue pour son excellence, son innovation et son impact positif sur le développement numérique du continent.",
-              },
-              {
-                icon: Target,
-                title: "Notre Mission",
-                color: "#C2410C",
-                bg: "#FFF7ED",
-                content:
-                  "Offrir des solutions digitales de haute qualité, accessibles et sur mesure, pour permettre à chaque entreprise africaine de se digitaliser et de compétir sur le marché mondial.",
-              },
-              {
-                icon: Heart,
-                title: "Nos Valeurs",
-                color: "#6D28D9",
-                bg: "#EDE9FE",
-                content:
-                  "Innovation, Excellence, Intégrité, Créativité, Impact Local et Réactivité. Ces valeurs guident chacune de nos décisions et définissent la culture de Revyon Tech.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  style={{
-                    background: "#fff",
-                    borderRadius: "20px",
-                    padding: "36px",
-                    border: "1px solid #E2E8F0",
-                    textAlign: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "64px",
-                      height: "64px",
-                      borderRadius: "50%",
-                      background: item.bg,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto 20px",
-                    }}
-                  >
-                    <Icon size={28} color={item.color} />
-                  </div>
-                  <h3
-                    style={{
-                      fontWeight: "700",
-                      color: "#0C4A6E",
-                      marginBottom: "14px",
-                      fontSize: "1.15rem",
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "#0F172A",
-                      lineHeight: "1.8",
-                      fontSize: "0.93rem",
-                    }}
-                  >
-                    {item.content}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── VALEURS ── */}
-      <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2
-              style={{
-                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-                fontWeight: "800",
-                color: "#0C4A6E",
-                letterSpacing: "-0.02em",
-                marginBottom: "12px",
-              }}
-            >
-              Nos valeurs fondamentales
-            </h2>
-            <p
-              style={{
-                color: "#0F172A",
-                maxWidth: "500px",
-                margin: "0 auto",
-                lineHeight: "1.8",
-              }}
-            >
-              Les principes qui guident chacune de nos actions et définissent
-              qui nous sommes.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((v, i) => {
-              const Icon = v.Icon;
-              return (
-                <div
-                  key={i}
-                  style={{
-                    background: "#F8FAFC",
-                    borderRadius: "16px",
-                    padding: "28px",
-                    border: "1px solid #E2E8F0",
-                    display: "flex",
-                    gap: "16px",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  {/* Icône dans un cercle coloré */}
-                  <div
+                <div className="flex items-center gap-3" style={{ marginBottom: "14px" }}>
+                  <span
                     style={{
                       width: "44px",
                       height: "44px",
-                      borderRadius: "12px",
-                      background: v.bg,
-                      display: "flex",
+                      borderRadius: "10px",
+                      background: C.navy,
+                      color: "#fff",
+                      display: "inline-flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      fontWeight: 700,
+                      fontSize: "0.92rem",
+                      letterSpacing: "0.02em",
                       flexShrink: 0,
                     }}
                   >
-                    <Icon size={20} color={v.color} strokeWidth={2} />
-                  </div>
-                  <div>
-                    <h4
-                      style={{
-                        fontWeight: "700",
-                        color: "#0C4A6E",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      {v.title}
-                    </h4>
-                    <p
-                      style={{
-                        color: "#0F172A",
-                        fontSize: "0.9rem",
-                        lineHeight: "1.7",
-                      }}
-                    >
-                      {v.desc}
-                    </p>
+                    {member.initials}
+                  </span>
+                  <div style={{ minWidth: 0 }}>
+                    <h3 style={{ ...H3, fontSize: "1rem", margin: "0 0 2px" }}>{member.name}</h3>
+                    <p style={{ fontSize: "0.82rem", color: C.accent, margin: 0, fontWeight: 600 }}>{member.role}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+                <p style={{ ...TEXT, fontSize: "0.9rem" }}>{member.desc}</p>
+              </article>
+            </Enter>
+          ))}
         </div>
-      </section>
-
-      {/* ── TEAM ── */}
-      <section style={{ background: "#F8FAFC", padding: "clamp(40px, 8vw, 80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "#FFF7ED",
-                color: "#9A3412",
-                padding: "4px 16px",
-                borderRadius: "100px",
-                fontSize: "0.82rem",
-                fontWeight: "600",
-                marginBottom: "16px",
-              }}
-            >
-              <Crown size={14} />
-              Notre Équipe Dirigeante
-            </div>
-            <h2
-              style={{
-                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-                fontWeight: "800",
-                color: "#0C4A6E",
-                letterSpacing: "-0.02em",
-                marginBottom: "12px",
-              }}
-            >
-              Les visages derrière Revyon Tech
-            </h2>
-            <p
-              style={{
-                color: "#0F172A",
-                maxWidth: "500px",
-                margin: "0 auto",
-                lineHeight: "1.8",
-              }}
-            >
-              Une équipe complémentaire et passionnée, unie par une seule
-              ambition : votre réussite digitale.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, i) => {
-              const MemberIcon = member.Icon;
-              return (
-                <div
-                  key={i}
-                  style={{
-                    background: "#fff",
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    border: "1px solid #E2E8F0",
-                    transition: "all 0.3s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.transform =
-                      "translateY(-6px)";
-                    (e.currentTarget as HTMLElement).style.boxShadow =
-                      "0 16px 40px rgba(0,0,0,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.transform =
-                      "translateY(0)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                  }}
-                >
-                  {/* ── AVATAR INITIALES ── */}
-                  <div
-                    style={{
-                      position: "relative",
-                      height: "220px",
-                      background: member.bg,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {/* Cercle décoratif de fond */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        width: "180px",
-                        height: "180px",
-                        borderRadius: "50%",
-                        background: member.avatarGradient,
-                        opacity: 0.08,
-                      }}
-                    />
-                    {/* Cercle principal avec initiales */}
-                    <div
-                      style={{
-                        width: "110px",
-                        height: "110px",
-                        borderRadius: "50%",
-                        background: member.avatarGradient,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxShadow: `0 8px 32px ${member.color}40`,
-                        border: "4px solid #fff",
-                        position: "relative",
-                        zIndex: 1,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: "2rem",
-                          fontWeight: "800",
-                          color: "#fff",
-                          letterSpacing: "0.05em",
-                          fontFamily: "Georgia, serif",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {member.initials}
-                      </span>
-                    </div>
-
-                    {/* Badge icône du rôle (remplace emoji) */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "12px",
-                        right: "12px",
-                        background: "#fff",
-                        borderRadius: "10px",
-                        padding: "6px 10px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        border: `1px solid ${member.bg}`,
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                      }}
-                    >
-                      
-                    </div>
-                  </div>
-
-                  <div style={{ padding: "20px" }}>
-                    <h3
-                      style={{
-                        fontWeight: "700",
-                        color: "#0C4A6E",
-                        marginBottom: "4px",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      {member.name}
-                    </h3>
-                    <div
-                      style={{
-                        display: "inline-block",
-                        background: member.bg,
-                        color: member.color,
-                        padding: "3px 10px",
-                        borderRadius: "6px",
-                        fontSize: "0.75rem",
-                        fontWeight: "600",
-                        marginBottom: "12px",
-                      }}
-                    >
-                      {member.role}
-                    </div>
-                    <p
-                      style={{
-                        color: "#64748B",
-                        fontSize: "0.87rem",
-                        lineHeight: "1.7",
-                      }}
-                    >
-                      
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      </Section>
 
       {/* ── CTA ── */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #0C4A6E 0%, #075985 100%)",
-          padding: "60px 0",
-        }}
-      >
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2
-            style={{
-              fontSize: "clamp(1.5rem, 3vw, 2rem)",
-              fontWeight: "800",
-              color: "#fff",
-              marginBottom: "12px",
-            }}
-          >
-            Rejoignez l'aventure Revyon Tech
-          </h2>
-          <p
-            style={{
-              color: "#BAE6FD",
-              lineHeight: "1.8",
-              marginBottom: "28px",
-            }}
-          >
-            Discutons de votre projet et trouvons ensemble la solution idéale
-            pour votre transformation digitale.
-          </p>
+      <Section tone="navy">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+          <div style={{ maxWidth: "620px" }}>
+            <h2 style={{ fontSize: "clamp(1.5rem, 4.6vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 12px" }}>
+              Travaillons ensemble
+            </h2>
+            <p style={{ ...LEAD, color: "#D5E4EF" }}>
+              Où que vous soyez en Guinée, le premier échange ne coûte rien et dure une trentaine de minutes.
+            </p>
+          </div>
           <Link
             to="/contact#devis"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              padding: "13px 32px",
-              background: "#fff",
-              color: "#075985",
-              borderRadius: "10px",
-              textDecoration: "none",
-              fontWeight: "700",
-            }}
+            className="rt-btn rt-btn-accent"
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: C.accent, color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
           >
-            Nous contacter <ArrowRight size={16} />
+            Nous contacter <ArrowRight size={17} />
           </Link>
         </div>
-      </section>
+      </Section>
     </div>
   );
 }

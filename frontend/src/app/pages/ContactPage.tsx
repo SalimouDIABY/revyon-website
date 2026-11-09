@@ -4,10 +4,13 @@ import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTri
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
+import { MaskedWords, useInViewReveal } from "../components/Reveal";
 import { LINKEDIN_URL } from "../data/products";
 import { trackEvent } from "../analytics";
 
 export function ContactPage() {
+  useInViewReveal();
+
   const location = useLocation();
 
   // Défile en douceur jusqu'au formulaire quand on arrive avec #devis
@@ -92,11 +95,13 @@ export function ContactPage() {
             <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Contact
             </p>
-            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
-              Parlons de votre projet
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+              <MaskedWords text="Parlons de votre projet" delay={0.1} />
             </h1>
             <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
-              Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures avec une estimation de délai et de budget, sans engagement.
+              Où que vous soyez en Guinée, décrivez-nous ce que vous voulez faire. Nous
+              revenons vers vous sous 24 heures avec une estimation de délai et de budget,
+              sans engagement.
             </p>
           </div>
         </div>
@@ -108,7 +113,7 @@ export function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT SIDEBAR - CONTACT INFO */}
             <div>
-              <h3 style={{ fontSize: "1.35rem", fontWeight: "800", color: "#0F172A", marginBottom: "12px" }}>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.01em", marginBottom: "14px" }}>
                 Nos coordonnées
               </h3>
               <p style={{ color: "#475569", marginBottom: "32px", lineHeight: "1.8" }}>
@@ -117,7 +122,7 @@ export function ContactPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Mail size={20} color="#0369A1" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Mail size={20} color="#0C4A6E" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Email</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>contact@revyontech.com</p>
@@ -125,7 +130,7 @@ export function ContactPage() {
                 </div>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#C2410C" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Phone size={20} color="#0C4A6E" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Téléphone</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>
@@ -146,10 +151,11 @@ export function ContactPage() {
                 </div>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MapPin size={20} color="#C2410C" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><MapPin size={20} color="#0C4A6E" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Localisation</div>
-                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Conakry, Guinée</p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>Conakry, Guinée</p>
+                    <p style={{ color: "#6B7280", fontSize: "0.85rem", margin: "2px 0 0" }}>Nous intervenons dans tout le pays</p>
                   </div>
                 </div>
 
@@ -167,7 +173,7 @@ export function ContactPage() {
                 </a>
 
                 <div style={{ background: "#fff", borderRadius: "12px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#6D28D9" /></div>
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#0C4A6E" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Disponibilité</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lundi au samedi, 8h00 à 18h00</p>
@@ -201,8 +207,8 @@ export function ContactPage() {
             </div>
 
             {/* RIGHT - FORM */}
-            <div id="devis" style={{ gridColumn: "span 2", background: "#fff", borderRadius: "16px", padding: "32px", border: "1px solid #E2E8F0", scrollMarginTop: "100px" }}>
-              <h3 style={{ fontSize: "1.35rem", fontWeight: "800", color: "#0F172A", marginBottom: "8px" }}>
+            <div id="devis" className="rt-enter" style={{ gridColumn: "span 2", background: "#fff", borderRadius: "16px", padding: "32px", border: "1px solid #E2E8F0", scrollMarginTop: "100px" }}>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.01em", marginBottom: "8px" }}>
                 Envoyez-nous un message
               </h3>
               <p style={{ color: "#0F172A", marginBottom: "24px", fontSize: "0.95rem" }}>
@@ -358,7 +364,7 @@ export function ContactPage() {
       <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 80px) 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div style={{ textAlign: "center", marginBottom: "40px" }}>
-            <h2 style={{ fontSize: "1.75rem", fontWeight: "800", color: "#0C4A6E", marginBottom: "12px" }}>
+            <h2 style={{ fontSize: "clamp(1.5rem, 4.6vw, 2rem)", fontWeight: 700, color: "#111827", letterSpacing: "-0.02em", marginBottom: "12px" }}>
               Questions fréquentes
             </h2>
           </div>
@@ -369,8 +375,8 @@ export function ContactPage() {
               { q: "Proposez-vous un service de maintenance ?", a: "Oui, nous proposons des contrats de maintenance mensuelle pour assurer la sécurité et la performance de votre projet." },
               { q: "Travaillez-vous avec des clients hors de Guinée ?", a: "Absolument ! Nous collaborons avec des clients dans toute l'Afrique de l'Ouest et la diaspora guinéenne." },
             ].map((item, i) => (
-              <div key={i} style={{ background: "#F8FAFC", borderRadius: "12px", padding: "20px", border: "1px solid #E2E8F0" }}>
-                <h3 style={{ color: "#0C4A6E", fontWeight: "700", marginBottom: "8px" }}>{item.q}</h3>
+              <div key={i} className="rt-enter" style={{ background: "#F8FAFC", borderRadius: "12px", padding: "20px", border: "1px solid #E2E8F0" }}>
+                <h3 style={{ color: "#111827", fontWeight: 700, fontSize: "1rem", marginBottom: "7px" }}>{item.q}</h3>
                 <p style={{ color: "#0F172A", lineHeight: "1.7", fontSize: "0.95rem" }}>{item.a}</p>
               </div>
             ))}

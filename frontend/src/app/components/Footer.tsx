@@ -22,7 +22,9 @@ export function Footer() {
               <Logo size="md" color="white" />
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: "1.7" }}>
-              Entreprise informatique à Conakry. Sites web, logiciels, design, marketing et matériel, ainsi que nos propres plateformes métier.
+              Votre partenaire technologique de confiance. Sites web, logiciels, design,
+              marketing, formation et matériel, pour les entreprises et les institutions
+              de toute la Guinée.
             </p>
             <div className="flex gap-3 mt-5">
               <a
@@ -188,7 +190,10 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={16} color="#fff" style={{ marginTop: "2px", flexShrink: 0 }} />
-                <span style={{ color: "#fff", fontSize: "0.9rem" }}>Guinée, Conakry</span>
+                <span className="flex flex-col" style={{ color: "#fff", fontSize: "0.9rem" }}>
+                  <span>Conakry, Guinée</span>
+                  <span style={{ opacity: 0.8, fontSize: "0.82rem" }}>Interventions dans tout le pays</span>
+                </span>
               </div>
             </div>
             <div
