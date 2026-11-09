@@ -83,7 +83,7 @@ export function ContactPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(160deg, #38BDF8 0%, #0EA5E9 46%, #0796D8 100%)", position: "relative", overflow: "hidden" }}>
         <BrandOrbit
           className="pointer-events-none select-none absolute hidden md:block"
           style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
@@ -93,13 +93,13 @@ export function ContactPage() {
           style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
           <div style={{ maxWidth: "700px" }}>
-            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#0B2742", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Contact
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#0B2742", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
               <MaskedWords text="Parlons de votre projet" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#0C2340", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Où que vous soyez en Guinée, décrivez-nous ce que vous voulez faire. Nous
               revenons vers vous sous 24 heures avec une estimation de délai et de budget,
               sans engagement.

@@ -31,12 +31,12 @@ export function BrandOrbit({
         <ellipse
           className="rt-ring rt-ring-1"
           cx="310" cy="310" rx="252" ry="140"
-          stroke="#7FB3E3" strokeOpacity="0.26" strokeWidth="1.5"
+          stroke="#FFFFFF" strokeOpacity="0.42" strokeWidth="1.5"
         />
         <ellipse
           className="rt-arc rt-arc-1"
           cx="310" cy="310" rx="252" ry="140"
-          stroke="#A5DBFF" strokeOpacity="0.95" strokeWidth="2.25" strokeLinecap="round"
+          stroke="#FFFFFF" strokeOpacity="0.95" strokeWidth="2.25" strokeLinecap="round"
         />
         {/* Les trois produits, posés sur l'anneau */}
         <g className="rt-node rt-node-1">
@@ -67,12 +67,12 @@ export function BrandOrbit({
         <ellipse
           className="rt-ring rt-ring-2"
           cx="310" cy="310" rx="214" ry="112"
-          stroke="#7FB3E3" strokeOpacity="0.16" strokeWidth="1.5"
+          stroke="#FFFFFF" strokeOpacity="0.3" strokeWidth="1.5"
         />
         <ellipse
           className="rt-arc rt-arc-2"
           cx="310" cy="310" rx="214" ry="112"
-          stroke="#7DD3FC" strokeOpacity="0.6" strokeWidth="1.75" strokeLinecap="round"
+          stroke="#E8F7FF" strokeOpacity="0.7" strokeWidth="1.75" strokeLinecap="round"
         />
       </g>
 
@@ -81,7 +81,7 @@ export function BrandOrbit({
         <ellipse
           className="rt-ring rt-ring-3"
           cx="310" cy="310" rx="176" ry="92"
-          stroke="#7FB3E3" strokeOpacity="0.11" strokeWidth="1.5"
+          stroke="#FFFFFF" strokeOpacity="0.2" strokeWidth="1.5"
         />
       </g>
     </svg>

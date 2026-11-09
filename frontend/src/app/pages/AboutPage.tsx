@@ -42,7 +42,7 @@ export function AboutPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "radial-gradient(130% 110% at 78% 12%, #10507A 0%, #0C3C5E 48%, #0A2740 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(160deg, #38BDF8 0%, #0EA5E9 46%, #0796D8 100%)", position: "relative", overflow: "hidden" }}>
         <BrandOrbit
           className="rt-orbit-full pointer-events-none select-none absolute hidden md:block"
           style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
@@ -52,14 +52,14 @@ export function AboutPage() {
           style={{ paddingTop: "clamp(42px, 5.5vw, 72px)", paddingBottom: "clamp(42px, 5.5vw, 72px)" }}
         >
           <div style={{ maxWidth: "720px" }}>
-            <span className="rt-eyebrow-rule" style={{ marginBottom: "16px" }} />
-            <p className="rt-rise" style={{ ...EYEBROW, color: "#FDBA74", "--rt-delay": "0.28s" } as React.CSSProperties}>
+            <span className="rt-eyebrow-rule rt-rule-dark" style={{ marginBottom: "16px" }} />
+            <p className="rt-rise" style={{ ...EYEBROW, color: "#0B2742", "--rt-delay": "0.28s" } as React.CSSProperties}>
               À propos
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#0B2742", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
               <MaskedWords text="Une équipe technique guinéenne" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ ...LEAD, color: "#CFE0EC", maxWidth: "580px", "--rt-delay": "0.5s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ ...LEAD, color: "#0C2340", maxWidth: "580px", "--rt-delay": "0.5s" } as React.CSSProperties}>
               Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions
               du pays n'aient plus à choisir entre un outil étranger inadapté et un cahier.
             </p>
