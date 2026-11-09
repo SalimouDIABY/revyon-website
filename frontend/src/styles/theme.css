@@ -383,7 +383,7 @@ html { scroll-behavior: smooth; }
   height: 2px;
   width: 34px;
   border-radius: 2px;
-  background: #E84C1E;
+  background: #FFFFFF;
   transform: scaleX(0);
   transform-origin: left;
   animation: rt-rule-in 0.6s cubic-bezier(0.22, 0.75, 0.2, 1) 0.1s forwards;

@@ -82,7 +82,7 @@ export function HomePage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(165deg, #0A6E9E 0%, #07628C 48%, #054F72 100%)",
+          background: "linear-gradient(168deg, #16AEEE 0%, #0EA5E9 42%, #0B9AD9 100%)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -96,7 +96,7 @@ export function HomePage() {
           className="pointer-events-none absolute inset-0 hidden xl:block"
           style={{
             background:
-              "radial-gradient(58% 120% at 101% -14%, rgba(38,190,255,0.92) 0%, rgba(20,156,220,0.62) 34%, rgba(10,110,160,0.22) 62%, rgba(6,79,112,0) 80%)",
+              "radial-gradient(62% 130% at 100% -12%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 38%, rgba(255,255,255,0) 72%)",
           }}
         />
         <BrandOrbit
@@ -114,7 +114,7 @@ export function HomePage() {
           className="pointer-events-none absolute inset-0 sm:hidden"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(5,63,90,0) 0%, rgba(5,63,90,0.14) 38%, rgba(5,63,90,0.6) 62%, rgba(5,63,90,0.85) 82%)",
+              "linear-gradient(to bottom, rgba(11,154,217,0) 0%, rgba(11,154,217,0.25) 52%, rgba(10,145,205,0.55) 80%)",
           }}
         />
 
@@ -127,19 +127,19 @@ export function HomePage() {
 
             <p
               className="rt-rise"
-              style={{ ...EYEBROW, color: "#FFE7CC", margin: "0 0 18px", "--rt-delay": "0.3s" } as React.CSSProperties}
+              style={{ ...EYEBROW, color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", margin: "0 0 16px", "--rt-delay": "0.3s" } as React.CSSProperties}
             >
               Entreprise informatique en Guinée
             </p>
 
             <h1
               style={{
-                fontSize: "clamp(2.15rem, 8vw, 3.6rem)",
-                fontWeight: 700,
-                color: "#FFFFFF",
-                lineHeight: 1.12,
-                letterSpacing: "-0.024em",
-                margin: "0 0 22px",
+                fontSize: "clamp(2.2rem, 8.2vw, 3.7rem)",
+                fontWeight: 650,
+                color: "#0C2340",
+                lineHeight: 1.16,
+                letterSpacing: "-0.022em",
+                margin: "0 0 24px",
               }}
             >
               <MaskedWords text="Nous construisons les outils numériques dont votre activité a besoin" delay={0.12} />
@@ -148,11 +148,12 @@ export function HomePage() {
             <p
               className="rt-rise"
               style={{
-                fontSize: "1.09rem",
-                lineHeight: 1.72,
-                color: "#E2F1FA",
-                margin: "0 0 30px",
-                maxWidth: "580px",
+                fontSize: "1.075rem",
+                lineHeight: 1.74,
+                fontWeight: 420,
+                color: "#102A44",
+                margin: "0 0 32px",
+                maxWidth: "556px",
                 "--rt-delay": "0.62s",
               } as React.CSSProperties}
             >
@@ -169,14 +170,14 @@ export function HomePage() {
               <Link
                 to="/contact#devis"
                 className="rt-btn rt-btn-accent"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "15px 26px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "15px 28px", background: "#FFFFFF", color: "#0C2340", borderRadius: "9px", textDecoration: "none", fontWeight: 650, fontSize: "1rem", boxShadow: "0 6px 18px rgba(8,38,64,0.16)" }}
               >
                 Démarrer un projet <ArrowRight size={17} />
               </Link>
               <Link
                 to="/portfolio"
                 className="rt-btn rt-btn-ghost-dark"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px 26px", background: "rgba(255,255,255,0.10)", color: "#fff", border: "1px solid rgba(255,255,255,0.42)", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px 28px", background: "transparent", color: "#0C2340", border: "1.5px solid rgba(12,35,64,0.42)", borderRadius: "9px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
                 Voir nos réalisations
               </Link>
@@ -193,13 +194,13 @@ export function HomePage() {
                 "Une réponse à votre demande sous 24 heures",
               ].map((fact) => (
                 <li key={fact} className="flex items-start gap-2.5">
-                  <Check size={17} color="#86EFAC" strokeWidth={2.4} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <span style={{ fontSize: "0.95rem", color: "#E2F1FA", lineHeight: 1.6 }}>{fact}</span>
+                  <Check size={16} color="#0C2340" strokeWidth={2.6} style={{ marginTop: "3px", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.94rem", color: "#0C2340", lineHeight: 1.62 }}>{fact}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="rt-scroll-cue" style={{ marginTop: "38px", display: "flex", alignItems: "center", gap: "9px", color: "#E2F1FA" }}>
+            <div className="rt-scroll-cue" style={{ marginTop: "38px", display: "flex", alignItems: "center", gap: "9px", color: "#0C2340" }}>
               <ChevronDown size={18} />
               <span style={{ fontSize: "0.82rem", letterSpacing: "0.03em" }}>Nos services</span>
             </div>

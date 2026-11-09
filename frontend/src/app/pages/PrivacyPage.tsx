@@ -13,7 +13,7 @@ export function PrivacyPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(165deg, #0A6E9E 0%, #07628C 48%, #054F72 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(168deg, #16AEEE 0%, #0EA5E9 42%, #0B9AD9 100%)", position: "relative", overflow: "hidden" }}>
         {/* Halo du bleu vif, réservé aux grands écrans : sur un téléphone,
             aucune zone n'est assez loin du texte pour l'accueillir. */}
         <div
@@ -21,7 +21,7 @@ export function PrivacyPage() {
           className="pointer-events-none absolute inset-0 hidden xl:block"
           style={{
             background:
-              "radial-gradient(58% 120% at 101% -14%, rgba(38,190,255,0.92) 0%, rgba(20,156,220,0.62) 34%, rgba(10,110,160,0.22) 62%, rgba(6,79,112,0) 80%)",
+              "radial-gradient(62% 130% at 100% -12%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 38%, rgba(255,255,255,0) 72%)",
           }}
         />
         <BrandOrbit
@@ -33,13 +33,13 @@ export function PrivacyPage() {
           style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
           <div style={{ maxWidth: "700px" }}>
-            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FFE7CC", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Mentions légales
             </p>
-            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
+            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 650, color: "#0C2340", lineHeight: 1.18, letterSpacing: "-0.022em", margin: "0 0 18px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Politique de confidentialité
             </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#E2F1FA", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#102A44", fontWeight: 420, lineHeight: 1.74, margin: 0, maxWidth: "560px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Comment Revyon Tech collecte, utilise et protège les données que vous nous confiez.
             </p>
           </div>
