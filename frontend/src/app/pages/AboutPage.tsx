@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PenLine, MapPinned, LifeBuoy, FileSignature, Plane, Archive } from "lucide-react";
+import { IconMark } from "../components/IconMark";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { MaskedWords, useInViewReveal } from "../components/Reveal";
@@ -14,12 +15,12 @@ const team = [
 ];
 
 const values = [
-  { title: "Nous écrivons ce que nous vendons", desc: "Pas de sous-traitance. L'équipe qui répond au téléphone est celle qui développe, et une correction peut partir le jour même." },
-  { title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau, paiements en espèces. Nos outils sont pensés pour ce contexte, pas adaptés après coup." },
-  { title: "Nous restons après la livraison", desc: "Formation, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
-  { title: "Nous écrivons les choses", desc: "Périmètre, délai et budget sont posés avant de commencer. Pas de surprise en cours de route." },
-  { title: "Nous allons sur place", desc: "Conakry, les régions, l'intérieur du pays. Quand un déplacement est nécessaire pour comprendre un métier, nous le faisons." },
-  { title: "Nous construisons pour durer", desc: "Un outil doit survivre au départ de celui qui l'a commandé. Documentation, reprise de données, comptes transmis." },
+  { icon: PenLine, title: "Nous écrivons ce que nous vendons", desc: "Pas de sous-traitance. L'équipe qui répond au téléphone est celle qui développe, et une correction peut partir le jour même." },
+  { icon: MapPinned, title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau, paiements en espèces. Nos outils sont pensés pour ce contexte, pas adaptés après coup." },
+  { icon: LifeBuoy, title: "Nous restons après la livraison", desc: "Formation, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
+  { icon: FileSignature, title: "Nous écrivons les choses", desc: "Périmètre, délai et budget sont posés avant de commencer. Pas de surprise en cours de route." },
+  { icon: Plane, title: "Nous allons sur place", desc: "Conakry, les régions, l'intérieur du pays. Quand un déplacement est nécessaire pour comprendre un métier, nous le faisons." },
+  { icon: Archive, title: "Nous construisons pour durer", desc: "Un outil doit survivre au départ de celui qui l'a commandé. Documentation, reprise de données, comptes transmis." },
 ];
 
 const reach = [
@@ -43,7 +44,7 @@ export function AboutPage() {
       {/* ── HERO ── */}
       <section style={{ background: "radial-gradient(130% 110% at 78% 12%, #10507A 0%, #0C3C5E 48%, #0A2740 100%)", position: "relative", overflow: "hidden" }}>
         <BrandOrbit
-          className="rt-orbit-quiet pointer-events-none select-none absolute hidden md:block"
+          className="rt-orbit-full pointer-events-none select-none absolute hidden md:block"
           style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
         />
         <div
@@ -124,15 +125,17 @@ export function AboutPage() {
           title="Six principes, tenus sur chaque projet"
           lead="Ce ne sont pas des valeurs affichées : ce sont les règles que nous nous appliquons, et sur lesquelles vous pouvez nous juger."
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.lineStrong}` }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {values.map((value, i) => (
-            <Enter
-              key={value.title}
-              delay={(i % 3) * 0.07}
-              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "20px 0" }}
-            >
-              <h3 style={H3}>{value.title}</h3>
-              <p style={TEXT}>{value.desc}</p>
+            <Enter key={value.title} delay={(i % 3) * 0.07} style={{ height: "100%" }}>
+              <article
+                className="rt-tile"
+                style={{ background: C.surface, border: `1px solid ${C.lineStrong}`, borderRadius: "14px", padding: "22px", height: "100%", overflow: "hidden" }}
+              >
+                <IconMark icon={value.icon} />
+                <h3 style={{ ...H3, marginTop: "16px" }}>{value.title}</h3>
+                <p style={TEXT}>{value.desc}</p>
+              </article>
             </Enter>
           ))}
         </div>
@@ -149,9 +152,11 @@ export function AboutPage() {
           {team.map((member, i) => (
             <Enter key={member.name} delay={(i % 3) * 0.07}>
               <article
+                className="rt-tile"
                 style={{
                   border: `1px solid ${C.lineStrong}`,
-                  borderRadius: "12px",
+                  borderRadius: "14px",
+                  overflow: "hidden",
                   padding: "22px",
                   height: "100%",
                   background: C.surface,

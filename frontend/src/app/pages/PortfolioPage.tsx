@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, WifiOff, Smartphone, PenLine } from "lucide-react";
+import { IconMark } from "../components/IconMark";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { products } from "../data/products";
@@ -18,14 +19,17 @@ const EYEBROW: React.CSSProperties = {
 
 const pillars = [
   {
+    icon: WifiOff,
     title: "Conçus pour le réseau d'ici",
     desc: "L'appel, la caisse, la saisie : tout continue hors connexion, puis se synchronise au retour du réseau, sans double saisie.",
   },
   {
+    icon: Smartphone,
     title: "Utilisables depuis un téléphone",
     desc: "Une adresse dans le navigateur, rien à installer. L'application peut s'ajouter à l'écran d'accueil comme une app native.",
   },
   {
+    icon: PenLine,
     title: "Écrits et maintenus en Guinée",
     desc: "L'équipe qui répond au téléphone est celle qui écrit le code. Les produits évoluent avec ce que les clients demandent.",
   },
@@ -71,21 +75,25 @@ export function PortfolioPage() {
       {/* ── CE QUI LES CARACTÉRISE ── */}
       <section style={{ background: "#F8FAFC", borderBottom: "1px solid #E7EBF0" }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(32px, 4vw, 48px)", paddingBottom: "clamp(32px, 4vw, 48px)" }}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className="rt-enter md:py-0 md:border-b-0"
+                className="rt-enter rt-tile"
                 style={{
-                  paddingTop: i > 0 ? "18px" : 0,
-                  paddingBottom: i < pillars.length - 1 ? "18px" : 0,
-                  borderBottom: i < pillars.length - 1 ? "1px solid #E2E8F0" : "none",
-                }}
+                  background: "#fff",
+                  border: "1px solid #E2E8F0",
+                  borderRadius: "14px",
+                  padding: "22px",
+                  overflow: "hidden",
+                  "--rt-delay": `${i * 0.07}s`,
+                } as React.CSSProperties}
               >
-                <h2 style={{ fontSize: "0.98rem", fontWeight: 700, color: "#111827", margin: "0 0 7px" }}>
+                <IconMark icon={pillar.icon} />
+                <h2 style={{ fontSize: "1.02rem", fontWeight: 700, color: "#111827", margin: "16px 0 7px" }}>
                   {pillar.title}
                 </h2>
-                <p style={{ fontSize: "0.92rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{pillar.desc}</p>
+                <p style={{ fontSize: "0.93rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{pillar.desc}</p>
               </div>
             ))}
           </div>
