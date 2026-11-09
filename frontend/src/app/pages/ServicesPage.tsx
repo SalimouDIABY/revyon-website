@@ -199,10 +199,10 @@ export function ServicesPage() {
             <p className="rt-rise" style={{ ...EYEBROW, color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", "--rt-delay": "0.28s" } as React.CSSProperties}>
               Nos services
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 650, color: "#0C2340", lineHeight: 1.18, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+            <h1 style={{ fontFamily: "'Revyon Serif', Georgia, serif", fontSize: "clamp(2.1rem, 7vw, 3.1rem)", fontWeight: 600, color: "#0C2340", lineHeight: 1.12, letterSpacing: "-0.018em", margin: "0 0 18px" }}>
               <MaskedWords text="Sept métiers, une seule équipe" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ ...LEAD, color: "#102A44", fontWeight: 420, lineHeight: 1.74, maxWidth: "560px", "--rt-delay": "0.5s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ ...LEAD, color: "#1E293B", fontWeight: 420, lineHeight: 1.74, maxWidth: "560px", "--rt-delay": "0.5s" } as React.CSSProperties}>
               Du premier croquis à la prise en main par vos équipes. Nous intervenons
               partout en Guinée, à distance ou chez vous.
             </p>

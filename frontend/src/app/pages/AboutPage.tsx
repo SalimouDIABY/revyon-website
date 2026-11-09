@@ -66,10 +66,10 @@ export function AboutPage() {
             <p className="rt-rise" style={{ ...EYEBROW, color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", "--rt-delay": "0.28s" } as React.CSSProperties}>
               À propos
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 650, color: "#0C2340", lineHeight: 1.18, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+            <h1 style={{ fontFamily: "'Revyon Serif', Georgia, serif", fontSize: "clamp(2.1rem, 7vw, 3.1rem)", fontWeight: 600, color: "#0C2340", lineHeight: 1.12, letterSpacing: "-0.018em", margin: "0 0 18px" }}>
               <MaskedWords text="Une équipe technique guinéenne" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ ...LEAD, color: "#102A44", fontWeight: 420, lineHeight: 1.74, maxWidth: "560px", "--rt-delay": "0.5s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ ...LEAD, color: "#1E293B", fontWeight: 420, lineHeight: 1.74, maxWidth: "560px", "--rt-delay": "0.5s" } as React.CSSProperties}>
               Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions
               du pays n'aient plus à choisir entre un outil étranger inadapté et un cahier.
             </p>
