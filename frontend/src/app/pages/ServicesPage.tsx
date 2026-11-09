@@ -175,7 +175,17 @@ export function ServicesPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(160deg, #38BDF8 0%, #0EA5E9 46%, #0796D8 100%)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(165deg, #0A6E9E 0%, #07628C 48%, #054F72 100%)", position: "relative", overflow: "hidden" }}>
+        {/* Halo du bleu vif, réservé aux grands écrans : sur un téléphone,
+            aucune zone n'est assez loin du texte pour l'accueillir. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden xl:block"
+          style={{
+            background:
+              "radial-gradient(58% 120% at 101% -14%, rgba(38,190,255,0.92) 0%, rgba(20,156,220,0.62) 34%, rgba(10,110,160,0.22) 62%, rgba(6,79,112,0) 80%)",
+          }}
+        />
         <BrandOrbit
           className="rt-orbit-full pointer-events-none select-none absolute hidden md:block"
           style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
@@ -185,14 +195,14 @@ export function ServicesPage() {
           style={{ paddingTop: "clamp(42px, 5.5vw, 72px)", paddingBottom: "clamp(42px, 5.5vw, 72px)" }}
         >
           <div style={{ maxWidth: "720px" }}>
-            <span className="rt-eyebrow-rule rt-rule-dark" style={{ marginBottom: "16px" }} />
-            <p className="rt-rise" style={{ ...EYEBROW, color: "#0B2742", "--rt-delay": "0.28s" } as React.CSSProperties}>
+            <span className="rt-eyebrow-rule" style={{ marginBottom: "16px" }} />
+            <p className="rt-rise" style={{ ...EYEBROW, color: "#FFE7CC", "--rt-delay": "0.28s" } as React.CSSProperties}>
               Nos services
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#0B2742", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
               <MaskedWords text="Sept métiers, une seule équipe" delay={0.1} />
             </h1>
-            <p className="rt-rise" style={{ ...LEAD, color: "#0C2340", maxWidth: "580px", "--rt-delay": "0.5s" } as React.CSSProperties}>
+            <p className="rt-rise" style={{ ...LEAD, color: "#E2F1FA", maxWidth: "580px", "--rt-delay": "0.5s" } as React.CSSProperties}>
               Du premier croquis à la prise en main par vos équipes. Nous intervenons
               partout en Guinée, à distance ou chez vous.
             </p>

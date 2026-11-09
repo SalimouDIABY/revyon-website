@@ -633,4 +633,4 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .rt-nav-inner, .rt-nav-logo img { transition: none !important; }
 }
-.rt-rule-dark { background: #0B2742 !important; }
+
