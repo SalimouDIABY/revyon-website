@@ -21,6 +21,8 @@ export type Product = {
   audience: string;
   year: string;
   status: "En production" | "En déploiement";
+  /** Une phrase concrète pour la carte de l'accueil. */
+  cardLine: string;
   /** Paragraphe de présentation. */
   description: string;
   /** Ce que le produit apporte concrètement — formulé en bénéfices. */
@@ -29,7 +31,11 @@ export type Product = {
   modules: string[];
   /** Briques techniques, sans détail d'implémentation. */
   tech: string[];
-  /** Palette du produit, pour l'aperçu d'interface. */
+  /** Capture publique du produit, servie depuis /public/produits. */
+  screenshot: string;
+  /** Ce que montre la capture, pour ne pas laisser croire que c'est tout le produit. */
+  screenshotCaption: string;
+  /** Palette du produit. */
   theme: {
     deep: string;
     surface: string;
@@ -38,12 +44,6 @@ export type Product = {
     /** Variante de l'accent lisible en texte sur fond clair (contraste AA). */
     accentText: string;
     soft: string;
-  };
-  /** Chiffres d'illustration affichés dans l'aperçu (jamais des données client). */
-  preview: {
-    label: string;
-    nav: string[];
-    tiles: { label: string; value: string; note: string }[];
   };
 };
 
@@ -58,6 +58,8 @@ export const products: Product[] = [
     audience: "Établissements scolaires",
     year: "2026",
     status: "En production",
+    cardLine:
+      "Inscriptions, notes, bulletins, présences et frais de scolarité dans une seule plateforme. Les matières et coefficients du programme national guinéen sont déjà dedans, et tout continue de fonctionner quand le réseau tombe.",
     description:
       "Logiciel de gestion scolaire conçu pour les écoles de Guinée, du préscolaire à la terminale. Élèves, notes, présences, frais de scolarité et communication aux familles sont réunis dans une seule plateforme, multi-établissements, utilisable depuis un ordinateur, une tablette ou un téléphone.",
     outcomes: [
@@ -74,16 +76,10 @@ export const products: Product[] = [
       "Communication et portail parent : annonces ciblées et espace dédié aux familles",
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Multi-établissements", "Rôles et permissions"],
+    screenshot: "/produits/revyon-school.jpg",
+    screenshotCaption:
+      "La page publique de Revyon School. L'application de gestion s'ouvre après connexion.",
     theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#D9480F", accentText: "#A8370B", soft: "#E3ECF7" },
-    preview: {
-      label: "Tableau de bord établissement",
-      nav: ["Scolarité", "Notes", "Présences", "Finance", "Communication"],
-      tiles: [
-        { label: "Élèves inscrits", value: "486", note: "81 % de la capacité" },
-        { label: "Présence", value: "94 %", note: "deuxième trimestre" },
-        { label: "Recouvrement", value: "78 %", note: "encaissé à ce jour" },
-      ],
-    },
   },
   {
     slug: "revyon-gestock",
@@ -95,6 +91,8 @@ export const products: Product[] = [
     audience: "Commerces, boutiques et PME",
     year: "2026",
     status: "En production",
+    cardLine:
+      "Stock, ventes, achats et dettes clients suivis au jour le jour, avec factures et reçus à partager. La caisse et la trésorerie restent justes, même quand la boutique travaille sans connexion.",
     description:
       "Logiciel de gestion commerciale pour les boutiques, dépôts et PME : stock, ventes, achats, comptes clients et fournisseurs, charges et trésorerie dans une seule application. Pensé pour un commerce qui tourne au comptoir comme en déplacement, avec ou sans réseau.",
     outcomes: [
@@ -111,16 +109,10 @@ export const products: Product[] = [
       "Charges et trésorerie, caisses multiples",
     ],
     tech: ["Application web", "PWA installable", "Mode hors ligne", "Synchronisation automatique", "Comptes validés"],
+    screenshot: "/produits/revyon-gestock.jpg",
+    screenshotCaption:
+      "L'accès à Gestock. Chaque compte est validé par Revyon Tech avant la première connexion.",
     theme: { deep: "#0D2B55", surface: "#F5F7FA", accent: "#C2410C", accentText: "#9A3412", soft: "#E3ECF7" },
-    preview: {
-      label: "Activité du commerce",
-      nav: ["Stock", "Ventes", "Achats", "Comptes", "Trésorerie"],
-      tiles: [
-        { label: "Ventes du jour", value: "32", note: "reçus émis" },
-        { label: "Articles en alerte", value: "7", note: "sous le seuil" },
-        { label: "Créances clients", value: "À jour", note: "relances suivies" },
-      ],
-    },
   },
   {
     slug: "markagest",
@@ -132,6 +124,8 @@ export const products: Product[] = [
     audience: "Écoles coraniques et markaz",
     year: "2026",
     status: "En production",
+    cardLine:
+      "La progression du hifz suivie séance après séance, élève par élève, sans registre papier. Conçu pour le téléphone et pour des lieux où la connexion n'est pas acquise.",
     description:
       "Plateforme de gestion des markaz et écoles coraniques : organisation des séances, suivi de l'apprentissage et de la mémorisation du Coran élève par élève, évaluations et contributions. Conçue pour un usage quotidien sur téléphone, dans des lieux où la connexion n'est pas acquise.",
     outcomes: [
@@ -148,16 +142,10 @@ export const products: Product[] = [
       "Contributions et suivi administratif",
     ],
     tech: ["Application web", "PWA installable", "Hors ligne par défaut", "Interface française et arabe", "Multi-markaz"],
+    screenshot: "/produits/markagest.jpg",
+    screenshotCaption:
+      "L'accès à MarkaGest. Les identifiants sont remis par le directeur du markaz.",
     theme: { deep: "#10284F", surface: "#F4F2EC", accent: "#C9A227", accentText: "#7A5E0C", soft: "#E7E2D5" },
-    preview: {
-      label: "Suivi d'un groupe",
-      nav: ["Markaz", "Séances", "Hifz", "Évaluations", "Contributions"],
-      tiles: [
-        { label: "Séances tenues", value: "18", note: "ce mois-ci" },
-        { label: "Élèves suivis", value: "64", note: "progression à jour" },
-        { label: "Mode", value: "Hors ligne", note: "synchronisé au retour" },
-      ],
-    },
   },
 ];
 

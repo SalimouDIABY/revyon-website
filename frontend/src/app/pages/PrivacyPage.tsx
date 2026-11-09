@@ -12,14 +12,22 @@ export function PrivacyPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)", padding: "clamp(50px, 10vw, 100px) 0", minHeight: "40vh", display: "flex", alignItems: "center" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: "800", color: "#fff", marginBottom: "16px", letterSpacing: "-0.02em" }}>
-            Politique de <span style={{ color: "#FDBA74" }}>Confidentialité</span>
-          </h1>
-          <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1rem", maxWidth: "600px", margin: "0 auto", lineHeight: "1.8" }}>
-            Dernière mise à jour : {new Date().toLocaleDateString("fr-FR")}
-          </p>
+      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+        <div
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
+          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+        >
+          <div style={{ maxWidth: "720px" }}>
+            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+              Mentions légales
+            </p>
+            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+              Politique de confidentialité
+            </h1>
+            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+              Comment Revyon Tech collecte, utilise et protège les données que vous nous confiez.
+            </p>
+          </div>
         </div>
       </section>
 

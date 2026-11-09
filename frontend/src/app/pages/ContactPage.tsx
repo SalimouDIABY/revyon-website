@@ -78,30 +78,22 @@ export function ContactPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)", padding: "clamp(50px, 10vw, 100px) 0", minHeight: "50vh", display: "flex", alignItems: "center" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "rgba(255,255,255,0.15)",
-              border: "1px solid rgba(255,255,255,0.3)",
-              borderRadius: "100px",
-              padding: "8px 16px",
-              marginBottom: "24px",
-            }}
-          >
-            <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#fff", opacity: 0.7 }} />
-            <span style={{ color: "#fff", fontSize: "0.85rem", fontWeight: "600" }}>Contactez-nous</span>
+      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+        <div
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
+          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+        >
+          <div style={{ maxWidth: "720px" }}>
+            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+              Contact
+            </p>
+            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+              Parlons de votre projet
+            </h1>
+            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+              Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures avec une estimation de délai et de budget, sans engagement.
+            </p>
           </div>
-          <h1 style={{ fontSize: "clamp(2.25rem, 6vw, 3.75rem)", fontWeight: "800", color: "#fff", marginBottom: "16px", letterSpacing: "-0.02em" }}>
-            Parlons de votre{" "}
-            <span style={{ color: "#fff" }}>projet</span>
-          </h1>
-          <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1.05rem", maxWidth: "650px", margin: "0 auto", lineHeight: "1.8" }}>
-            Une idée ? Un besoin ? Remplissez le formulaire ou contactez-nous directement. Notre équipe vous répondra en moins de 24h.
-          </p>
         </div>
       </section>
 
