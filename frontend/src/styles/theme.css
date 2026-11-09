@@ -555,6 +555,12 @@ p { text-wrap: pretty; }
   animation: rt-panel-item 0.26s cubic-bezier(0.22, 0.75, 0.2, 1) forwards;
   animation-delay: var(--rt-delay, 0s);
 }
+/* Le bouton du menu n'existe que sous 768 px. Son `display` vivait dans le
+   style en ligne, qui écrase les classes de Tailwind : `md:hidden` était
+   sans effet et le bouton restait visible sur ordinateur. */
+.rt-burger { display: flex; }
+@media (min-width: 768px) { .rt-burger { display: none; } }
+
 .rt-burger span {
   display: block;
   height: 2px;
@@ -627,3 +633,4 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .rt-nav-inner, .rt-nav-logo img { transition: none !important; }
 }
+.rt-rule-dark { background: #0B2742 !important; }

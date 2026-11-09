@@ -101,7 +101,7 @@ export function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rt-burger md:hidden"
+            className="rt-burger"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={isOpen}
             style={{
@@ -109,7 +109,6 @@ export function Navbar() {
               border: "none",
               cursor: "pointer",
               padding: "10px",
-              display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               gap: "5px",
