@@ -1,7 +1,8 @@
 import { Link } from "react-router";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
+import { MaskedWords, useInViewReveal } from "../components/Reveal";
 import { products } from "../data/products";
 
 /* ─────────────────────────────────────────────
@@ -55,6 +56,8 @@ const reasons = [
 ];
 
 export function HomePage() {
+  useInViewReveal();
+
   usePageMeta(
     "Revyon Tech, entreprise informatique à Conakry : web, logiciels, design et marketing",
     "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
@@ -66,47 +69,57 @@ export function HomePage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 62%, #0E5A78 100%)",
+          background: "radial-gradient(130% 95% at 72% 18%, #10507A 0%, #0C3C5E 45%, #0A2740 100%)",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Signature : l'orbite du logo, posée à droite */}
+        {/* Signature : l'orbite du logo. Sur téléphone elle occupe toute la
+            largeur derrière le texte ; au-delà, elle se range à droite. */}
+        <BrandOrbit
+          className="rt-orbit-quiet pointer-events-none select-none absolute sm:hidden"
+          style={{ width: "165%", height: "auto", left: "50%", top: "46%", transform: "translate(-50%, -50%)" }}
+        />
         <BrandOrbit
           className="pointer-events-none select-none absolute hidden sm:block"
-          style={{ width: "min(620px, 58vw)", height: "auto", right: "-130px", top: "50%", transform: "translateY(-50%)" }}
+          style={{ width: "min(680px, 56vw)", height: "auto", right: "-60px", top: "50%", transform: "translateY(-50%)" }}
         />
-        {/* Sur mobile, une orbite plus discrète en haut à droite */}
-        <BrandOrbit
-          className="pointer-events-none select-none absolute sm:hidden"
-          style={{ width: "340px", height: "auto", right: "-120px", top: "-70px", opacity: 0.75 }}
+        {/* Voile : l'orbite reste nette en haut, puis s'efface sous le texte
+            et les boutons, qui doivent rester parfaitement lisibles. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 sm:hidden"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(10,39,64,0) 0%, rgba(10,39,64,0.18) 36%, rgba(10,39,64,0.66) 58%, rgba(10,39,64,0.86) 80%)",
+          }}
         />
 
         <div
           className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
-          style={{ paddingTop: "clamp(52px, 7vw, 100px)", paddingBottom: "clamp(52px, 7vw, 100px)" }}
+          style={{ paddingTop: "clamp(54px, 7vw, 104px)", paddingBottom: "clamp(44px, 6vw, 92px)" }}
         >
-          <div style={{ maxWidth: "720px" }}>
+          <div style={{ maxWidth: "740px" }}>
+            <span className="rt-eyebrow-rule" style={{ marginBottom: "16px" }} />
+
             <p
               className="rt-rise"
-              style={{ ...EYEBROW, color: "#FDBA74", "--rt-delay": "0.05s" } as React.CSSProperties}
+              style={{ ...EYEBROW, color: "#FDBA74", margin: "0 0 18px", "--rt-delay": "0.3s" } as React.CSSProperties}
             >
               Entreprise informatique à Conakry
             </p>
 
             <h1
-              className="rt-rise"
               style={{
-                fontSize: "clamp(2.05rem, 7.4vw, 3.4rem)",
+                fontSize: "clamp(2.15rem, 8vw, 3.6rem)",
                 fontWeight: 700,
                 color: "#fff",
-                lineHeight: 1.14,
-                letterSpacing: "-0.022em",
-                margin: "0 0 20px",
-                "--rt-delay": "0.13s",
-              } as React.CSSProperties}
+                lineHeight: 1.12,
+                letterSpacing: "-0.024em",
+                margin: "0 0 22px",
+              }}
             >
-              Nous construisons les outils numériques dont votre activité a besoin
+              <MaskedWords text="Nous construisons les outils numériques dont votre activité a besoin" delay={0.12} />
             </h1>
 
             <p
@@ -116,30 +129,30 @@ export function HomePage() {
                 lineHeight: 1.65,
                 color: "#CFE0EC",
                 margin: "0 0 30px",
-                maxWidth: "600px",
-                "--rt-delay": "0.21s",
+                maxWidth: "580px",
+                "--rt-delay": "0.62s",
               } as React.CSSProperties}
             >
-              Revyon Tech conçoit des sites web, des logiciels et des identités de marque pour
-              les entreprises et les institutions guinéennes. Nous éditons aussi nos propres
-              plateformes métier, utilisées chaque jour par des écoles, des commerces et des markaz.
+              Sites web, logiciels, identité de marque, marketing, formation et matériel.
+              Nous éditons aussi nos propres plateformes métier, utilisées chaque jour par
+              des écoles, des commerces et des markaz.
             </p>
 
             <div
               className="rt-rise flex flex-col sm:flex-row gap-3"
-              style={{ marginBottom: "32px", "--rt-delay": "0.29s" } as React.CSSProperties}
+              style={{ marginBottom: "34px", "--rt-delay": "0.72s" } as React.CSSProperties}
             >
               <Link
                 to="/contact#devis"
                 className="rt-btn rt-btn-accent"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "14px 26px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "15px 26px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
                 Démarrer un projet <ArrowRight size={17} />
               </Link>
               <Link
                 to="/portfolio"
                 className="rt-btn rt-btn-ghost-dark"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 26px", background: "rgba(255,255,255,0.07)", color: "#fff", border: "1px solid rgba(255,255,255,0.34)", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px 26px", background: "rgba(255,255,255,0.07)", color: "#fff", border: "1px solid rgba(255,255,255,0.34)", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
                 Voir nos réalisations
               </Link>
@@ -147,7 +160,7 @@ export function HomePage() {
 
             <ul
               className="rt-rise flex flex-col gap-2.5"
-              style={{ listStyle: "none", padding: 0, margin: 0, "--rt-delay": "0.37s" } as React.CSSProperties}
+              style={{ listStyle: "none", padding: 0, margin: 0, "--rt-delay": "0.82s" } as React.CSSProperties}
             >
               {[
                 "Sept métiers, du site web au matériel informatique",
@@ -160,6 +173,11 @@ export function HomePage() {
                 </li>
               ))}
             </ul>
+
+            <div className="rt-scroll-cue" style={{ marginTop: "38px", display: "flex", alignItems: "center", gap: "9px", color: "#9FC2DA" }}>
+              <ChevronDown size={18} />
+              <span style={{ fontSize: "0.82rem", letterSpacing: "0.03em" }}>Nos services</span>
+            </div>
           </div>
         </div>
       </section>
@@ -214,11 +232,11 @@ export function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10" style={{ borderTop: "1px solid #E7EBF0" }}>
-            {products.map((product) => (
+            {products.map((product, i) => (
               <article
                 key={product.slug}
-                className="rt-card"
-                style={{ borderBottom: "1px solid #E7EBF0", padding: "26px 0" }}
+                className="rt-card rt-enter"
+                style={{ borderBottom: "1px solid #E7EBF0", padding: "26px 0", "--rt-delay": `${i * 0.08}s` } as React.CSSProperties}
               >
                 <div className="rt-rule" style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
                 <h3 className="rt-card-title" style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", margin: "0 0 5px", letterSpacing: "-0.01em" }}>

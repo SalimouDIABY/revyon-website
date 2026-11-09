@@ -2,12 +2,21 @@
  * Motif d'orbite, repris du logo Revyon Tech.
  *
  * Le logo pose le monogramme RT dans une ellipse inclinée, avec un point
- * orange sur l'anneau. On reprend cette géométrie comme signature du site :
- * deux anneaux inclinés, un arc de lumière qui en fait lentement le tour,
- * et le point orange à sa place. C'est décoratif, donc masqué aux lecteurs
- * d'écran.
+ * orange sur l'anneau. On en fait la signature du site : trois anneaux
+ * inclinés qui se tracent au chargement, deux arcs de lumière qui les
+ * parcourent en sens inverse, et trois points aux couleurs de nos trois
+ * produits posés sur l'anneau principal.
+ *
+ * Décoratif, donc masqué aux lecteurs d'écran. Tout s'arrête si le système
+ * demande de réduire les animations (voir theme.css).
  */
-export function BrandOrbit({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function BrandOrbit({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <svg
       className={className}
@@ -17,32 +26,54 @@ export function BrandOrbit({ className, style }: { className?: string; style?: R
       aria-hidden="true"
       focusable="false"
     >
+      {/* Anneau principal */}
       <g transform="rotate(-24 310 310)">
-        {/* Anneau principal */}
-        <ellipse cx="310" cy="310" rx="252" ry="140" stroke="#4A90D9" strokeOpacity="0.30" strokeWidth="1.5" />
-        {/* Arc de lumière qui parcourt l'anneau */}
         <ellipse
-          className="rt-orbit-arc"
-          cx="310"
-          cy="310"
-          rx="252"
-          ry="140"
-          stroke="#7DD3FC"
-          strokeOpacity="0.85"
-          strokeWidth="2"
-          strokeLinecap="round"
+          className="rt-ring rt-ring-1"
+          cx="310" cy="310" rx="252" ry="140"
+          stroke="#7FB3E3" strokeOpacity="0.26" strokeWidth="1.5"
         />
-        {/* Le point orange du logo, posé sur l'anneau */}
-        <circle cx="310" cy="450" r="17" fill="#E84C1E" fillOpacity="0.18" />
-        <circle className="rt-orbit-dot" cx="310" cy="450" r="7" fill="#E84C1E" />
+        <ellipse
+          className="rt-arc rt-arc-1"
+          cx="310" cy="310" rx="252" ry="140"
+          stroke="#A5DBFF" strokeOpacity="0.95" strokeWidth="2.25" strokeLinecap="round"
+        />
+        {/* Les trois produits, posés sur l'anneau */}
+        <g className="rt-node rt-node-1">
+          <circle cx="562" cy="310" r="15" fill="#D9480F" fillOpacity="0.2" />
+          <circle cx="562" cy="310" r="5.5" fill="#F08A4B" />
+        </g>
+        <g className="rt-node rt-node-2">
+          <circle cx="310" cy="450" r="15" fill="#E84C1E" fillOpacity="0.22" />
+          <circle cx="310" cy="450" r="6.5" fill="#E84C1E" />
+        </g>
+        <g className="rt-node rt-node-3">
+          <circle cx="58" cy="310" r="15" fill="#C9A227" fillOpacity="0.2" />
+          <circle cx="58" cy="310" r="5.5" fill="#E8C35A" />
+        </g>
       </g>
 
+      {/* Anneau intermédiaire, parcouru en sens inverse */}
       <g transform="rotate(16 310 310)">
-        <ellipse cx="310" cy="310" rx="214" ry="112" stroke="#4A90D9" strokeOpacity="0.16" strokeWidth="1.5" />
+        <ellipse
+          className="rt-ring rt-ring-2"
+          cx="310" cy="310" rx="214" ry="112"
+          stroke="#7FB3E3" strokeOpacity="0.16" strokeWidth="1.5"
+        />
+        <ellipse
+          className="rt-arc rt-arc-2"
+          cx="310" cy="310" rx="214" ry="112"
+          stroke="#7DD3FC" strokeOpacity="0.6" strokeWidth="1.75" strokeLinecap="round"
+        />
       </g>
 
+      {/* Anneau intérieur, fixe */}
       <g transform="rotate(-58 310 310)">
-        <ellipse cx="310" cy="310" rx="176" ry="92" stroke="#4A90D9" strokeOpacity="0.10" strokeWidth="1.5" />
+        <ellipse
+          className="rt-ring rt-ring-3"
+          cx="310" cy="310" rx="176" ry="92"
+          stroke="#7FB3E3" strokeOpacity="0.11" strokeWidth="1.5"
+        />
       </g>
     </svg>
   );
