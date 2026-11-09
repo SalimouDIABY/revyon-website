@@ -161,8 +161,15 @@ Après toute modification de couleur, relancer l'audit décrit en section 7.
 
 Les styles sont écrits en style en ligne, Tailwind ne servant que pour la
 grille et les points de rupture. Aucun élément décoratif ne doit créer de
-défilement horizontal : `theme.css` pose un `overflow-x: hidden` de
+défilement horizontal : `theme.css` pose un `overflow-x: clip` de
 sécurité, mais la cause est à corriger à la source.
+
+> **Piège à connaître.** Ce filet doit rester `clip`, jamais `hidden`.
+> `overflow-x: hidden` sur `html` ou `body` force `overflow-y` à `auto`,
+> ce qui crée un conteneur de défilement : `position: sticky` se cale
+> alors sur ce conteneur au lieu de la fenêtre, et l'entête du site cesse
+> silencieusement de rester collée en haut. Aucune erreur n'est levée.
+> `clip` coupe le débordement sans créer de conteneur.
 
 ---
 
