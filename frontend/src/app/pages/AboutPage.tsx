@@ -130,66 +130,22 @@ export function AboutPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
-          padding: "clamp(40px, 8vw, 80px) 0",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
+      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
         <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${ABOUT_IMAGE})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.1,
-          }}
-        />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div
-            style={{
-              display: "inline-block",
-              background: "rgba(14,165,233,0.15)",
-              border: "1px solid rgba(14,165,233,0.3)",
-              color: "#E0F2FE",
-              padding: "4px 20px",
-              borderRadius: "100px",
-              fontSize: "0.85rem",
-              fontWeight: "600",
-              marginBottom: "20px",
-            }}
-          >
-            À propos
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
+          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+        >
+          <div style={{ maxWidth: "720px" }}>
+            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+              À propos
+            </p>
+            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+              Une équipe technique, à Conakry
+            </h1>
+            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+              Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions guinéennes n'aient plus à choisir entre un outil étranger inadapté et un cahier. Nous concevons, développons et maintenons nos solutions ici.
+            </p>
           </div>
-          <h1
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              fontWeight: "800",
-              color: "#fff",
-              lineHeight: "1.15",
-              letterSpacing: "-0.03em",
-              marginBottom: "20px",
-            }}
-          >
-            L'histoire de{" "}
-            <span style={{ color: "#FDBA74" }}>Revyon Tech</span>
-          </h1>
-          <p
-            style={{
-              color: "#fff",
-              fontSize: "1.05rem",
-              lineHeight: "1.8",
-              maxWidth: "600px",
-              margin: "0 auto",
-              opacity: 0.95,
-            }}
-          >
-            Une agence tech fondée avec la vision de transformer le paysage
-            digital africain, une solution à la fois.
-          </p>
         </div>
       </section>
 

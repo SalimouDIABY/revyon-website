@@ -1,250 +1,58 @@
-import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { products } from "../data/products";
-import {
-  Globe,
-  Smartphone,
-  TrendingUp,
-  Palette,
-  Server,
-  Share2,
-  CheckCircle2,
-  ArrowRight,
-  Star,
-  Users,
-  Award,
-  Clock,
-  ArrowUpRight,
-  Check,
-} from "lucide-react";
 
 /* ─────────────────────────────────────────────
-   CSS ANIMATIONS (injectées une seule fois)
+   Styles partagés
+   Le site suit la grammaire visuelle de revyonschool.com : fond clair,
+   texte sombre aligné à gauche, sur-titre orange, échelle typographique
+   sobre. Pas d'animation d'apparition : le contenu est là dès l'ouverture.
 ───────────────────────────────────────────── */
-const CSS = `
-  @keyframes fadeSlideUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeSlideLeft {
-    from { opacity: 0; transform: translateX(-28px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes floatA {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-10px); }
-  }
-  @keyframes floatB {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(10px); }
-  }
-  @keyframes pulseDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(1.4); }
-  }
-  @keyframes shimmer {
-    0%   { background-position: -400px 0; }
-    100% { background-position: 400px 0; }
-  }
-  @keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.88); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-  @keyframes slideRight {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
+const EYEBROW: React.CSSProperties = {
+  fontSize: "0.8rem",
+  fontWeight: 600,
+  letterSpacing: "0.07em",
+  textTransform: "uppercase",
+  color: "#C2410C",
+  margin: "0 0 14px",
+};
 
-  /* Reveal classes (appliquées par IntersectionObserver) */
-  .reveal        { opacity: 0; }
-  .reveal.visible { animation: fadeSlideUp 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+const H2: React.CSSProperties = {
+  fontSize: "clamp(1.6rem, 5.2vw, 2.2rem)",
+  fontWeight: 700,
+  color: "#111827",
+  letterSpacing: "-0.02em",
+  lineHeight: 1.2,
+  margin: "0 0 14px",
+};
 
-  .reveal-left        { opacity: 0; }
-  .reveal-left.visible { animation: fadeSlideLeft 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+const LEAD: React.CSSProperties = {
+  fontSize: "1.0625rem",
+  lineHeight: 1.65,
+  color: "#4B5563",
+  margin: 0,
+};
 
-  .reveal-scale        { opacity: 0; }
-  .reveal-scale.visible { animation: scaleIn 0.55s cubic-bezier(.22,.68,0,1.2) forwards; }
-
-  /* Hover sur les cartes services */
-  .service-card {
-    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2),
-                box-shadow 0.28s ease,
-                border-color 0.28s ease;
-  }
-  .service-card:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 20px 48px rgba(14,165,233,0.16) !important;
-    border-color: #BAE6FD !important;
-  }
-
-  /* Hover sur les cartes "Pourquoi nous" */
-  .reason-card {
-    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2),
-                box-shadow 0.28s ease;
-  }
-  .reason-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(14,165,233,0.14);
-  }
-  .reason-card:hover .reason-icon {
-    transform: scale(1.12) rotate(-4deg);
-  }
-  .reason-icon {
-    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2);
-  }
-
-  /* Hover boutons hero */
-  .btn-primary {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(249,115,22,0.5) !important;
-  }
-  .btn-secondary {
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.12) !important;
-  }
-
-  /* Floating badges sur l'image */
-  .float-a { animation: floatA 4s ease-in-out infinite; }
-  .float-b { animation: floatB 4.5s ease-in-out infinite; }
-
-  /* Sur petit écran, les badges débordaient de 4px à droite et créaient un
-     défilement horizontal : on les ramène dans la largeur de l'image. */
-  @media (max-width: 640px) {
-    .float-a { top: -14px !important; right: 0 !important; }
-    .float-b { bottom: -14px !important; left: 0 !important; }
-  }
-
-  /* Point pulsant */
-  .pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
-
-  /* Checklist items */
-  .check-item {
-    opacity: 0;
-    animation: slideRight 0.5s ease forwards;
-  }
-`;
-
-/* ─────────────────────────────────────────────
-   HOOK : IntersectionObserver léger
-───────────────────────────────────────────── */
-function useReveal(selector: string) {
-  useEffect(() => {
-    const els = document.querySelectorAll(selector);
-    if (!els.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [selector]);
-}
-
-/* ─────────────────────────────────────────────
-   HOOK : Compteur animé
-───────────────────────────────────────────── */
-function useCounter(target: number, suffix: string, duration = 1400) {
-  // Valeur finale par défaut : elle est ainsi présente dans le HTML pré-rendu
-  // (les crawlers/IA lisent « 100% », pas « 0 ») et cohérente à l'hydratation.
-  // L'animation part de 0 côté client, une fois la section visible.
-  const finalValue = `${target}${suffix}`;
-  const [value, setValue] = useState(finalValue);
-  const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = Date.now();
-          const tick = () => {
-            const progress = Math.min((Date.now() - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setValue(Math.round(eased * target) + suffix);
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target, suffix, duration]);
-
-  return { ref, value };
-}
-
-/* ─────────────────────────────────────────────
-   IMAGES
-───────────────────────────────────────────── */
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1765728617352-895327fcf036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwb2ZmaWNlJTIwZGlnaXRhbCUyMGlubm92YXRpb258ZW58MXx8fHwxNzc1MzA3NzA0fDA&ixlib=rb-4.1.0&q=80&w=1080";
 const TEAM_IMAGE =
   "https://images.unsplash.com/photo-1573167627769-e201a7ddf409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZyUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzUzMDc3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
-/* ─────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────── */
 const services = [
-  { icon: Globe,      title: "Création de Sites Web",   desc: "Sites vitrine, e-commerce et plateformes web modernes, rapides et optimisés." },
-  { icon: Smartphone, title: "Applications Mobiles",    desc: "Applications iOS et Android intuitives pour propulser votre business." },
-  { icon: TrendingUp, title: "Marketing Digital",       desc: "Stratégies digitales sur mesure pour accroître votre visibilité en ligne." },
-  { icon: Palette,    title: "Design & Branding",       desc: "Identité visuelle professionnelle qui reflète vos valeurs et attire vos clients." },
-  { icon: Server,     title: "Consultation IT",         desc: "Conseils et solutions technologiques adaptés à vos besoins spécifiques." },
-  { icon: Share2,     title: "Réseaux Sociaux",         desc: "Gestion et animation de vos pages sociales pour engager votre audience." },
+  { title: "Sites web", desc: "Vitrines, e-commerce et plateformes, livrés en 5 à 14 jours avec hébergement et nom de domaine." },
+  { title: "Logiciels et applications", desc: "Outils métier sur mesure quand les logiciels du marché ne couvrent pas votre activité." },
+  { title: "Design et identité visuelle", desc: "Logo, charte graphique et déclinaisons web, mobile et impression." },
+  { title: "Marketing digital", desc: "Réseaux sociaux, contenus, campagnes ciblées et rapport mensuel." },
+  { title: "Multimédia et vidéo", desc: "Vidéos publicitaires, motion design et présentations d'entreprise." },
+  { title: "Formation", desc: "Bureautique, outils web et ateliers pratiques, en ligne ou sur place." },
+  { title: "Matériel informatique", desc: "Postes sélectionnés, configurés et testés avant livraison." },
 ];
 
 const reasons = [
-  { icon: Award,  title: "Expertise Reconnue",         desc: "Une équipe de professionnels qualifiés passionnés par l'innovation technologique." },
-  { icon: Clock,  title: "Livraison Rapide",           desc: "Respect des délais et des engagements pris avec chaque client." },
-  { icon: Users,  title: "Accompagnement Personnalisé",desc: "Un suivi dédié à chaque étape pour garantir votre satisfaction totale." },
-  { icon: Star,   title: "Qualité Premium",            desc: "Des solutions de haute qualité conçues pour durer et performer dans le temps." },
+  { title: "Nous écrivons le code que nous vendons", desc: "Pas de sous-traitance : l'équipe qui vous répond est celle qui développe. Une correction part le jour même." },
+  { title: "Nous connaissons le terrain", desc: "Francs guinéens, programme national, coupures de réseau et paiements en espèces : nos outils sont pensés pour ici, pas adaptés après coup." },
+  { title: "Nous restons après la livraison", desc: "Formation de vos équipes, support et mises à jour. Nos trois logiciels tournent en production depuis leur mise en service." },
 ];
 
-/* ─────────────────────────────────────────────
-   COMPOSANT STAT avec compteur
-───────────────────────────────────────────── */
-function AnimatedStat({ value, label, animate = true }: { value: string; label: string; animate?: boolean }) {
-  // Parse numeric part
-  const numMatch = value.match(/\d+/);
-  const num = numMatch ? parseInt(numMatch[0]) : 0;
-  const suffix = value.replace(/\d+/, "");
-  const { ref, value: displayed } = useCounter(num, suffix);
-
-  return (
-    <div ref={ref}>
-      <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#FDBA74", lineHeight: 1 }}>
-        {animate ? (displayed || value) : value}
-      </div>
-      <div style={{ fontSize: "0.8rem", color: "#fff", marginTop: "4px", opacity: 0.9 }}>{label}</div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   PAGE PRINCIPALE
-───────────────────────────────────────────── */
 export function HomePage() {
   usePageMeta(
     "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
@@ -252,479 +60,214 @@ export function HomePage() {
     "/"
   );
 
-  // Inject CSS once
-  useEffect(() => {
-    const id = "revyon-anim-css";
-    if (!document.getElementById(id)) {
-      const style = document.createElement("style");
-      style.id = id;
-      style.textContent = CSS;
-      document.head.appendChild(style);
-    }
-  }, []);
-
-  // Scroll reveal hooks
-  useReveal(".reveal");
-  useReveal(".reveal-left");
-  useReveal(".reveal-scale");
-
   return (
     <div>
-      {/* ══════════════════════════════════════
-          HERO
-      ══════════════════════════════════════ */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #0C4A6E 0%, #0E7490 100%)",
-          minHeight: "90vh",
-          display: "flex",
-          alignItems: "center",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Background image */}
+      {/* ── HERO ── */}
+      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
         <div
-          style={{
-            position: "absolute", inset: 0,
-            backgroundImage: `url(${HERO_IMAGE})`,
-            backgroundSize: "cover", backgroundPosition: "center",
-            opacity: 0.15,
-          }}
-        />
-        {/* Gradient overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(14,165,233,.3) 0%,rgba(14,165,233,.2) 100%)" }} />
-        {/* Decorative circles */}
-        <div style={{ position:"absolute", top:"-100px", right:"-100px", width:"500px", height:"500px", borderRadius:"50%", background:"radial-gradient(circle,rgba(14,165,233,.15) 0%,transparent 70%)" }} />
-        <div style={{ position:"absolute", bottom:"-80px", left:"-80px", width:"400px", height:"400px", borderRadius:"50%", background:"radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 70%)" }} />
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
+          style={{ paddingTop: "clamp(44px, 7vw, 92px)", paddingBottom: "clamp(44px, 7vw, 92px)" }}
+        >
+          <div style={{ maxWidth: "760px" }}>
+            <p style={EYEBROW}>Entreprise informatique · Conakry, Guinée</p>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-          <div className="max-w-3xl">
-
-            {/* Badge — animation 1 */}
-            <div
-              style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
-                background: "rgba(14,165,233,0.15)",
-                border: "1px solid rgba(14,165,233,0.3)",
-                borderRadius: "100px", padding: "6px 16px", marginBottom: "24px",
-                animation: "fadeIn 0.6s ease forwards",
-                opacity: 0,
-              }}
-            >
-              <div className="pulse-dot" style={{ width:"8px", height:"8px", borderRadius:"50%", background:"#E0F2FE" }} />
-              <span style={{ color:"#E0F2FE", fontSize:"0.85rem", fontWeight:"500" }}>
-                Entreprise informatique · Conakry, Guinée
-              </span>
-            </div>
-
-            {/* Titre — animation 2 */}
             <h1
               style={{
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                fontWeight: "800", color: "#fff",
-                lineHeight: "1.1", marginBottom: "24px",
-                letterSpacing: "-0.03em",
-                animation: "fadeSlideUp 0.7s 0.15s cubic-bezier(.22,.68,0,1.2) forwards",
-                opacity: 0,
+                fontSize: "clamp(2.05rem, 7.4vw, 3.4rem)",
+                fontWeight: 700,
+                color: "#111827",
+                lineHeight: 1.14,
+                letterSpacing: "-0.022em",
+                margin: "0 0 20px",
               }}
             >
-              Tout votre{" "}
-              <span style={{ background:"linear-gradient(135deg,#FDBA74 0%,#FCD34D 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-                numérique
-              </span>,{" "}
-              conçu et accompagné depuis{" "}
-              <span style={{ color:"#BAE6FD" }}>Conakry</span>
+              Nous construisons les outils numériques dont votre activité a besoin
             </h1>
 
-            {/* Paragraphe — animation 3 */}
-            <p
-              style={{
-                fontSize: "1.15rem", color: "#fff", lineHeight: "1.8",
-                marginBottom: "36px", maxWidth: "600px", opacity: 0,
-                animation: "fadeSlideUp 0.7s 0.3s cubic-bezier(.22,.68,0,1.2) forwards",
-              }}
-            >
-              Sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel
-              informatique : Revyon Tech accompagne les entreprises et les institutions guinéennes sur l'ensemble de
-              leur numérique. Nous éditons aussi nos propres plateformes métier, utilisées chaque jour par des écoles,
-              des commerces et des markaz.
+            <p style={{ ...LEAD, margin: "0 0 28px", maxWidth: "620px" }}>
+              Revyon Tech conçoit des sites web, des logiciels et des identités de marque pour
+              les entreprises et les institutions guinéennes. Nous éditons aussi nos propres
+              plateformes métier, utilisées chaque jour par des écoles, des commerces et des markaz.
             </p>
 
-            {/* Boutons — animation 4 */}
-            <div
-              className="flex flex-col sm:flex-row gap-4"
-              style={{ animation:"fadeSlideUp 0.7s 0.45s cubic-bezier(.22,.68,0,1.2) forwards", opacity:0 }}
-            >
+            <div className="flex flex-col sm:flex-row gap-3" style={{ marginBottom: "30px" }}>
               <Link
                 to="/contact#devis"
-                className="btn-primary"
-                style={{
-                  display:"inline-flex", alignItems:"center", gap:"8px",
-                  padding:"14px 32px",
-                  background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)",
-                  color:"#fff", borderRadius:"10px", textDecoration:"none",
-                  fontWeight:"700", fontSize:"1rem",
-                  boxShadow:"0 4px 20px rgba(249,115,22,0.4)",
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "14px 26px", background: "#0C4A6E", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
-                Démarrer un projet <ArrowRight size={18} />
+                Démarrer un projet <ArrowRight size={17} />
               </Link>
               <Link
                 to="/services"
-                className="btn-secondary"
-                style={{
-                  display:"inline-flex", alignItems:"center", gap:"8px",
-                  padding:"14px 32px",
-                  background:"rgba(255,255,255,0.05)",
-                  border:"1px solid rgba(255,255,255,0.2)",
-                  color:"#fff", borderRadius:"10px", textDecoration:"none",
-                  fontWeight:"600", fontSize:"1rem",
-                  backdropFilter:"blur(10px)",
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 26px", background: "#fff", color: "#0C4A6E", border: "1px solid #CBD5E1", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
-                Nos services
+                Voir nos services
               </Link>
             </div>
 
-            {/* Stats avec compteurs — animation 5 */}
-            <div
-              className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14"
-              style={{ animation:"fadeSlideUp 0.7s 0.6s cubic-bezier(.22,.68,0,1.2) forwards", opacity:0 }}
-            >
-              <AnimatedStat value="7"    label="Services proposés" />
-              <AnimatedStat value="3"    label="Logiciels édités" />
-              <AnimatedStat value="2024" label="Année de création" animate={false} />
-              <AnimatedStat value="24h"  label="Délai de réponse" />
-            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }} className="flex flex-col gap-2.5">
+              {[
+                "Sept métiers, du site web au matériel informatique",
+                "Trois logiciels en production, écrits et maintenus ici",
+                "Une réponse à votre demande sous 24 heures",
+              ].map((fact) => (
+                <li key={fact} className="flex items-start gap-2.5">
+                  <Check size={17} color="#047857" strokeWidth={2.4} style={{ marginTop: "3px", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.95rem", color: "#4B5563", lineHeight: 1.55 }}>{fact}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          ABOUT PREVIEW
-      ══════════════════════════════════════ */}
-      <section style={{ background:"#fff", padding:"clamp(40px,8vw,80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      {/* ── SERVICES ── */}
+      <section style={{ background: "#F8FAFC", borderBottom: "1px solid #E7EBF0" }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
+          <div style={{ maxWidth: "640px", marginBottom: "34px" }}>
+            <p style={EYEBROW}>Nos services</p>
+            <h2 style={H2}>Sept métiers, une seule équipe</h2>
+            <p style={LEAD}>
+              Du premier croquis à la mise en ligne, puis à la formation de vos équipes.
+              Vous n'avez qu'un interlocuteur.
+            </p>
+          </div>
 
-            {/* Texte — slide depuis la gauche */}
-            <div className="reveal-left">
-              <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
-                À propos de nous
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: "1px solid #E2E8F0" }}>
+            {services.map((service) => (
+              <div
+                key={service.title}
+                style={{ borderBottom: "1px solid #E2E8F0", padding: "20px 0" }}
+              >
+                <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
+                  {service.title}
+                </h3>
+                <p style={{ fontSize: "0.93rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{service.desc}</p>
               </div>
-              <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", lineHeight:"1.2", marginBottom:"16px", letterSpacing:"-0.02em" }}>
-                Une agence tech au cœur de l'Afrique
-              </h2>
-              <p style={{ color:"#0F172A", lineHeight:"1.8", marginBottom:"20px" }}>
-                Revyon Tech est une agence technologique fondée avec l'ambition de démocratiser le numérique en Afrique.
-                Nous combinons expertise technique et créativité pour livrer des solutions qui font la différence.
-              </p>
-              <p style={{ color:"#0F172A", lineHeight:"1.8", marginBottom:"28px" }}>
-                Notre équipe de directeurs passionnés met tout son savoir-faire au service de votre croissance digitale,
-                avec des solutions personnalisées adaptées au contexte local et aux standards internationaux.
+            ))}
+          </div>
+
+          <Link
+            to="/services"
+            style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "26px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
+          >
+            Le détail de chaque service <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── NOS PRODUITS ── */}
+      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
+          <div style={{ maxWidth: "660px", marginBottom: "36px" }}>
+            <p style={EYEBROW}>Nos produits</p>
+            <h2 style={H2}>Trois logiciels que nous éditons nous-mêmes</h2>
+            <p style={LEAD}>
+              Au-delà des projets sur mesure, nous développons et maintenons nos propres
+              plateformes métier. Elles tournent aujourd'hui chez nos clients, et c'est la
+              même équipe qui écrit le code et répond au téléphone.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10" style={{ borderTop: "1px solid #E7EBF0" }}>
+            {products.map((product) => (
+              <article
+                key={product.slug}
+                style={{ borderBottom: "1px solid #E7EBF0", padding: "26px 0" }}
+              >
+                <div style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
+                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", margin: "0 0 5px", letterSpacing: "-0.01em" }}>
+                  {product.name}
+                </h3>
+                <p style={{ fontSize: "0.875rem", color: "#6B7280", margin: "0 0 14px", fontWeight: 500 }}>
+                  {product.audience}
+                </p>
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "#4B5563", margin: "0 0 18px" }}>
+                  {product.cardLine}
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <Link
+                    to={`/portfolio#${product.slug}`}
+                    style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.93rem", textDecoration: "none" }}
+                  >
+                    En savoir plus <ArrowRight size={15} />
+                  </Link>
+                  <a
+                    href={product.url}
+                    target="_blank"
+                    rel="noopener"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.88rem", textDecoration: "none" }}
+                  >
+                    {product.domain} <ArrowUpRight size={13} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── POURQUOI NOUS ── */}
+      <section style={{ background: "#F8FAFC", borderBottom: "1px solid #E7EBF0" }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-start">
+            <div>
+              <p style={EYEBROW}>À propos</p>
+              <h2 style={H2}>Une équipe technique, à Conakry</h2>
+              <p style={{ ...LEAD, marginBottom: "26px" }}>
+                Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions
+                guinéennes n'aient plus à choisir entre un outil étranger inadapté et un cahier.
+                Nous sommes une équipe de direction pluridisciplinaire : développement, design,
+                commerce, communication et gestion.
               </p>
 
-              {/* Checklist avec délais en cascade */}
-              <div className="flex flex-col gap-3 mb-8">
-                {["Solutions 100% personnalisées", "Équipe pluridisciplinaire", "Accompagnement de A à Z"].map((item, i) => (
-                  <div
-                    key={item}
-                    className="check-item flex items-center gap-3"
-                    style={{ animationDelay: `${0.1 + i * 0.15}s` }}
-                  >
-                    <CheckCircle2 size={18} color="#0369A1" />
-                    <span style={{ color:"#334155", fontWeight:"500" }}>{item}</span>
+              <div style={{ borderTop: "1px solid #E2E8F0" }}>
+                {reasons.map((reason) => (
+                  <div key={reason.title} style={{ borderBottom: "1px solid #E2E8F0", padding: "16px 0" }}>
+                    <h3 style={{ fontSize: "0.98rem", fontWeight: 700, color: "#111827", margin: "0 0 5px" }}>
+                      {reason.title}
+                    </h3>
+                    <p style={{ fontSize: "0.93rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{reason.desc}</p>
                   </div>
                 ))}
               </div>
 
               <Link
                 to="/a-propos"
-                className="btn-primary"
-                style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"12px 28px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "24px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
               >
-                En savoir plus <ArrowRight size={16} />
+                L'équipe et notre histoire <ArrowRight size={16} />
               </Link>
             </div>
 
-            {/* Image avec badges flottants */}
-            <div className="reveal" style={{ position:"relative" }}>
-              <img
-                src={TEAM_IMAGE}
-                alt="Équipe Revyon Tech"
-                style={{ width:"100%", height:"420px", objectFit:"cover", borderRadius:"20px", boxShadow:"0 20px 60px rgba(0,0,0,0.15)" }}
-              />
-              {/* Badge bas-gauche — flotte vers le bas */}
-              <div
-                className="float-b"
-                style={{
-                  position:"absolute", bottom:"-20px", left:"-20px",
-                  background:"#fff", borderRadius:"16px", padding:"16px 20px",
-                  boxShadow:"0 8px 30px rgba(0,0,0,0.12)", border:"1px solid #E2E8F0",
-                }}
-              >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#C2410C" }}>3</div>
-                <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Logiciels édités</div>
-              </div>
-              {/* Badge haut-droite — flotte vers le haut */}
-              <div
-                className="float-a"
-                style={{
-                  position:"absolute", top:"-20px", right:"-20px",
-                  background:"linear-gradient(135deg,#0C4A6E,#075985)",
-                  borderRadius:"16px", padding:"16px 20px",
-                  boxShadow:"0 8px 30px rgba(14,165,233,0.3)",
-                }}
-              >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#fff" }}>Conakry</div>
-                <div style={{ fontSize:"0.8rem", color:"#BAE6FD", fontWeight:"500" }}>Conçu et développé ici</div>
-              </div>
-            </div>
-
+            <img
+              src={TEAM_IMAGE}
+              alt="Réunion de travail chez Revyon Tech"
+              width={1080}
+              height={720}
+              loading="lazy"
+              style={{ width: "100%", height: "auto", aspectRatio: "4 / 3", objectFit: "cover", borderRadius: "10px", border: "1px solid #E2E8F0" }}
+            />
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SERVICES PREVIEW
-      ══════════════════════════════════════ */}
-      <section style={{ background:"#F8FAFC", padding:"clamp(40px,8vw,80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#FFF7ED", color:"#9A3412", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
-              Nos Services
+      {/* ── CTA ── */}
+      <section style={{ background: "#0C4A6E" }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(44px, 6vw, 72px)", paddingBottom: "clamp(44px, 6vw, 72px)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+            <div style={{ maxWidth: "620px" }}>
+              <h2 style={{ ...H2, color: "#fff", margin: "0 0 12px" }}>Parlons de votre projet</h2>
+              <p style={{ fontSize: "1rem", lineHeight: 1.65, color: "#D5E4EF", margin: 0 }}>
+                Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures
+                avec une estimation de délai et de budget, sans engagement.
+              </p>
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
-              Ce que nous faisons pour vous
-            </h2>
-            <p style={{ color:"#0F172A", maxWidth:"550px", margin:"0 auto", lineHeight:"1.8" }}>
-              Des services digitaux complets pour accompagner votre transformation numérique, de la conception à la mise en ligne.
-            </p>
-          </div>
-
-          {/* Grille avec stagger en vague */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={i}
-                  className="service-card reveal"
-                  style={{
-                    background:"#fff", borderRadius:"16px", padding:"28px",
-                    border:"1px solid #E2E8F0", cursor:"default",
-                    animationDelay: `${i * 0.1}s`,
-                  }}
-                >
-                  <div
-                    style={{
-                      width:"52px", height:"52px", borderRadius:"14px",
-                      background: i % 2 === 0 ? "#E0F2FE" : "#FFF7ED",
-                      display:"flex", alignItems:"center", justifyContent:"center",
-                      marginBottom:"16px",
-                    }}
-                  >
-                    <Icon size={24} color={i % 2 === 0 ? "#0369A1" : "#C2410C"} />
-                  </div>
-                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"8px" }}>{service.title}</h3>
-                  <p style={{ color:"#0F172A", fontSize:"0.9rem", lineHeight:"1.7" }}>{service.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-10 reveal">
             <Link
-              to="/services"
-              className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+              to="/contact#devis"
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
             >
-              Voir tous nos services <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          NOS PRODUITS
-      ══════════════════════════════════════ */}
-      <section style={{ background:"#fff", padding:"clamp(40px,8vw,80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
-              Nos produits
-            </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
-              Et des logiciels que nous éditons nous-mêmes
-            </h2>
-            <p style={{ color:"#0F172A", maxWidth:"620px", margin:"0 auto", lineHeight:"1.8" }}>
-              Trois plateformes conçues, développées et maintenues à Conakry, aujourd'hui utilisées
-              au quotidien par des écoles, des commerces et des markaz.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {products.map((product, i) => (
-              <article
-                key={product.slug}
-                className="service-card reveal"
-                style={{
-                  background:"#fff", borderRadius:"18px",
-                  border:"1px solid #E2E8F0", overflow:"hidden",
-                  display:"flex", flexDirection:"column",
-                  animationDelay: `${i * 0.1}s`,
-                }}
-              >
-                <div style={{ background: product.theme.deep, padding:"22px 24px" }}>
-                  <div
-                    style={{
-                      display:"inline-block",
-                      background: product.theme.accentText,
-                      color:"#fff", fontSize:"0.62rem", fontWeight:"700",
-                      letterSpacing:"0.08em", textTransform:"uppercase",
-                      borderRadius:"100px", padding:"3px 10px", marginBottom:"12px",
-                    }}
-                  >
-                    {product.audience}
-                  </div>
-                  <h3 style={{ color:"#fff", fontWeight:"800", fontSize:"1.25rem", letterSpacing:"-0.02em", marginBottom:"8px" }}>
-                    {product.name}
-                  </h3>
-                  <p style={{ color:"rgba(255,255,255,0.82)", fontSize:"0.88rem", lineHeight:"1.6" }}>
-                    {product.tagline}
-                  </p>
-                </div>
-
-                <div style={{ padding:"22px 24px", display:"flex", flexDirection:"column", flex:1 }}>
-                  <ul style={{ listStyle:"none", padding:0, margin:"0 0 20px" }} className="flex flex-col gap-2.5">
-                    {product.modules.slice(0, 3).map((module) => (
-                      <li key={module} className="flex items-start gap-2.5">
-                        <Check size={15} color={product.theme.accentText} style={{ marginTop:"3px", flexShrink:0 }} />
-                        <span style={{ fontSize:"0.85rem", color:"#475569", lineHeight:"1.6" }}>
-                          {module.split(" : ")[0]}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div style={{ marginTop:"auto" }} className="flex flex-col gap-2">
-                    <Link
-                      to={`/portfolio#${product.slug}`}
-                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#075985", fontWeight:"600", fontSize:"0.88rem", textDecoration:"none" }}
-                    >
-                      En savoir plus <ArrowRight size={14} />
-                    </Link>
-                    <a
-                      href={product.url}
-                      target="_blank"
-                      rel="noopener"
-                      style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#64748B", fontWeight:"500", fontSize:"0.82rem", textDecoration:"none" }}
-                    >
-                      {product.domain} <ArrowUpRight size={13} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="text-center mt-10 reveal">
-            <Link
-              to="/portfolio"
-              className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
-            >
-              Découvrir nos réalisations <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          WHY CHOOSE US
-      ══════════════════════════════════════ */}
-      <section style={{ background:"#F8FAFC", padding:"clamp(40px,8vw,80px) 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
-              Pourquoi nous choisir
-            </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
-              Notre engagement envers l'excellence
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {reasons.map((reason, i) => {
-              const Icon = reason.icon;
-              return (
-                <div
-                  key={i}
-                  className="reason-card reveal reveal-scale"
-                  style={{
-                    textAlign:"center", padding:"32px 20px",
-                    borderRadius:"16px", background:"#fff",
-                    border:"1px solid #E2E8F0",
-                    animationDelay: `${i * 0.12}s`,
-                  }}
-                >
-                  <div
-                    className="reason-icon"
-                    style={{
-                      width:"64px", height:"64px", borderRadius:"50%",
-                      background:"linear-gradient(135deg,#0C4A6E 0%,#075985 100%)",
-                      display:"flex", alignItems:"center", justifyContent:"center",
-                      margin:"0 auto 16px",
-                      boxShadow:"0 4px 16px rgba(14,165,233,0.3)",
-                    }}
-                  >
-                    <Icon size={26} color="#fff" />
-                  </div>
-                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"10px" }}>{reason.title}</h3>
-                  <p style={{ color:"#0F172A", fontSize:"0.88rem", lineHeight:"1.7" }}>{reason.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          CTA
-      ══════════════════════════════════════ */}
-      <section
-        style={{
-          background:"linear-gradient(135deg,#0C4A6E 0%,#0E7490 100%)",
-          padding:"clamp(40px,8vw,80px) 0",
-          position:"relative", overflow:"hidden",
-        }}
-      >
-        <div style={{ position:"absolute", top:"-100px", right:"-100px", width:"400px", height:"400px", borderRadius:"50%", background:"radial-gradient(circle,rgba(249,115,22,.15) 0%,transparent 70%)" }} />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
-          <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.75rem)", fontWeight:"800", color:"#fff", letterSpacing:"-0.02em", marginBottom:"16px" }}>
-            Prêt à lancer votre projet digital ?
-          </h2>
-          <p style={{ color:"#fff", fontSize:"1.05rem", lineHeight:"1.8", marginBottom:"36px", opacity:.95 }}>
-            Contactez-nous dès aujourd'hui et obtenez un devis gratuit. Notre équipe est prête à transformer vos ambitions en réalité.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"700", fontSize:"1.05rem", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}
-            >
-              Nous contacter <ArrowRight size={18} />
-            </Link>
-            <Link
-              to="/portfolio"
-              className="btn-secondary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
-            >
-              Voir nos réalisations
+              Demander un devis <ArrowRight size={17} />
             </Link>
           </div>
         </div>

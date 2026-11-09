@@ -22,7 +22,7 @@ export function Footer() {
               <Logo size="md" color="white" />
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: "1.7" }}>
-              Votre partenaire technologique de confiance. Nous transformons vos idées en solutions digitales performantes.
+              Entreprise informatique à Conakry. Sites web, logiciels, design, marketing et matériel — et nos propres plateformes métier.
             </p>
             <div className="flex gap-3 mt-5">
               <a
@@ -110,12 +110,13 @@ export function Footer() {
             <h4 style={{ color: "#fff", fontWeight: "600", marginBottom: "16px" }}>Nos Services</h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }} className="flex flex-col gap-2">
               {[
-                "Création de Sites Web",
-                "Applications Mobiles",
-                "Marketing Digital",
-                "Design & Branding",
-                "Consultation IT",
-                "Réseaux Sociaux",
+                "Sites web",
+                "Logiciels et applications",
+                "Design et identité visuelle",
+                "Marketing digital",
+                "Multimédia et vidéo",
+                "Formation",
+                "Matériel informatique",
               ].map((service) => (
                 <li key={service}>
                   <Link
@@ -211,7 +212,7 @@ export function Footer() {
           className="flex flex-col sm:flex-row justify-between items-center gap-4"
         >
           <p style={{ fontSize: "0.85rem", color: "#fff" }}>
-            © {currentYear} Revyon Tech. Transformez vos idées en solutions digitales.
+            © {currentYear} Revyon Tech — Conakry, Guinée.
           </p>
           <div className="flex gap-4 text-center sm:text-right">
             <Link
