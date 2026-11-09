@@ -1,4 +1,4 @@
-# Revyon Tech — site web
+# Revyon Tech, site web
 
 Site officiel de Revyon Tech : **https://www.revyontech.com**
 
@@ -41,7 +41,7 @@ que le site. Le front appelle donc toujours des chemins relatifs
 pointant vers un hébergeur disparu ne soit injectée dans le build.
 
 **Stack** : React 18, TypeScript, Vite 6, React Router 7, Tailwind CSS 4,
-lucide-react. Sept dépendances au total — toute dépendance ajoutée doit
+lucide-react. Sept dépendances au total, et toute dépendance ajoutée doit
 être réellement importée.
 
 ---
@@ -69,7 +69,7 @@ npm run build        # build client + build SSR + pré-rendu
 
 Le build enchaîne trois étapes : Vite construit le client, puis le bundle
 SSR, puis `prerender.mjs` écrit un `index.html` complet par route. Chaque
-page est donc lisible sans exécuter de JavaScript — par Google comme par
+page est donc lisible sans exécuter de JavaScript, par Google comme par
 les robots d'IA.
 
 > **À retenir.** Une route absente de la liste `pages` de `prerender.mjs`
@@ -106,8 +106,8 @@ obtiennent une préversion.
 | --- | --- | --- |
 | `SMTP_HOST` | Serveur SMTP | `smtp.zoho.com` |
 | `SMTP_PORT` | Port SMTP | `587` |
-| `SMTP_USER` | Identifiant SMTP | — |
-| `SMTP_PASS` | Mot de passe SMTP | — |
+| `SMTP_USER` | Identifiant SMTP | aucun |
+| `SMTP_PASS` | Mot de passe SMTP | aucun |
 | `SMTP_FROM` | Expéditeur affiché | `Revyon Tech <SMTP_USER>` |
 | `CONTACT_EMAIL` | Destinataire des demandes | `contact@revyontech.com` |
 | `CORS_ORIGIN` | Origines autorisées, séparées par des virgules | les deux domaines de production |
@@ -224,11 +224,11 @@ Modifier ce fichier met tout à jour d'un coup.
 
 ## 10. Historique
 
-- **2024** — Création de Revyon Tech, première version du site.
-- **Mi-2026** — Passage à Vite + pré-rendu, abandon du serveur Express et
+- **2024.** Création de Revyon Tech, première version du site.
+- **Mi-2026.** Passage à Vite + pré-rendu, abandon du serveur Express et
   de MySQL au profit d'une seule fonction serverless. Travail SEO :
   robots.txt pour les IA, llms.txt, JSON-LD, sitemap.
-- **Novembre 2026** — Ajout des trois produits et de la page Réalisations ;
+- **Novembre 2026.** Ajout des trois produits et de la page Réalisations ;
   ajout de LinkedIn ; mise aux normes de contraste WCAG AA ; Inter
   auto-hébergée ; suppression du backend, de la page admin et de
   53 dépendances inutilisées ; fusion de la documentation dans ce fichier.

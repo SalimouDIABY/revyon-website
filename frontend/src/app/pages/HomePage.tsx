@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
 import { products } from "../data/products";
 
 /* ─────────────────────────────────────────────
@@ -55,7 +56,7 @@ const reasons = [
 
 export function HomePage() {
   usePageMeta(
-    "Revyon Tech — Entreprise informatique à Conakry : web, logiciels, design et marketing",
+    "Revyon Tech, entreprise informatique à Conakry : web, logiciels, design et marketing",
     "Revyon Tech accompagne les entreprises et institutions guinéennes sur tout leur numérique : sites web, logiciels et applications mobiles, identité visuelle, marketing digital, formation et matériel informatique. Également éditeur de ses propres plateformes métier : Revyon School, Revyon Gestock et MarkaGest.",
     "/"
   );
@@ -63,57 +64,99 @@ export function HomePage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+      <section
+        style={{
+          background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 62%, #0E5A78 100%)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Signature : l'orbite du logo, posée à droite */}
+        <BrandOrbit
+          className="pointer-events-none select-none absolute hidden sm:block"
+          style={{ width: "min(620px, 58vw)", height: "auto", right: "-130px", top: "50%", transform: "translateY(-50%)" }}
+        />
+        {/* Sur mobile, une orbite plus discrète en haut à droite */}
+        <BrandOrbit
+          className="pointer-events-none select-none absolute sm:hidden"
+          style={{ width: "340px", height: "auto", right: "-120px", top: "-70px", opacity: 0.75 }}
+        />
+
         <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-          style={{ paddingTop: "clamp(44px, 7vw, 92px)", paddingBottom: "clamp(44px, 7vw, 92px)" }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
+          style={{ paddingTop: "clamp(52px, 7vw, 100px)", paddingBottom: "clamp(52px, 7vw, 100px)" }}
         >
-          <div style={{ maxWidth: "760px" }}>
-            <p style={EYEBROW}>Entreprise informatique · Conakry, Guinée</p>
+          <div style={{ maxWidth: "720px" }}>
+            <p
+              className="rt-rise"
+              style={{ ...EYEBROW, color: "#FDBA74", "--rt-delay": "0.05s" } as React.CSSProperties}
+            >
+              Entreprise informatique à Conakry
+            </p>
 
             <h1
+              className="rt-rise"
               style={{
                 fontSize: "clamp(2.05rem, 7.4vw, 3.4rem)",
                 fontWeight: 700,
-                color: "#111827",
+                color: "#fff",
                 lineHeight: 1.14,
                 letterSpacing: "-0.022em",
                 margin: "0 0 20px",
-              }}
+                "--rt-delay": "0.13s",
+              } as React.CSSProperties}
             >
               Nous construisons les outils numériques dont votre activité a besoin
             </h1>
 
-            <p style={{ ...LEAD, margin: "0 0 28px", maxWidth: "620px" }}>
+            <p
+              className="rt-rise"
+              style={{
+                fontSize: "1.0625rem",
+                lineHeight: 1.65,
+                color: "#CFE0EC",
+                margin: "0 0 30px",
+                maxWidth: "600px",
+                "--rt-delay": "0.21s",
+              } as React.CSSProperties}
+            >
               Revyon Tech conçoit des sites web, des logiciels et des identités de marque pour
               les entreprises et les institutions guinéennes. Nous éditons aussi nos propres
               plateformes métier, utilisées chaque jour par des écoles, des commerces et des markaz.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3" style={{ marginBottom: "30px" }}>
+            <div
+              className="rt-rise flex flex-col sm:flex-row gap-3"
+              style={{ marginBottom: "32px", "--rt-delay": "0.29s" } as React.CSSProperties}
+            >
               <Link
                 to="/contact#devis"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "14px 26px", background: "#0C4A6E", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                className="rt-btn rt-btn-accent"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "14px 26px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
                 Démarrer un projet <ArrowRight size={17} />
               </Link>
               <Link
-                to="/services"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 26px", background: "#fff", color: "#0C4A6E", border: "1px solid #CBD5E1", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
+                to="/portfolio"
+                className="rt-btn rt-btn-ghost-dark"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 26px", background: "rgba(255,255,255,0.07)", color: "#fff", border: "1px solid rgba(255,255,255,0.34)", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
               >
-                Voir nos services
+                Voir nos réalisations
               </Link>
             </div>
 
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }} className="flex flex-col gap-2.5">
+            <ul
+              className="rt-rise flex flex-col gap-2.5"
+              style={{ listStyle: "none", padding: 0, margin: 0, "--rt-delay": "0.37s" } as React.CSSProperties}
+            >
               {[
                 "Sept métiers, du site web au matériel informatique",
                 "Trois logiciels en production, écrits et maintenus ici",
                 "Une réponse à votre demande sous 24 heures",
               ].map((fact) => (
                 <li key={fact} className="flex items-start gap-2.5">
-                  <Check size={17} color="#047857" strokeWidth={2.4} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <span style={{ fontSize: "0.95rem", color: "#4B5563", lineHeight: 1.55 }}>{fact}</span>
+                  <Check size={17} color="#6EE7B7" strokeWidth={2.4} style={{ marginTop: "3px", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.95rem", color: "#CFE0EC", lineHeight: 1.55 }}>{fact}</span>
                 </li>
               ))}
             </ul>
@@ -149,6 +192,7 @@ export function HomePage() {
 
           <Link
             to="/services"
+            className="rt-link"
             style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "26px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
           >
             Le détail de chaque service <ArrowRight size={16} />
@@ -173,10 +217,11 @@ export function HomePage() {
             {products.map((product) => (
               <article
                 key={product.slug}
+                className="rt-card"
                 style={{ borderBottom: "1px solid #E7EBF0", padding: "26px 0" }}
               >
-                <div style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
-                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", margin: "0 0 5px", letterSpacing: "-0.01em" }}>
+                <div className="rt-rule" style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
+                <h3 className="rt-card-title" style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", margin: "0 0 5px", letterSpacing: "-0.01em" }}>
                   {product.name}
                 </h3>
                 <p style={{ fontSize: "0.875rem", color: "#6B7280", margin: "0 0 14px", fontWeight: 500 }}>
@@ -188,6 +233,7 @@ export function HomePage() {
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <Link
                     to={`/portfolio#${product.slug}`}
+                    className="rt-link"
                     style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.93rem", textDecoration: "none" }}
                   >
                     En savoir plus <ArrowRight size={15} />
@@ -234,6 +280,7 @@ export function HomePage() {
 
               <Link
                 to="/a-propos"
+                className="rt-link"
                 style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "24px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
               >
                 L'équipe et notre histoire <ArrowRight size={16} />
@@ -265,6 +312,7 @@ export function HomePage() {
             </div>
             <Link
               to="/contact#devis"
+              className="rt-btn rt-btn-accent"
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
             >
               Demander un devis <ArrowRight size={17} />

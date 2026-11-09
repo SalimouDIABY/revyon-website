@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import { Mail, Phone, MapPin, Send, MessageCircle, Clock, CheckCircle2, AlertTriangle, Linkedin } from "lucide-react";
 import { API_URL, WHATSAPP_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
 import { LINKEDIN_URL } from "../data/products";
 import { trackEvent } from "../analytics";
 
@@ -21,7 +22,7 @@ export function ContactPage() {
   }, [location.hash]);
 
   usePageMeta(
-    "Contact | Revyon Tech — Entreprise informatique à Conakry, Guinée",
+    "Contact | Revyon Tech, entreprise informatique à Conakry, Guinée",
     "Contactez Revyon Tech pour votre projet web, logiciel ou marketing digital en Guinée. Réponse en moins de 24h. Téléphone et WhatsApp : +224 627 33 07 09.",
     "/contact"
   );
@@ -78,19 +79,23 @@ export function ContactPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+        <BrandOrbit
+          className="pointer-events-none select-none absolute hidden md:block"
+          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
+        />
         <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
+          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
-          <div style={{ maxWidth: "720px" }}>
-            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+          <div style={{ maxWidth: "700px" }}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Contact
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Parlons de votre projet
             </h1>
-            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures avec une estimation de délai et de budget, sans engagement.
             </p>
           </div>
@@ -165,7 +170,7 @@ export function ContactPage() {
                   <div style={{ flexShrink: 0, marginTop: "2px" }}><Clock size={20} color="#6D28D9" /></div>
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Disponibilité</div>
-                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lun – Sam : 8h00 – 18h00</p>
+                    <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lundi au samedi, 8h00 à 18h00</p>
                   </div>
                 </div>
               </div>
@@ -325,7 +330,7 @@ export function ContactPage() {
                     disabled={loading}
                     style={{
                       padding: "14px 32px",
-                      background: loading ? "#94A3B8" : "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
+                      background: loading ? "#94A3B8" : "#C2410C",
                       color: "#fff",
                       border: "none",
                       borderRadius: "8px",

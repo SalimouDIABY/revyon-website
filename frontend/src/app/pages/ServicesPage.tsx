@@ -151,29 +151,34 @@ const faqs = [
 ];
 
 import { usePageMeta } from "../hooks/usePageMeta";
+import { BrandOrbit } from "../components/BrandOrbit";
 
 export function ServicesPage() {
   usePageMeta(
-    "Nos services | Création de sites web, logiciels et marketing digital en Guinée — Revyon Tech",
+    "Nos services | Création de sites web, logiciels et marketing digital en Guinée | Revyon Tech",
     "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
     "/services"
   );
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
+      <section style={{ background: "linear-gradient(160deg, #0B2742 0%, #0C4A6E 100%)", position: "relative", overflow: "hidden" }}>
+        <BrandOrbit
+          className="pointer-events-none select-none absolute hidden md:block"
+          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
+        />
         <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-          style={{ paddingTop: "clamp(44px, 6vw, 80px)", paddingBottom: "clamp(40px, 5vw, 64px)" }}
+          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
+          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
         >
-          <div style={{ maxWidth: "720px" }}>
-            <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#C2410C", margin: "0 0 14px" }}>
+          <div style={{ maxWidth: "700px" }}>
+            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Nos services
             </p>
-            <h1 style={{ fontSize: "clamp(2rem, 7vw, 3.1rem)", fontWeight: 700, color: "#111827", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 18px" }}>
+            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
               Sept métiers, du site web au matériel informatique
             </h1>
-            <p style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#4B5563", margin: 0, maxWidth: "620px" }}>
+            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
               Nous couvrons l'ensemble du numérique d'une entreprise : conception, développement, image de marque, communication, formation et équipement. Un seul interlocuteur, du premier croquis à la prise en main.
             </p>
           </div>
@@ -308,7 +313,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* ── FAQ (réponse d'abord — visibilité IA / GEO-AEO) ── */}
+      {/* ── FAQ (réponse d'abord, pour la visibilité IA / GEO-AEO) ── */}
       <section style={{ background: "#F8FAFC", padding: "clamp(60px, 10vw, 100px) 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0C4A6E", marginBottom: "16px", textAlign: "center" }}>
