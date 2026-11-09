@@ -4,6 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { products } from "../data/products";
 import { ProductPreview } from "../components/ProductPreview";
+import { MaskedWords, useInViewReveal } from "../components/Reveal";
 import { trackEvent } from "../analytics";
 
 const EYEBROW: React.CSSProperties = {
@@ -25,12 +26,14 @@ const pillars = [
     desc: "Une adresse dans le navigateur, rien à installer. L'application peut s'ajouter à l'écran d'accueil comme une app native.",
   },
   {
-    title: "Écrits et maintenus à Conakry",
+    title: "Écrits et maintenus en Guinée",
     desc: "L'équipe qui répond au téléphone est celle qui écrit le code. Les produits évoluent avec ce que les clients demandent.",
   },
 ];
 
 export function PortfolioPage() {
+  useInViewReveal();
+
   usePageMeta(
     "Nos réalisations | Logiciels édités par Revyon Tech : Revyon School, Gestock, MarkaGest",
     "Découvrez les logiciels conçus et développés par Revyon Tech à Conakry : Revyon School (gestion scolaire), Revyon Gestock (stock et trésorerie) et MarkaGest (gestion des markaz et suivi du hifz).",
@@ -53,11 +56,13 @@ export function PortfolioPage() {
             <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#FDBA74", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
               Nos réalisations
             </p>
-            <h1 className="rt-rise" style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px", "--rt-delay": "0.13s" } as React.CSSProperties}>
-              Trois logiciels en production, écrits à Conakry
+            <h1 style={{ fontSize: "clamp(2rem, 6.6vw, 2.9rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, letterSpacing: "-0.022em", margin: "0 0 16px" }}>
+              <MaskedWords text="Trois logiciels en production, écrits en Guinée" delay={0.1} />
             </h1>
             <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#CFE0EC", margin: 0, maxWidth: "600px", "--rt-delay": "0.21s" } as React.CSSProperties}>
-              Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui au quotidien. Nous les éditons nous-mêmes : conception, développement, mises à jour et support.
+              Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui
+              au quotidien, à Conakry comme à l'intérieur du pays. Nous les éditons nous-mêmes :
+              conception, développement, mises à jour et support.
             </p>
           </div>
         </div>
@@ -70,7 +75,7 @@ export function PortfolioPage() {
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className="md:py-0 md:border-b-0"
+                className="rt-enter md:py-0 md:border-b-0"
                 style={{
                   paddingTop: i > 0 ? "18px" : 0,
                   paddingBottom: i < pillars.length - 1 ? "18px" : 0,
@@ -94,6 +99,7 @@ export function PortfolioPage() {
             <article
               key={product.slug}
               id={product.slug}
+              className="rt-enter"
               style={{
                 paddingTop: "clamp(44px, 6vw, 76px)",
                 paddingBottom: "clamp(44px, 6vw, 76px)",

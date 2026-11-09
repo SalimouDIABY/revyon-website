@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { BrandOrbit } from "../components/BrandOrbit";
 import { MaskedWords, useInViewReveal } from "../components/Reveal";
+import { C, EYEBROW as UI_EYEBROW, H3, LEAD as UI_LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 import { products } from "../data/products";
 
 /* ─────────────────────────────────────────────
@@ -106,7 +107,7 @@ export function HomePage() {
               className="rt-rise"
               style={{ ...EYEBROW, color: "#FDBA74", margin: "0 0 18px", "--rt-delay": "0.3s" } as React.CSSProperties}
             >
-              Entreprise informatique à Conakry
+              Entreprise informatique en Guinée
             </p>
 
             <h1
@@ -134,8 +135,9 @@ export function HomePage() {
               } as React.CSSProperties}
             >
               Sites web, logiciels, identité de marque, marketing, formation et matériel.
-              Nous éditons aussi nos propres plateformes métier, utilisées chaque jour par
-              des écoles, des commerces et des markaz.
+              Nous accompagnons les entreprises et les institutions partout en Guinée, et nous
+              éditons nos propres plateformes métier, utilisées chaque jour par des écoles,
+              des commerces et des markaz.
             </p>
 
             <div
@@ -164,7 +166,8 @@ export function HomePage() {
             >
               {[
                 "Sept métiers, du site web au matériel informatique",
-                "Trois logiciels en production, écrits et maintenus ici",
+                "Partout en Guinée, à distance ou chez vous",
+                "Trois logiciels en production, écrits et maintenus par nous",
                 "Une réponse à votre demande sous 24 heures",
               ].map((fact) => (
                 <li key={fact} className="flex items-start gap-2.5">
@@ -183,76 +186,65 @@ export function HomePage() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section style={{ background: "#F8FAFC", borderBottom: "1px solid #E7EBF0" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
-          <div style={{ maxWidth: "640px", marginBottom: "34px" }}>
-            <p style={EYEBROW}>Nos services</p>
-            <h2 style={H2}>Sept métiers, une seule équipe</h2>
-            <p style={LEAD}>
-              Du premier croquis à la mise en ligne, puis à la formation de vos équipes.
-              Vous n'avez qu'un interlocuteur.
-            </p>
-          </div>
+      <Section tone="tint">
+        <SectionHead
+          eyebrow="Nos services"
+          title="Sept métiers, une seule équipe"
+          lead="Du premier croquis à la mise en ligne, puis à la formation de vos équipes. Vous n'avez qu'un interlocuteur."
+        />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: "1px solid #E2E8F0" }}>
-            {services.map((service) => (
-              <div
-                key={service.title}
-                style={{ borderBottom: "1px solid #E2E8F0", padding: "20px 0" }}
-              >
-                <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
-                  {service.title}
-                </h3>
-                <p style={{ fontSize: "0.93rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{service.desc}</p>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.lineStrong}` }}>
+          {services.map((service, i) => (
+            <Enter
+              key={service.title}
+              delay={(i % 3) * 0.07}
+              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "20px 0" }}
+            >
+              <h3 style={H3}>{service.title}</h3>
+              <p style={TEXT}>{service.desc}</p>
+            </Enter>
+          ))}
+        </div>
 
+        <Enter delay={0.1}>
           <Link
             to="/services"
             className="rt-link"
-            style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "26px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "26px", color: C.navy, fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
           >
             Le détail de chaque service <ArrowRight size={16} />
           </Link>
-        </div>
-      </section>
+        </Enter>
+      </Section>
 
       {/* ── NOS PRODUITS ── */}
-      <section style={{ background: "#fff", borderBottom: "1px solid #E7EBF0" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
-          <div style={{ maxWidth: "660px", marginBottom: "36px" }}>
-            <p style={EYEBROW}>Nos produits</p>
-            <h2 style={H2}>Trois logiciels que nous éditons nous-mêmes</h2>
-            <p style={LEAD}>
-              Au-delà des projets sur mesure, nous développons et maintenons nos propres
-              plateformes métier. Elles tournent aujourd'hui chez nos clients, et c'est la
-              même équipe qui écrit le code et répond au téléphone.
-            </p>
-          </div>
+      <Section>
+        <SectionHead
+          eyebrow="Nos produits"
+          title="Trois logiciels que nous éditons nous-mêmes"
+          lead="Au-delà des projets sur mesure, nous développons et maintenons nos propres plateformes métier. Elles tournent aujourd'hui chez nos clients, et c'est la même équipe qui écrit le code et répond au téléphone."
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10" style={{ borderTop: "1px solid #E7EBF0" }}>
-            {products.map((product, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10" style={{ borderTop: `1px solid ${C.line}` }}>
+          {products.map((product, i) => (
+            <Enter key={product.slug} delay={(i % 3) * 0.08}>
               <article
-                key={product.slug}
-                className="rt-card rt-enter"
-                style={{ borderBottom: "1px solid #E7EBF0", padding: "26px 0", "--rt-delay": `${i * 0.08}s` } as React.CSSProperties}
+                className="rt-card"
+                style={{ borderBottom: `1px solid ${C.line}`, padding: "26px 0", height: "100%" }}
               >
                 <div className="rt-rule" style={{ width: "30px", height: "3px", borderRadius: "2px", background: product.theme.accent, marginBottom: "16px" }} />
-                <h3 className="rt-card-title" style={{ fontSize: "1.15rem", fontWeight: 700, color: "#111827", margin: "0 0 5px", letterSpacing: "-0.01em" }}>
+                <h3 className="rt-card-title" style={{ fontSize: "1.15rem", fontWeight: 700, color: C.ink, margin: "0 0 5px", letterSpacing: "-0.01em" }}>
                   {product.name}
                 </h3>
-                <p style={{ fontSize: "0.875rem", color: "#6B7280", margin: "0 0 14px", fontWeight: 500 }}>
+                <p style={{ fontSize: "0.875rem", color: C.muted, margin: "0 0 14px", fontWeight: 500 }}>
                   {product.audience}
                 </p>
-                <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "#4B5563", margin: "0 0 18px" }}>
-                  {product.cardLine}
-                </p>
+                <p style={{ ...TEXT, marginBottom: "18px" }}>{product.cardLine}</p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <Link
                     to={`/portfolio#${product.slug}`}
                     className="rt-link"
-                    style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.93rem", textDecoration: "none" }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: C.navy, fontWeight: 600, fontSize: "0.93rem", textDecoration: "none" }}
                   >
                     En savoir plus <ArrowRight size={15} />
                   </Link>
@@ -260,84 +252,87 @@ export function HomePage() {
                     href={product.url}
                     target="_blank"
                     rel="noopener"
-                    style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.88rem", textDecoration: "none" }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: C.muted, fontSize: "0.88rem", textDecoration: "none" }}
                   >
                     {product.domain} <ArrowUpRight size={13} />
                   </a>
                 </div>
               </article>
-            ))}
-          </div>
+            </Enter>
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* ── POURQUOI NOUS ── */}
-      <section style={{ background: "#F8FAFC", borderBottom: "1px solid #E7EBF0" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(48px, 7vw, 88px)", paddingBottom: "clamp(48px, 7vw, 88px)" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-start">
-            <div>
-              <p style={EYEBROW}>À propos</p>
-              <h2 style={H2}>Une équipe technique, à Conakry</h2>
-              <p style={{ ...LEAD, marginBottom: "26px" }}>
+      <Section tone="tint">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-start">
+          <div>
+            <div className="rt-enter">
+              <p style={UI_EYEBROW}>À propos</p>
+              <h2 style={{ fontSize: "clamp(1.6rem, 5.2vw, 2.2rem)", fontWeight: 700, color: C.ink, letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 14px" }}>
+                Une équipe technique guinéenne
+              </h2>
+              <p style={{ ...UI_LEAD, marginBottom: "26px" }}>
                 Revyon Tech a été fondée en 2024 pour que les entreprises et les institutions
-                guinéennes n'aient plus à choisir entre un outil étranger inadapté et un cahier.
-                Nous sommes une équipe de direction pluridisciplinaire : développement, design,
-                commerce, communication et gestion.
+                du pays n'aient plus à choisir entre un outil étranger inadapté et un cahier.
+                Notre équipe est à Conakry, nos clients sont dans toute la Guinée.
               </p>
+            </div>
 
-              <div style={{ borderTop: "1px solid #E2E8F0" }}>
-                {reasons.map((reason) => (
-                  <div key={reason.title} style={{ borderBottom: "1px solid #E2E8F0", padding: "16px 0" }}>
-                    <h3 style={{ fontSize: "0.98rem", fontWeight: 700, color: "#111827", margin: "0 0 5px" }}>
-                      {reason.title}
-                    </h3>
-                    <p style={{ fontSize: "0.93rem", lineHeight: 1.6, color: "#4B5563", margin: 0 }}>{reason.desc}</p>
-                  </div>
-                ))}
-              </div>
+            <div style={{ borderTop: `1px solid ${C.lineStrong}` }}>
+              {reasons.map((reason, i) => (
+                <Enter key={reason.title} delay={i * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "16px 0" }}>
+                  <h3 style={H3}>{reason.title}</h3>
+                  <p style={TEXT}>{reason.desc}</p>
+                </Enter>
+              ))}
+            </div>
 
+            <Enter delay={0.1}>
               <Link
                 to="/a-propos"
                 className="rt-link"
-                style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "24px", color: "#0C4A6E", fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "7px", marginTop: "24px", color: C.navy, fontWeight: 600, fontSize: "0.97rem", textDecoration: "none" }}
               >
                 L'équipe et notre histoire <ArrowRight size={16} />
               </Link>
-            </div>
+            </Enter>
+          </div>
 
+          <Enter delay={0.08}>
             <img
               src={TEAM_IMAGE}
               alt="Réunion de travail chez Revyon Tech"
               width={1080}
-              height={720}
+              height={810}
               loading="lazy"
-              style={{ width: "100%", height: "auto", aspectRatio: "4 / 3", objectFit: "cover", borderRadius: "10px", border: "1px solid #E2E8F0" }}
+              style={{ width: "100%", height: "auto", aspectRatio: "4 / 3", objectFit: "cover", borderRadius: "12px", border: `1px solid ${C.lineStrong}` }}
             />
-          </div>
+          </Enter>
         </div>
-      </section>
+      </Section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "#0C4A6E" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8" style={{ paddingTop: "clamp(44px, 6vw, 72px)", paddingBottom: "clamp(44px, 6vw, 72px)" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
-            <div style={{ maxWidth: "620px" }}>
-              <h2 style={{ ...H2, color: "#fff", margin: "0 0 12px" }}>Parlons de votre projet</h2>
-              <p style={{ fontSize: "1rem", lineHeight: 1.65, color: "#D5E4EF", margin: 0 }}>
-                Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures
-                avec une estimation de délai et de budget, sans engagement.
-              </p>
-            </div>
-            <Link
-              to="/contact#devis"
-              className="rt-btn rt-btn-accent"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: "#C2410C", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
-            >
-              Demander un devis <ArrowRight size={17} />
-            </Link>
+      <Section tone="navy">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+          <div style={{ maxWidth: "620px" }}>
+            <h2 style={{ fontSize: "clamp(1.5rem, 4.6vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 12px" }}>
+              Parlons de votre projet
+            </h2>
+            <p style={{ ...UI_LEAD, color: "#D5E4EF" }}>
+              Décrivez-nous ce que vous voulez faire. Nous revenons vers vous sous 24 heures
+              avec une estimation de délai et de budget, sans engagement.
+            </p>
           </div>
+          <Link
+            to="/contact#devis"
+            className="rt-btn rt-btn-accent"
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: C.accent, color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
+          >
+            Demander un devis <ArrowRight size={17} />
+          </Link>
         </div>
-      </section>
+      </Section>
     </div>
   );
 }
