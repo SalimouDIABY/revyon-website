@@ -12,6 +12,7 @@ import { C, EYEBROW, H3, LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 const services = [
   {
     icon: Globe,
+    slug: "sites-web",
     title: "Création de sites web",
     tagline: "Votre vitrine ouverte jour et nuit",
     problem:
@@ -28,6 +29,7 @@ const services = [
   },
   {
     icon: Code2,
+    slug: "logiciels",
     title: "Logiciels et applications",
     tagline: "Un outil taillé pour votre métier",
     problem:
@@ -44,6 +46,7 @@ const services = [
   },
   {
     icon: PenTool,
+    slug: "design",
     title: "Design et identité visuelle",
     tagline: "Ce que l'on retient de vous",
     problem:
@@ -60,6 +63,7 @@ const services = [
   },
   {
     icon: Megaphone,
+    slug: "marketing",
     title: "Marketing digital",
     tagline: "Être vu, puis être choisi",
     problem:
@@ -76,6 +80,7 @@ const services = [
   },
   {
     icon: Clapperboard,
+    slug: "multimedia",
     title: "Multimédia et vidéo",
     tagline: "Montrer plutôt que décrire",
     problem:
@@ -92,6 +97,7 @@ const services = [
   },
   {
     icon: GraduationCap,
+    slug: "formation",
     title: "Formation",
     tagline: "L'outil ne sert que s'il est maîtrisé",
     problem:
@@ -108,6 +114,7 @@ const services = [
   },
   {
     icon: Cpu,
+    slug: "materiel",
     title: "Matériel informatique",
     tagline: "Prêt à travailler dès la livraison",
     problem:
@@ -207,7 +214,8 @@ export function ServicesPage() {
               key={service.title}
               delay={Math.min(i, 5) * 0.085}
               className="rt-card"
-              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "clamp(22px, 3vw, 32px) 0" }}
+              id={service.slug}
+              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "clamp(22px, 3vw, 32px) 0", scrollMarginTop: "96px" }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8">
                 <div className="lg:col-span-4">

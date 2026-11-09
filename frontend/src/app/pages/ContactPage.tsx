@@ -123,7 +123,7 @@ export function ContactPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
                 <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
-                  <IconMark icon={Mail} size={40} />
+                  <IconMark icon={Mail} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Email</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>contact@revyontech.com</p>
@@ -131,7 +131,7 @@ export function ContactPage() {
                 </div>
 
                 <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
-                  <IconMark icon={Phone} size={40} />
+                  <IconMark icon={Phone} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Téléphone</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>
@@ -144,7 +144,7 @@ export function ContactPage() {
                 </div>
 
                 <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
-                  <IconMark icon={MessageCircle} size={40} />
+                  <IconMark icon={MessageCircle} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>WhatsApp</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>+224 627 33 07 09</p>
@@ -152,7 +152,7 @@ export function ContactPage() {
                 </div>
 
                 <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
-                  <IconMark icon={MapPin} size={40} />
+                  <IconMark icon={MapPin} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Localisation</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem", margin: 0 }}>Conakry, Guinée</p>
@@ -167,7 +167,7 @@ export function ContactPage() {
                   className="rt-tile"
                   style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", textDecoration: "none", overflow: "hidden" }}
                 >
-                  <IconMark icon={Linkedin} size={40} />
+                  <IconMark icon={Linkedin} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>LinkedIn</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Suivre Revyon Tech</p>
@@ -175,7 +175,7 @@ export function ContactPage() {
                 </a>
 
                 <div className="rt-tile" style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #E2E8F0", display: "flex", gap: "13px", alignItems: "center", overflow: "hidden" }}>
-                  <IconMark icon={Clock} size={40} />
+                  <IconMark icon={Clock} size={44} />
                   <div>
                     <div style={{ fontSize: "0.75rem", color: "#64748B", fontWeight: "600", marginBottom: "4px" }}>Disponibilité</div>
                     <p style={{ color: "#0F172A", fontWeight: "600", fontSize: "0.95rem" }}>Lundi au samedi, 8h00 à 18h00</p>

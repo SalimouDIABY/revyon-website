@@ -129,14 +129,18 @@ export function Enter({
   delay = 0,
   className = "",
   style,
+  id,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   style?: CSSProperties;
+  /** Ancre de section, pour les liens « /services#formation ». */
+  id?: string;
 }) {
   return (
     <div
+      id={id}
       className={`rt-enter ${className}`.trim()}
       style={{ ...style, "--rt-delay": `${delay}s` } as CSSProperties}
     >
