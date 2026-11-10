@@ -38,14 +38,14 @@ export function Navbar() {
                     textDecoration: "none",
                     fontWeight: isActive ? "600" : "500",
                     fontSize: "0.9rem",
-                    color: isActive ? "#0EA5E9" : "#475569",
+                    color: isActive ? "#0C4A6E" : "#475569",
                     background: isActive ? "#E0F2FE" : "transparent",
                     transition: "all 0.2s",
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
                       (e.target as HTMLElement).style.background = "#F1F5F9";
-                      (e.target as HTMLElement).style.color = "#0EA5E9";
+                      (e.target as HTMLElement).style.color = "#0C4A6E";
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -69,7 +69,7 @@ export function Navbar() {
                 fontWeight: "600",
                 fontSize: "0.9rem",
                 color: "#fff",
-                background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+                background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
                 boxShadow: "0 2px 8px rgba(249,115,22,0.3)",
                 transition: "all 0.2s",
               }}
@@ -106,7 +106,7 @@ export function Navbar() {
                     borderRadius: "8px",
                     textDecoration: "none",
                     fontWeight: isActive ? "600" : "500",
-                    color: isActive ? "#0EA5E9" : "#475569",
+                    color: isActive ? "#0C4A6E" : "#475569",
                     background: isActive ? "#E0F2FE" : "transparent",
                   }}
                 >
@@ -124,7 +124,7 @@ export function Navbar() {
                 textDecoration: "none",
                 fontWeight: "600",
                 color: "#fff",
-                background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+                background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
                 textAlign: "center",
               }}
             >

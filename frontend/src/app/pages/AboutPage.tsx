@@ -27,92 +27,92 @@ const team = [
     role: "Directeur Général",
     Icon: Crown,
     desc: "Assure la supervision globale du projet, valide le contenu, le design et la structure de l'entreprise.",
-    color: "#F97316",
+    color: "#C2410C",
     bg: "#FFF7ED",
     initials: "SD",
-    avatarGradient: "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+    avatarGradient: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
   },
   {
     name: "Mamadou Ramadane Condé",
     role: "Directeur des Opérations",
     Icon: Settings,
     desc: "Gère le projet site web, assure le suivi des tâches et coordonne l'équipe des directeurs.",
-    color: "#0EA5E9",
+    color: "#0C4A6E",
     bg: "#E0F2FE",
     initials: "MC",
-    avatarGradient: "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
+    avatarGradient: "linear-gradient(135deg, #0A6E9E 0%, #0E7490 100%)",
   },
   {
     name: "Fatoumata Kanny Diallo",
     role: "Directrice Administrative & Financière",
     Icon: BarChart2,
     desc: "Gère les dépenses, prévoit le budget et documente les processus pour les futurs projets.",
-    color: "#8B5CF6",
+    color: "#6D28D9",
     bg: "#EDE9FE",
     initials: "FD",
-    avatarGradient: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)",
+    avatarGradient: "linear-gradient(135deg, #6D28D9 0%, #7C3AED 100%)",
   },
   {
     name: "Ibrahima Sory Barry",
     role: "Directeur Communication & Marketing",
     Icon: Megaphone,
     desc: "Rédige les contenus, gère les textes et images, et adapte le message marketing.",
-    color: "#10B981",
+    color: "#047857",
     bg: "#D1FAE5",
     initials: "IB",
-    avatarGradient: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
+    avatarGradient: "linear-gradient(135deg, #047857 0%, #059669 100%)",
   },
   {
     name: "Ousmane Kanté",
     role: "Directeur Commercial & Développement",
     Icon: Handshake,
     desc: "Définit les services à proposer, rédige les offres commerciales et oriente les relations clients.",
-    color: "#F97316",
+    color: "#C2410C",
     bg: "#FFF7ED",
     initials: "OK",
-    avatarGradient: "linear-gradient(135deg, #F97316 0%, #FBBF24 100%)",
+    avatarGradient: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
   },
 ];
 
 const values = [
   {
     Icon: Zap,
-    color: "#F97316",
+    color: "#C2410C",
     bg: "#FFF7ED",
     title: "Innovation",
     desc: "Nous adoptons les dernières technologies pour offrir des solutions avant-gardistes.",
   },
   {
     Icon: Award,
-    color: "#0EA5E9",
+    color: "#0C4A6E",
     bg: "#E0F2FE",
     title: "Excellence",
     desc: "Chaque projet est traité avec le plus haut niveau de qualité et d'attention aux détails.",
   },
   {
     Icon: ShieldCheck,
-    color: "#8B5CF6",
+    color: "#6D28D9",
     bg: "#EDE9FE",
     title: "Intégrité",
     desc: "Nous bâtissons des relations durables fondées sur la confiance et la transparence.",
   },
   {
     Icon: Lightbulb,
-    color: "#F59E0B",
+    color: "#B45309",
     bg: "#FFFBEB",
     title: "Créativité",
     desc: "Nous pensons différemment pour créer des solutions uniques et impactantes.",
   },
   {
     Icon: Globe,
-    color: "#10B981",
+    color: "#047857",
     bg: "#D1FAE5",
     title: "Impact Local",
     desc: "Nous contribuons au développement du numérique en Afrique et en Guinée.",
   },
   {
     Icon: Clock,
-    color: "#0EA5E9",
+    color: "#0C4A6E",
     bg: "#E0F2FE",
     title: "Réactivité",
     desc: "Nous répondons rapidement aux besoins de nos clients pour ne jamais perdre de temps.",
@@ -132,7 +132,7 @@ export function AboutPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+          background: "linear-gradient(135deg, #0A7BAD 0%, #0E7490 100%)",
           padding: "clamp(40px, 8vw, 80px) 0",
           position: "relative",
           overflow: "hidden",
@@ -152,9 +152,9 @@ export function AboutPage() {
           <div
             style={{
               display: "inline-block",
-              background: "rgba(14,165,233,0.15)",
-              border: "1px solid rgba(14,165,233,0.3)",
-              color: "#7DD3FC",
+              background: "rgba(3,44,72,0.32)",
+              border: "1px solid rgba(255,255,255,0.3)",
+              color: "#FFFFFF",
               padding: "4px 20px",
               borderRadius: "100px",
               fontSize: "0.85rem",
@@ -175,7 +175,7 @@ export function AboutPage() {
             }}
           >
             L'histoire de{" "}
-            <span style={{ color: "#F97316" }}>Revyon Tech</span>
+            <span style={{ color: "#FFEAD5" }}>Revyon Tech</span>
           </h1>
           <p
             style={{
@@ -202,7 +202,7 @@ export function AboutPage() {
                 style={{
                   fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                   fontWeight: "800",
-                  color: "#0EA5E9",
+                  color: "#0C4A6E",
                   letterSpacing: "-0.02em",
                   marginBottom: "20px",
                 }}
@@ -210,7 +210,7 @@ export function AboutPage() {
                 Qui sommes-nous ?
               </h2>
               <p style={{ color: "#0F172A", lineHeight: "1.8", marginBottom: "16px" }}>
-                <strong style={{ color: "#0EA5E9" }}>Revyon Tech</strong> est
+                <strong style={{ color: "#0C4A6E" }}>Revyon Tech</strong> est
                 une agence technologique guinéenne spécialisée dans la création
                 de solutions digitales sur mesure. Nous accompagnons les
                 entrepreneurs, les PME et les grandes entreprises dans leur
@@ -253,7 +253,7 @@ export function AboutPage() {
               {
                 icon: Eye,
                 title: "Notre Vision",
-                color: "#0EA5E9",
+                color: "#0C4A6E",
                 bg: "#E0F2FE",
                 content:
                   "Devenir l'agence technologique de référence en Afrique de l'Ouest, reconnue pour son excellence, son innovation et son impact positif sur le développement numérique du continent.",
@@ -261,7 +261,7 @@ export function AboutPage() {
               {
                 icon: Target,
                 title: "Notre Mission",
-                color: "#F97316",
+                color: "#C2410C",
                 bg: "#FFF7ED",
                 content:
                   "Offrir des solutions digitales de haute qualité, accessibles et sur mesure, pour permettre à chaque entreprise africaine de se digitaliser et de compétir sur le marché mondial.",
@@ -269,7 +269,7 @@ export function AboutPage() {
               {
                 icon: Heart,
                 title: "Nos Valeurs",
-                color: "#8B5CF6",
+                color: "#6D28D9",
                 bg: "#EDE9FE",
                 content:
                   "Innovation, Excellence, Intégrité, Créativité, Impact Local et Réactivité. Ces valeurs guident chacune de nos décisions et définissent la culture de Revyon Tech.",
@@ -304,7 +304,7 @@ export function AboutPage() {
                   <h3
                     style={{
                       fontWeight: "700",
-                      color: "#0EA5E9",
+                      color: "#0C4A6E",
                       marginBottom: "14px",
                       fontSize: "1.15rem",
                     }}
@@ -335,7 +335,7 @@ export function AboutPage() {
               style={{
                 fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                 fontWeight: "800",
-                color: "#0EA5E9",
+                color: "#0C4A6E",
                 letterSpacing: "-0.02em",
                 marginBottom: "12px",
               }}
@@ -389,7 +389,7 @@ export function AboutPage() {
                     <h4
                       style={{
                         fontWeight: "700",
-                        color: "#0EA5E9",
+                        color: "#0C4A6E",
                         marginBottom: "8px",
                       }}
                     >
@@ -422,7 +422,7 @@ export function AboutPage() {
                 alignItems: "center",
                 gap: "8px",
                 background: "#FFF7ED",
-                color: "#EA580C",
+                color: "#9A3412",
                 padding: "4px 16px",
                 borderRadius: "100px",
                 fontSize: "0.82rem",
@@ -437,7 +437,7 @@ export function AboutPage() {
               style={{
                 fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                 fontWeight: "800",
-                color: "#0EA5E9",
+                color: "#0C4A6E",
                 letterSpacing: "-0.02em",
                 marginBottom: "12px",
               }}
@@ -558,7 +558,7 @@ export function AboutPage() {
                     <h3
                       style={{
                         fontWeight: "700",
-                        color: "#0EA5E9",
+                        color: "#0C4A6E",
                         marginBottom: "4px",
                         fontSize: "1rem",
                       }}
@@ -599,7 +599,7 @@ export function AboutPage() {
       {/* ── CTA ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
+          background: "linear-gradient(135deg, #0A6E9E 0%, #075985 100%)",
           padding: "60px 0",
         }}
       >
@@ -616,7 +616,7 @@ export function AboutPage() {
           </h2>
           <p
             style={{
-              color: "#BAE6FD",
+              color: "#E8F4FB",
               lineHeight: "1.8",
               marginBottom: "28px",
             }}
@@ -632,7 +632,7 @@ export function AboutPage() {
               gap: "8px",
               padding: "13px 32px",
               background: "#fff",
-              color: "#0284C7",
+              color: "#075985",
               borderRadius: "10px",
               textDecoration: "none",
               fontWeight: "700",
