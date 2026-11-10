@@ -1,374 +1,380 @@
 import { Link } from "react-router";
 import {
-  ArrowRight, Check,
-  Globe, Code2, PenTool, Megaphone, Clapperboard, GraduationCap, Cpu,
+  Globe,
+  Code,
+  Palette,
+  TrendingUp,
+  Video,
+  BookOpen,
+  Cpu,
+  ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
-import { IconMark } from "../components/IconMark";
-import { usePageMeta } from "../hooks/usePageMeta";
-import { BrandOrbit } from "../components/BrandOrbit";
-import { MaskedWords, useInViewReveal } from "../components/Reveal";
-import { C, EYEBROW, H3, LEAD, TEXT, Section, SectionHead, Enter } from "../ui";
 
 const services = [
   {
     icon: Globe,
-    slug: "sites-web",
-    title: "Création de sites web",
-    tagline: "Votre vitrine ouverte jour et nuit",
-    problem:
-      "Un site web travaille pour vous quand votre boutique est fermée. Sans lui, un client qui vous cherche trouve un concurrent.",
+    title: "Création de sites web professionnels",
+    tagline: "Votre vitrine digitale 24h/24",
+    color: "#0EA5E9",
+    bg: "#E0F2FE",
+    problem: "Un site web, c'est votre commercial qui travaille 24h/24. Sans lui, vous perdez des clients chaque jour.",
     included: [
       "Site de 3 à 10 pages",
-      "Affichage soigné sur téléphone",
-      "Hébergement 12 mois inclus",
+      "Design responsive",
+      "Hébergement 12 mois",
       "Nom de domaine",
-      "Bouton WhatsApp et Google Maps",
+      "Bouton WhatsApp & Google Maps",
       "Formation à la mise à jour",
+      "Livraison 5-14 jours",
     ],
-    delay: "Livraison en 5 à 14 jours",
   },
   {
-    icon: Code2,
-    slug: "logiciels",
-    title: "Logiciels et applications",
-    tagline: "Un outil taillé pour votre métier",
-    problem:
-      "Votre activité a des règles que les logiciels du marché ne connaissent pas. Nous écrivons celui qui les connaît.",
+    icon: Code,
+    title: "Développement de logiciels et applications",
+    tagline: "Solutions sur mesure pour vos besoins",
+    color: "#F97316",
+    bg: "#FFF7ED",
+    problem: "Votre activité a des besoins spécifiques que les logiciels standards ne couvrent pas.",
     included: [
-      "Application web ou mobile",
+      "Application web (React) ou mobile",
       "Interface d'administration",
-      "Base de données et sauvegardes",
-      "API sécurisée",
+      "Base de données MySQL",
+      "API REST sécurisée",
       "Documentation technique",
-      "Formation de vos équipes",
+      "Formation équipe",
+      "Support post-livraison",
     ],
-    delay: "Support après la mise en service",
   },
   {
-    icon: PenTool,
-    slug: "design",
-    title: "Design et identité visuelle",
-    tagline: "Ce que l'on retient de vous",
-    problem:
-      "Votre logo est la première chose qu'un client voit, souvent la seule dont il se souvient.",
+    icon: Palette,
+    title: "Design graphique et identité visuelle",
+    tagline: "Identité visuelle inoubliable",
+    color: "#8B5CF6",
+    bg: "#EDE9FE",
+    problem: "Votre logo est la première chose que vos clients voient. Il doit être mémorable.",
     included: [
       "Logo professionnel unique",
-      "Versions couleur et noir et blanc",
+      "Versions couleur & noir/blanc",
       "Charte graphique complète",
-      "Règles de typographie et de couleurs",
-      "Fichiers PNG, SVG et PDF",
-      "Guide d'utilisation",
+      "Règles typographie et couleurs",
+      "Formats PNG, SVG, PDF",
+      "Guides d'utilisation",
     ],
-    delay: "Déclinaisons web, mobile et impression",
   },
   {
-    icon: Megaphone,
-    slug: "marketing",
-    title: "Marketing digital",
-    tagline: "Être vu, puis être choisi",
-    problem:
-      "Être présent en ligne ne suffit pas. Encore faut-il que les bonnes personnes vous trouvent.",
+    icon: TrendingUp,
+    title: "Marketing digital et communication",
+    tagline: "Soyez vu, entendu et choisi",
+    color: "#10B981",
+    bg: "#D1FAE5",
+    problem: "Être présent en ligne ne suffit pas. Il faut être vu, entendu et choisi.",
     included: [
-      "Gestion des réseaux sociaux",
-      "Création de contenus visuels",
-      "Campagnes publicitaires ciblées",
-      "Référencement naturel",
+      "Gestion réseaux sociaux",
+      "Création contenu visuel",
+      "Campagnes publicitaires",
+      "Rapport mensuel",
+      "Stratégie SEO & SEM",
       "Email marketing",
-      "Rapport mensuel de performance",
     ],
-    delay: "Engagement mensuel, sans durée imposée",
   },
   {
-    icon: Clapperboard,
-    slug: "multimedia",
-    title: "Multimédia et vidéo",
-    tagline: "Montrer plutôt que décrire",
-    problem:
-      "Une vidéo de trente secondes explique mieux votre service que deux pages de texte.",
+    icon: Video,
+    title: "Production multimedia et vidéo IA",
+    tagline: "Contenus visuels professionnels",
+    color: "#EC4899",
+    bg: "#FCE7F3",
+    problem: "Une vidéo professionnelle convainc 10x plus qu'un texte.",
     included: [
       "Vidéos publicitaires",
       "Motion design",
-      "Tutoriels et démonstrations",
+      "Tutoriels et explainers",
       "Présentation d'entreprise",
-      "Montage et post-production",
-      "Formats adaptés à chaque réseau",
+      "Édition et post-production",
+      "Formats multiples",
+      "Technologie IA",
     ],
-    delay: "Tournage sur site ou production à distance",
   },
   {
-    icon: GraduationCap,
-    slug: "formation",
-    title: "Formation",
-    tagline: "L'outil ne sert que s'il est maîtrisé",
-    problem:
-      "Un logiciel que personne ne sait utiliser coûte de l'argent sans rien rapporter.",
+    icon: BookOpen,
+    title: "Formation et accompagnement numérique",
+    tagline: "Votre équipe maîtrise la technologie",
+    color: "#06B6D4",
+    bg: "#CFFAFE",
+    problem: "La technologie ne sert à rien si elle n'est pas maîtrisée.",
     included: [
-      "Programmes sur mesure",
-      "En ligne ou dans vos locaux",
+      "Formations sur mesure",
+      "En ligne ou présentiel",
       "Bureautique et outils web",
       "Ateliers pratiques",
-      "Supports remis aux participants",
-      "Suivi après la formation",
+      "Supports de formation",
+      "Suivi post-formation",
+      "Certification",
     ],
-    delay: "Partout en Guinée, déplacement possible",
   },
   {
     icon: Cpu,
-    slug: "materiel",
-    title: "Matériel informatique",
-    tagline: "Prêt à travailler dès la livraison",
-    problem:
-      "Un poste mal configuré vous fait perdre quelques minutes chaque jour, toute l'année.",
+    title: "Vente de matériel informatique",
+    tagline: "Ordinateur sélectionné et prêt à l'emploi",
+    color: "#6366F1",
+    bg: "#E0E7FF",
+    problem: "Un matériel mal configuré vous coûte du temps chaque jour.",
     included: [
-      "Pack Étudiant ou Pack Business",
-      "Processeur Core i5 ou i7",
+      "Pack Étudiant ou Business",
+      "Core i5/i7 sélectionné",
       "Windows authentique",
-      "Suite bureautique installée",
+      "Microsoft Office",
       "Configuration complète",
       "Test avant livraison",
+      "Assistance 7 jours",
     ],
-    delay: "Assistance pendant 7 jours après livraison",
   },
-];
-
-const process = [
-  { n: "01", title: "Écoute", desc: "Nous partons de votre activité, pas d'un catalogue. Un échange suffit souvent à cadrer le besoin." },
-  { n: "02", title: "Proposition", desc: "Périmètre, délai et budget écrits noir sur blanc avant de commencer quoi que ce soit." },
-  { n: "03", title: "Conception", desc: "Maquettes et structure validées avec vous, avant la première ligne de code." },
-  { n: "04", title: "Réalisation", desc: "Vous voyez le travail avancer par étapes, pas seulement à la fin." },
-  { n: "05", title: "Mise en service", desc: "Mise en ligne, reprise de vos données, et formation de ceux qui vont s'en servir." },
-  { n: "06", title: "Suivi", desc: "Corrections, évolutions et assistance. Nous restons joignables." },
 ];
 
 const faqs = [
   {
-    q: "Où intervient Revyon Tech ?",
-    a: "Dans toute la Guinée. Notre équipe est basée à Conakry, et nous travaillons aussi bien avec des clients de la capitale qu'avec des établissements et des commerces de l'intérieur du pays, à distance ou en nous déplaçant. Nous accompagnons également des clients ailleurs en Afrique francophone.",
+    q: "Qu'est-ce que Revyon Tech ?",
+    a: "Revyon Tech est une entreprise informatique basée à Conakry, en Guinée. Elle est spécialisée dans la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, le multimédia, la vente et la maintenance de matériel informatique, et la formation.",
   },
   {
-    q: "Combien de temps prend un projet ?",
-    a: "Un site vitrine est livré en 5 à 14 jours. Un logiciel métier se compte en semaines, selon le périmètre. Dans tous les cas, le délai est écrit dans la proposition avant le démarrage.",
+    q: "Où se trouve Revyon Tech ?",
+    a: "Revyon Tech est basée à Conakry, en Guinée, et accompagne ses clients dans toute la Guinée ainsi qu'en Afrique francophone.",
   },
   {
-    q: "Travaillez-vous avec de petites structures ?",
-    a: "Oui. Une boutique, une école de quartier ou un markaz sont des clients comme les autres. Nos propres logiciels ont d'ailleurs été conçus pour ce type de structure.",
+    q: "Quels services propose Revyon Tech ?",
+    a: "Revyon Tech propose la création de sites web, le développement de logiciels et d'applications mobiles, le marketing digital, des services multimédia, la vente et la maintenance de matériel informatique, ainsi que des formations en informatique et au numérique.",
   },
   {
-    q: "Que se passe-t-il après la livraison ?",
-    a: "Nous formons vos équipes, puis nous restons joignables pour les corrections et les évolutions. C'est la même équipe qui a écrit le logiciel qui répond au téléphone.",
-  },
-  {
-    q: "Comment obtenir un devis ?",
-    a: "Par le formulaire de la page Contact, par téléphone ou par WhatsApp au +224 627 33 07 09. Nous revenons vers vous sous 24 heures. Le devis est gratuit et sans engagement.",
+    q: "Comment contacter Revyon Tech ?",
+    a: "Vous pouvez contacter Revyon Tech par téléphone ou WhatsApp au +224 627 33 07 09 ou au +224 613 05 99 38, par email à contact@revyontech.com, ou via le formulaire de devis sur revyontech.com/contact.",
   },
 ];
 
-export function ServicesPage() {
-  useInViewReveal();
+import { usePageMeta } from "../hooks/usePageMeta";
 
+export function ServicesPage() {
   usePageMeta(
     "Nos services | Création de sites web, logiciels et marketing digital en Guinée | Revyon Tech",
-    "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique partout en Guinée.",
+    "Création de sites web professionnels, développement de logiciels et applications mobiles, design graphique, marketing digital, formation et matériel informatique en Guinée.",
     "/services"
   );
-
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(168deg, #16AEEE 0%, #0EA5E9 42%, #0B9AD9 100%)", position: "relative", overflow: "hidden" }}>
-        {/* Halo du bleu vif, réservé aux grands écrans : sur un téléphone,
-            aucune zone n'est assez loin du texte pour l'accueillir. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 hidden xl:block"
-          style={{
-            background:
-              "radial-gradient(62% 130% at 100% -12%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 38%, rgba(255,255,255,0) 72%)",
-          }}
-        />
-        <BrandOrbit
-          className="rt-orbit-full pointer-events-none select-none absolute hidden md:block"
-          style={{ width: "460px", height: "auto", right: "-70px", top: "50%", transform: "translateY(-50%)", opacity: 0.85 }}
-        />
-        <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
-          style={{ paddingTop: "clamp(42px, 5.5vw, 72px)", paddingBottom: "clamp(42px, 5.5vw, 72px)" }}
-        >
-          <div style={{ maxWidth: "720px" }}>
-            <span className="rt-eyebrow-rule" style={{ marginBottom: "16px" }} />
-            <p className="rt-rise" style={{ ...EYEBROW, color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", "--rt-delay": "0.28s" } as React.CSSProperties}>
-              Nos services
-            </p>
-            <h1 style={{ fontFamily: "'Revyon Serif', Georgia, serif", fontSize: "clamp(2.1rem, 7vw, 3.1rem)", fontWeight: 600, color: "#0C2340", lineHeight: 1.12, letterSpacing: "-0.018em", margin: "0 0 18px" }}>
-              <MaskedWords text="Sept métiers, une seule équipe" delay={0.1} />
-            </h1>
-            <p className="rt-rise" style={{ ...LEAD, color: "#1E293B", fontWeight: 420, lineHeight: 1.74, maxWidth: "560px", "--rt-delay": "0.5s" } as React.CSSProperties}>
-              Du premier croquis à la prise en main par vos équipes. Nous intervenons
-              partout en Guinée, à distance ou chez vous.
-            </p>
+      <section
+        style={{
+          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
+          padding: "clamp(40px, 8vw, 80px) 0",
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: "800", color: "#fff", marginBottom: "20px" }}>
+            Nos 7 services digitaux <span style={{ color: "#F97316" }}>complets</span>
+          </h1>
+          <p style={{ color: "#fff", fontSize: "1.05rem", maxWidth: "600px", margin: "0 auto" }}>
+            De la création web au marketing digital, découvrez toutes nos solutions conçues pour propulser votre entreprise.
+          </p>
+        </div>
+      </section>
+
+      {/* ── SERVICES GRID ── */}
+      <section style={{ background: "#F8FAFC", padding: "clamp(60px, 10vw, 100px) 0" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, i) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    background: "#fff",
+                    borderRadius: "16px",
+                    padding: "28px",
+                    border: "1px solid #E2E8F0",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                    display: "flex",
+                    flexDirection: "column",
+                    transition: "all 0.3s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 24px rgba(0,0,0,0.12)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.06)";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "12px",
+                      background: service.bg,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <Icon size={28} color={service.color} />
+                  </div>
+                  <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "#0EA5E9", marginBottom: "4px" }}>
+                    {service.title}
+                  </h3>
+                  <p style={{ fontSize: "0.8rem", color: service.color, fontWeight: "600", marginBottom: "12px" }}>
+                    {service.tagline}
+                  </p>
+                  <p style={{ color: "#0F172A", fontSize: "0.9rem", lineHeight: "1.6", marginBottom: "16px", flex: "1" }}>
+                    {service.problem}
+                  </p>
+                  <ul style={{ margin: "16px 0", paddingLeft: "0", listStyle: "none" }}>
+                    {service.included.slice(0, 3).map((item, j) => (
+                      <li key={j} style={{ fontSize: "0.8rem", color: "#475569", marginBottom: "6px", display: "flex", gap: "6px" }}>
+                        <CheckCircle2 size={14} color={service.color} style={{ flexShrink: 0, marginTop: "1px" }} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                    {service.included.length > 3 && (
+                      <li style={{ fontSize: "0.8rem", color: service.color, fontWeight: "600", marginTop: "8px" }}>
+                        + {service.included.length - 3} autres inclus
+                      </li>
+                    )}
+                  </ul>
+                  <Link
+                    to="/contact#devis"
+                    style={{
+                      marginTop: "16px",
+                      padding: "10px 16px",
+                      background: service.color,
+                      color: "#fff",
+                      borderRadius: "8px",
+                      textDecoration: "none",
+                      fontWeight: "600",
+                      fontSize: "0.85rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    Demander un devis
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── LES SEPT MÉTIERS ── */}
-      <Section>
-        <SectionHead
-          eyebrow="Ce que nous faisons"
-          title="Sept façons de vous accompagner"
-          lead="Chaque prestation est vendue avec son périmètre écrit. Vous savez ce qui est inclus avant de signer."
-        />
-
-        <div style={{ borderTop: `1px solid ${C.lineStrong}` }}>
-          {services.map((service, i) => (
-            <Enter
-              key={service.title}
-              delay={Math.min(i, 5) * 0.085}
-              className="rt-card"
-              id={service.slug}
-              style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "clamp(22px, 3vw, 32px) 0", scrollMarginTop: "96px" }}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8">
-                <div className="lg:col-span-4">
-                  <div className="flex items-start gap-4">
-                    <IconMark icon={service.icon} size={44} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="flex items-baseline gap-2.5">
-                        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: C.accent, fontVariantNumeric: "tabular-nums" }}>
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <h3 style={{ ...H3, fontSize: "1.15rem", margin: 0 }}>{service.title}</h3>
-                      </div>
-                      <p style={{ fontSize: "0.92rem", color: C.muted, margin: "5px 0 0", fontWeight: 500 }}>
-                        {service.tagline}
-                      </p>
-                    </div>
-                  </div>
+      {/* ── NOTRE APPROCHE ── */}
+      <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", textAlign: "center" }}>
+            Notre processus de travail
+          </h2>
+          <p style={{ textAlign: "center", color: "#0F172A", marginBottom: "48px", fontSize: "1rem" }}>
+            Accompagnement structuré du début à la fin pour garantir votre succès.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { num: "01", title: "Analyse", desc: "Étude approfondie de vos besoins et objectifs" },
+              { num: "02", title: "Conception", desc: "Création de maquettes et structure du projet" },
+              { num: "03", title: "Développement", desc: "Développement avec les meilleures technologies" },
+              { num: "04", title: "Test", desc: "Tests rigoureux pour garantir la qualité" },
+              { num: "05", title: "Déploiement", desc: "Mise en ligne et formation utilisateur" },
+              { num: "06", title: "Suivi", desc: "Accompagnement continu et maintenance" },
+            ].map((step, i) => (
+              <div key={i} style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "900",
+                    color: "#0EA5E9",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {step.num}
                 </div>
-
-                <div className="lg:col-span-4">
-                  <p style={TEXT}>{service.problem}</p>
-                  <p style={{ fontSize: "0.85rem", color: C.accent, marginTop: "10px", fontWeight: 600 }}>
-                    {service.delay}
-                  </p>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-1.5" style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {service.included.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <Check size={14} color="#047857" strokeWidth={2.6} style={{ marginTop: "4px", flexShrink: 0 }} />
-                        <span style={{ fontSize: "0.88rem", color: C.body, lineHeight: 1.5 }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <h3 style={{ fontWeight: "700", color: "#0F172A", marginBottom: "8px" }}>
+                  {step.title}
+                </h3>
+                <p style={{ color: "#475569", fontSize: "0.9rem" }}>
+                  {step.desc}
+                </p>
               </div>
-            </Enter>
-          ))}
-        </div>
-
-        <Enter delay={0.1} style={{ marginTop: "30px" }}>
-          <Link
-            to="/contact#devis"
-            className="rt-btn rt-btn-accent"
-            style={{ display: "inline-flex", alignItems: "center", gap: "9px", padding: "14px 26px", background: C.accent, color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}
-          >
-            Demander un devis gratuit <ArrowRight size={17} />
-          </Link>
-        </Enter>
-      </Section>
-
-      {/* ── MÉTHODE ── */}
-      <Section tone="tint">
-        <SectionHead
-          eyebrow="Notre méthode"
-          title="Six étapes, et vous savez toujours où en est votre projet"
-          lead="La même marche à suivre pour un site vitrine comme pour un logiciel métier. Rien ne démarre sans un périmètre écrit."
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {process.map((step, i) => (
-            <Enter
-              key={step.n}
-              delay={Math.min(i, 5) * 0.085}
-              style={{ height: "100%" }}
-            >
-              <div
-                className="rt-tile"
-                style={{ background: C.surface, border: `1px solid ${C.lineStrong}`, borderRadius: "14px", padding: "20px", height: "100%", overflow: "hidden" }}
-              >
-                <div className="flex items-center gap-3" style={{ marginBottom: "12px" }}>
-                  <span
-                    style={{
-                      width: "34px", height: "34px", borderRadius: "50%",
-                      background: i === 0 ? C.accent : "#F1F6FA",
-                      color: i === 0 ? "#fff" : C.navy,
-                      display: "inline-flex", alignItems: "center", justifyContent: "center",
-                      fontSize: "0.78rem", fontWeight: 700, fontVariantNumeric: "tabular-nums", flexShrink: 0,
-                    }}
-                  >
-                    {step.n}
-                  </span>
-                  <h3 style={{ ...H3, margin: 0 }}>{step.title}</h3>
-                </div>
-                <p style={TEXT}>{step.desc}</p>
-              </div>
-            </Enter>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── FAQ ── */}
-      <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,320px)_1fr] gap-8 lg:gap-16">
-          <div className="rt-enter">
-            <p style={EYEBROW}>Questions fréquentes</p>
-            <h2 style={{ fontSize: "clamp(1.6rem, 5.2vw, 2.1rem)", fontWeight: 700, color: C.ink, letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 14px" }}>
-              Ce qu'on nous demande le plus souvent
-            </h2>
-            <p style={{ ...TEXT, marginBottom: "18px" }}>
-              Une question qui n'est pas là ? Écrivez-nous, nous répondons sous 24 heures.
-            </p>
-            <Link
-              to="/contact"
-              className="rt-link"
-              style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: C.navy, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}
-            >
-              Poser votre question <ArrowRight size={15} />
-            </Link>
-          </div>
-
-          <dl style={{ margin: 0, borderTop: `1px solid ${C.lineStrong}` }}>
-            {faqs.map((faq, i) => (
-              <Enter key={faq.q} delay={Math.min(i, 5) * 0.07} style={{ borderBottom: `1px solid ${C.lineStrong}`, padding: "18px 0" }}>
-                <dt style={{ ...H3, marginBottom: "8px" }}>{faq.q}</dt>
-                <dd style={{ ...TEXT, margin: 0 }}>{faq.a}</dd>
-              </Enter>
             ))}
-          </dl>
+          </div>
         </div>
-      </Section>
+      </section>
+
+      {/* ── FAQ (réponse d'abord : visibilité IA / GEO-AEO) ── */}
+      <section style={{ background: "#F8FAFC", padding: "clamp(60px, 10vw, 100px) 0" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", textAlign: "center" }}>
+            Questions fréquentes
+          </h2>
+          <p style={{ textAlign: "center", color: "#475569", marginBottom: "48px", fontSize: "1rem" }}>
+            Tout ce qu'il faut savoir sur Revyon Tech et ses services.
+          </p>
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, i) => (
+              <div
+                key={i}
+                style={{
+                  background: "#fff",
+                  borderRadius: "12px",
+                  padding: "20px 24px",
+                  border: "1px solid #E2E8F0",
+                }}
+              >
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "700", color: "#0F172A", marginBottom: "8px" }}>
+                  {faq.q}
+                </h3>
+                <p style={{ color: "#475569", fontSize: "0.95rem", lineHeight: "1.6", margin: 0 }}>
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA ── */}
-      <Section tone="navy">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
-          <div style={{ maxWidth: "620px" }}>
-            <h2 style={{ fontSize: "clamp(1.5rem, 4.6vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 12px" }}>
-              Dites-nous ce que vous voulez faire
-            </h2>
-            <p style={{ ...LEAD, color: "#D5E4EF" }}>
-              Nous revenons vers vous sous 24 heures avec une estimation de délai et de budget.
-              Le devis est gratuit et sans engagement.
-            </p>
-          </div>
+      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)", padding: "60px 0" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 style={{ fontSize: "2rem", fontWeight: "800", color: "#fff", marginBottom: "12px" }}>
+            Prêt à transformer votre activité ?
+          </h2>
+          <p style={{ color: "#BAE6FD", marginBottom: "28px" }}>
+            Obtenez un devis gratuit et personnalisé pour votre projet.
+          </p>
           <Link
-            to="/contact#devis"
-            className="rt-btn rt-btn-accent"
-            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 28px", background: C.accent, color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem", whiteSpace: "nowrap" }}
+            to="/contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "14px 36px",
+              background: "#fff",
+              color: "#0284C7",
+              borderRadius: "10px",
+              textDecoration: "none",
+              fontWeight: "700",
+            }}
           >
-            Demander un devis <ArrowRight size={17} />
+            Demander mon devis gratuit <ArrowRight size={18} />
           </Link>
         </div>
-      </Section>
+      </section>
     </div>
   );
 }
+
+const process = [
+  { step: "01", title: "Analyse", desc: "Étude approfondie de vos besoins et objectifs" },
+  { step: "02", title: "Conception", desc: "Création de maquettes et structure du projet" },
+  { step: "03", title: "Développement", desc: "Développement avec les meilleures technologies" },
+  { step: "04", title: "Test", desc: "Tests rigoureux pour garantir la qualité" },
+  { step: "05", title: "Déploiement", desc: "Mise en ligne et formation utilisateur" },
+  { step: "06", title: "Suivi", desc: "Accompagnement continu et maintenance" },
+];
+
+

@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
-import { BrandOrbit } from "../components/BrandOrbit";
 
 export function PrivacyPage() {
   usePageMeta(
@@ -13,43 +12,21 @@ export function PrivacyPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: "linear-gradient(168deg, #16AEEE 0%, #0EA5E9 42%, #0B9AD9 100%)", position: "relative", overflow: "hidden" }}>
-        {/* Halo du bleu vif, réservé aux grands écrans : sur un téléphone,
-            aucune zone n'est assez loin du texte pour l'accueillir. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 hidden xl:block"
-          style={{
-            background:
-              "radial-gradient(62% 130% at 100% -12%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.12) 38%, rgba(255,255,255,0) 72%)",
-          }}
-        />
-        <BrandOrbit
-          className="pointer-events-none select-none absolute hidden md:block"
-          style={{ width: "420px", height: "auto", right: "-90px", top: "50%", transform: "translateY(-50%)", opacity: 0.7 }}
-        />
-        <div
-          className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative"
-          style={{ paddingTop: "clamp(40px, 5.5vw, 68px)", paddingBottom: "clamp(40px, 5.5vw, 68px)" }}
-        >
-          <div style={{ maxWidth: "700px" }}>
-            <p className="rt-rise" style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", color: "#0C2340", fontSize: "0.76rem", fontWeight: 650, letterSpacing: "0.1em", margin: "0 0 14px", "--rt-delay": "0.05s" } as React.CSSProperties}>
-              Mentions légales
-            </p>
-            <h1 className="rt-rise" style={{ fontFamily: "'Revyon Serif', Georgia, serif", fontSize: "clamp(2.1rem, 7vw, 3.1rem)", fontWeight: 600, color: "#0C2340", lineHeight: 1.12, letterSpacing: "-0.018em", margin: "0 0 18px", "--rt-delay": "0.13s" } as React.CSSProperties}>
-              Politique de confidentialité
-            </h1>
-            <p className="rt-rise" style={{ fontSize: "1.0625rem", lineHeight: 1.65, color: "#1E293B", fontWeight: 420, lineHeight: 1.74, margin: 0, maxWidth: "560px", "--rt-delay": "0.21s" } as React.CSSProperties}>
-              Comment Revyon Tech collecte, utilise et protège les données que vous nous confiez.
-            </p>
-          </div>
+      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)", padding: "clamp(50px, 10vw, 100px) 0", minHeight: "40vh", display: "flex", alignItems: "center" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: "800", color: "#fff", marginBottom: "16px", letterSpacing: "-0.02em" }}>
+            Politique de <span style={{ color: "#F97316" }}>Confidentialité</span>
+          </h1>
+          <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1rem", maxWidth: "600px", margin: "0 auto", lineHeight: "1.8" }}>
+            Dernière mise à jour : {new Date().toLocaleDateString("fr-FR")}
+          </p>
         </div>
       </section>
 
       {/* ── CONTENT ── */}
-      <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 72px) 0" }}>
-        <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8" style={{ lineHeight: "1.72", color: "#4B5563", fontSize: "1rem" }}>
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+      <section style={{ background: "#fff", padding: "clamp(40px, 8vw, 80px) 0" }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" style={{ lineHeight: "1.8", color: "#0F172A" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             1. Introduction
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -58,10 +35,10 @@ export function PrivacyPage() {
             lorsque vous visitez notre site web revyontech.com (« Site »).
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             2. Informations que nous collectons
           </h2>
-          <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "7px", marginTop: "20px" }}>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "#334155", marginBottom: "8px", marginTop: "16px" }}>
             2.1 Informations que vous nous fournissez
           </h3>
           <p style={{ marginBottom: "16px" }}>
@@ -75,7 +52,7 @@ export function PrivacyPage() {
             <li>Votre message ou description de projet</li>
           </ul>
 
-          <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "7px", marginTop: "20px" }}>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "#334155", marginBottom: "8px", marginTop: "16px" }}>
             2.2 Données collectées automatiquement
           </h3>
           <p style={{ marginBottom: "16px" }}>
@@ -83,7 +60,7 @@ export function PrivacyPage() {
             Les données collectées incluent l'adresse IP, le type de navigateur, le système d'exploitation, et les pages visitées.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             3. Utilisation de vos données
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -97,7 +74,7 @@ export function PrivacyPage() {
             <li>Respecter les obligations légales applicables</li>
           </ul>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             4. Partage de vos données
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -106,7 +83,7 @@ export function PrivacyPage() {
             et accessibles uniquement aux membres autorisés de l'équipe Revyon Tech.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             5. Durée de conservation
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -115,7 +92,7 @@ export function PrivacyPage() {
             à tout moment en nous contactant à revyontech@gmail.com.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             6. Sécurité
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -124,7 +101,7 @@ export function PrivacyPage() {
             Bien que nous prenions des mesures de sécurité appropriées, aucun système n'est 100% sécurisé.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             7. Vos droits
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -141,7 +118,7 @@ export function PrivacyPage() {
             Pour exercer ces droits, envoyez un email à revyontech@gmail.com.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             8. Cookies
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -149,7 +126,7 @@ export function PrivacyPage() {
             pour refuser les cookies, bien que cela puisse affecter certaines fonctionnalités du Site.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             9. Modifications de cette Politique
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -158,7 +135,7 @@ export function PrivacyPage() {
             constitue votre acceptation de la version mise à jour.
           </p>
 
-          <h2 style={{ fontSize: "1.28rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.015em", marginBottom: "14px", marginTop: "38px", paddingTop: "22px", borderTop: "1px solid #E7EBF0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", marginTop: "32px" }}>
             10. Nous contacter
           </h2>
           <p style={{ marginBottom: "16px" }}>
@@ -178,7 +155,7 @@ export function PrivacyPage() {
           </div>
 
           {/* CTA */}
-          <div style={{ background: "linear-gradient(135deg, #0C4A6E 0%, #075985 100%)", padding: "40px 24px", borderRadius: "16px", textAlign: "center", marginTop: "48px" }}>
+          <div style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)", padding: "40px 24px", borderRadius: "16px", textAlign: "center", marginTop: "48px" }}>
             <h3 style={{ color: "#fff", fontSize: "1.25rem", fontWeight: "700", marginBottom: "12px" }}>
               Des questions sur vos données ?
             </h3>
@@ -193,7 +170,7 @@ export function PrivacyPage() {
                 gap: "8px",
                 padding: "12px 28px",
                 background: "#fff",
-                color: "#075985",
+                color: "#0284C7",
                 borderRadius: "8px",
                 textDecoration: "none",
                 fontWeight: "700",
