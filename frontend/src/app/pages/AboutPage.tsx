@@ -22,7 +22,7 @@ import {
 // reprend la poignée de main, la section « notre histoire » le poste de
 // travail.
 const ABOUT_HERO_IMAGE = "/photos/poignee-de-main.jpg";
-const ABOUT_IMAGE = "/photos/poste-de-travail.jpg";
+const ABOUT_IMAGE = "/photos/collaboratrice.jpg";
 
 const team = [
   {
@@ -234,12 +234,12 @@ export function AboutPage() {
             <div>
               <img
                 src={ABOUT_IMAGE}
-                alt="Poste de travail de l'équipe Revyon Tech"
-                width={853}
-                height={454}
+                alt="Une collaboratrice de Revyon Tech à son poste de travail"
+                width={438}
+                height={730}
                 loading="lazy"
                 decoding="async"
-                className="photo-entreprise photo-entreprise--bureau"
+                className="photo-collaboratrice"
                 style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}
               />
             </div>

@@ -230,8 +230,25 @@ html { scroll-behavior: smooth; }
     object-fit: cover;
     object-position: 28% center;
   }
-  .photo-entreprise--bureau {
-    height: 240px;
-    object-position: center;
+}
+
+/* La photo de la page À propos vient du même visuel, mais le texte incrusté
+   de l'affiche se trouvait à la hauteur du visage : un recadrage pleine
+   largeur passait forcément sous le menton. Celui-ci part de la droite de ce
+   texte, garde le visage, et se place en haut du cadre pour que la tête ne
+   soit jamais rognée. */
+.photo-collaboratrice {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  object-position: center 6%;
+  display: block;
+  border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+  .photo-collaboratrice {
+    height: 380px;
+    object-position: center 5%;
   }
 }
