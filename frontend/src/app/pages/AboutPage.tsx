@@ -18,8 +18,11 @@ import {
   Settings,
 } from "lucide-react";
 
-const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1594098882270-66ce9399b040?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwdGVjaCUyMHN0YXJ0dXAlMjBjb21wYW55JTIwb2ZmaWNlfGVufDF8fHx8MTc3NTMwNzcxMHww&ixlib=rb-4.1.0&q=80&w=1080";
+// Photos de Revyon Tech plutôt que des images de banque : le bandeau
+// reprend la poignée de main, la section « notre histoire » le poste de
+// travail.
+const ABOUT_HERO_IMAGE = "/photos/poignee-de-main.jpg";
+const ABOUT_IMAGE = "/photos/poste-de-travail.jpg";
 
 const team = [
   {
@@ -142,7 +145,7 @@ export function AboutPage() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `url(${ABOUT_IMAGE})`,
+            backgroundImage: `url(${ABOUT_HERO_IMAGE})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.1,
@@ -231,14 +234,13 @@ export function AboutPage() {
             <div>
               <img
                 src={ABOUT_IMAGE}
-                alt="Revyon Tech bureau"
-                style={{
-                  width: "100%",
-                  height: "380px",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
-                }}
+                alt="Poste de travail de l'équipe Revyon Tech"
+                width={853}
+                height={454}
+                loading="lazy"
+                decoding="async"
+                className="photo-entreprise photo-entreprise--bureau"
+                style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.12)" }}
               />
             </div>
           </div>

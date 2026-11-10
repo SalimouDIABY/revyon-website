@@ -4,8 +4,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 import { products } from "../data/products";
 import { trackEvent } from "../analytics";
 
-const TECH_IMAGE =
-  "https://images.unsplash.com/photo-1765728617352-895327fcf036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwb2ZmaWNlJTIwZGlnaXRhbCUyMGlubm92YXRpb258ZW58MXx8fHwxNzc1MzA3NzA0fDA&ixlib=rb-4.1.0&q=80&w=1080";
+// Photo de Revyon Tech, pas une image de banque.
+const TECH_IMAGE = "/photos/poste-de-travail.jpg";
 
 export function PortfolioPage() {
   usePageMeta(

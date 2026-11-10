@@ -206,3 +206,32 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* ── Photos de l'entreprise ───────────────────────────────────────────────
+   Nos visuels sont des panoramas : la poignée de main fait 994 × 438, avec
+   un visage à chaque extrémité. Affichée en entier, la photo est juste sur
+   un écran large mais devient une bande de 150 px sur un téléphone, que les
+   deux badges flottants recouvrent presque entièrement. Sur petit écran on
+   lui redonne donc de la hauteur et on cadre à 28 % depuis la gauche, ce
+   qui garde le visage de gauche et les mains qui se serrent.
+
+   Ces règles vivent ici et non dans la feuille injectée par la page : cette
+   dernière n'arrive qu'après l'hydratation, et la photo sauterait. */
+.photo-entreprise {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+  .photo-entreprise {
+    height: 280px;
+    object-fit: cover;
+    object-position: 28% center;
+  }
+  .photo-entreprise--bureau {
+    height: 240px;
+    object-position: center;
+  }
+}

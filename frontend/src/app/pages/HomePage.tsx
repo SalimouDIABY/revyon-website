@@ -197,10 +197,11 @@ function useCounter(target: number, suffix: string, duration = 1400) {
 /* ─────────────────────────────────────────────
    IMAGES
 ───────────────────────────────────────────── */
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1765728617352-895327fcf036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwb2ZmaWNlJTIwZGlnaXRhbCUyMGlubm92YXRpb258ZW58MXx8fHwxNzc1MzA3NzA0fDA&ixlib=rb-4.1.0&q=80&w=1080";
-const TEAM_IMAGE =
-  "https://images.unsplash.com/photo-1573167627769-e201a7ddf409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZyUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzUzMDc3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080";
+// Photos de Revyon Tech, recadrées depuis nos visuels publiés sur Facebook.
+// Elles remplacent les images de banque qui n'avaient rien à voir avec
+// l'entreprise, et elles sont servies depuis notre propre domaine.
+const HERO_IMAGE = "/photos/poignee-de-main.jpg";
+const TEAM_IMAGE = "/photos/poignee-de-main.jpg";
 
 /* ─────────────────────────────────────────────
    DATA
@@ -450,8 +451,13 @@ export function HomePage() {
             <div className="reveal" style={{ position:"relative" }}>
               <img
                 src={TEAM_IMAGE}
-                alt="Équipe Revyon Tech"
-                style={{ width:"100%", height:"420px", objectFit:"cover", borderRadius:"20px", boxShadow:"0 20px 60px rgba(0,0,0,0.15)" }}
+                alt="Un conseiller de Revyon Tech serre la main d'un client après un rendez-vous"
+                width={994}
+                height={438}
+                loading="lazy"
+                decoding="async"
+                className="photo-entreprise"
+                style={{ boxShadow:"0 20px 60px rgba(0,0,0,0.15)" }}
               />
               {/* Badge bas-gauche : flotte vers le bas */}
               <div
