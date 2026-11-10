@@ -109,7 +109,7 @@ const CSS = `
     transition: background 0.2s ease, border-color 0.2s ease;
   }
   .btn-secondary:hover {
-    background: rgba(3,44,72,0.48) !important;
+    background: rgba(255,255,255,0.12) !important;
   }
 
   /* Floating badges sur l'image */
@@ -233,7 +233,7 @@ function AnimatedStat({ value, label, animate = true }: { value: string; label: 
 
   return (
     <div ref={ref}>
-      <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#FFEAD5", lineHeight: 1 }}>
+      <div style={{ fontSize: "1.9rem", fontWeight: "800", color: "#F97316", lineHeight: 1 }}>
         {animate ? (displayed || value) : value}
       </div>
       <div style={{ fontSize: "0.8rem", color: "#fff", marginTop: "4px", opacity: 0.9 }}>{label}</div>
@@ -274,7 +274,7 @@ export function HomePage() {
       ══════════════════════════════════════ */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A7BAD 0%, #0E7490 50%, #0A6E9E 100%)",
+          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #0096D6 100%)",
           minHeight: "90vh",
           display: "flex",
           alignItems: "center",
@@ -292,7 +292,7 @@ export function HomePage() {
           }}
         />
         {/* Gradient overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(3,44,72,.22) 0%,rgba(3,44,72,.10) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(14,165,233,.3) 0%,rgba(14,165,233,.2) 100%)" }} />
         {/* Decorative circles */}
         <div style={{ position:"absolute", top:"-100px", right:"-100px", width:"500px", height:"500px", borderRadius:"50%", background:"radial-gradient(circle,rgba(14,165,233,.15) 0%,transparent 70%)" }} />
         <div style={{ position:"absolute", bottom:"-80px", left:"-80px", width:"400px", height:"400px", borderRadius:"50%", background:"radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 70%)" }} />
@@ -304,15 +304,15 @@ export function HomePage() {
             <div
               style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
-                background: "rgba(3,44,72,0.32)",
-                border: "1px solid rgba(255,255,255,0.3)",
+                background: "rgba(14,165,233,0.15)",
+                border: "1px solid rgba(14,165,233,0.3)",
                 borderRadius: "100px", padding: "6px 16px", marginBottom: "24px",
                 animation: "fadeIn 0.6s ease forwards",
                 opacity: 0,
               }}
             >
-              <div className="pulse-dot" style={{ width:"8px", height:"8px", borderRadius:"50%", background:"#FFFFFF" }} />
-              <span style={{ color:"#FFFFFF", fontSize:"0.85rem", fontWeight:"500" }}>
+              <div className="pulse-dot" style={{ width:"8px", height:"8px", borderRadius:"50%", background:"#7DD3FC" }} />
+              <span style={{ color:"#7DD3FC", fontSize:"0.85rem", fontWeight:"500" }}>
                 Votre partenaire digital partout en Guinée
               </span>
             </div>
@@ -329,11 +329,11 @@ export function HomePage() {
               }}
             >
               Transformez vos{" "}
-              <span style={{ background:"linear-gradient(135deg,#FFEAD5 0%,#FFF1E0 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              <span style={{ background:"linear-gradient(135deg,#F97316 0%,#FBBF24 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 idées
               </span>{" "}
               en solutions{" "}
-              <span style={{ color:"#FFEAD5" }}>digitales</span>
+              <span style={{ color:"#38BDF8" }}>digitales</span>
             </h1>
 
             {/* Paragraphe : animation 3 */}
@@ -360,7 +360,7 @@ export function HomePage() {
                 style={{
                   display:"inline-flex", alignItems:"center", gap:"8px",
                   padding:"14px 32px",
-                  background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)",
+                  background:"linear-gradient(135deg,#F97316 0%,#EA580C 100%)",
                   color:"#fff", borderRadius:"10px", textDecoration:"none",
                   fontWeight:"700", fontSize:"1rem",
                   boxShadow:"0 4px 20px rgba(249,115,22,0.4)",
@@ -374,7 +374,7 @@ export function HomePage() {
                 style={{
                   display:"inline-flex", alignItems:"center", gap:"8px",
                   padding:"14px 32px",
-                  background:"rgba(3,44,72,0.3)",
+                  background:"rgba(255,255,255,0.05)",
                   border:"1px solid rgba(255,255,255,0.2)",
                   color:"#fff", borderRadius:"10px", textDecoration:"none",
                   fontWeight:"600", fontSize:"1rem",
@@ -408,10 +408,10 @@ export function HomePage() {
 
             {/* Texte : slide depuis la gauche */}
             <div className="reveal-left">
-              <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+              <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
                 À propos de nous
               </div>
-              <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", lineHeight:"1.2", marginBottom:"16px", letterSpacing:"-0.02em" }}>
+              <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", lineHeight:"1.2", marginBottom:"16px", letterSpacing:"-0.02em" }}>
                 Une agence tech au cœur de l'Afrique
               </h2>
               <p style={{ color:"#0F172A", lineHeight:"1.8", marginBottom:"20px" }}>
@@ -431,7 +431,7 @@ export function HomePage() {
                     className="check-item flex items-center gap-3"
                     style={{ animationDelay: `${0.1 + i * 0.15}s` }}
                   >
-                    <CheckCircle2 size={18} color="#0369A1" />
+                    <CheckCircle2 size={18} color="#0EA5E9" />
                     <span style={{ color:"#334155", fontWeight:"500" }}>{item}</span>
                   </div>
                 ))}
@@ -440,7 +440,7 @@ export function HomePage() {
               <Link
                 to="/a-propos"
                 className="btn-primary"
-                style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"12px 28px", background:"linear-gradient(135deg,#0A6E9E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+                style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"12px 28px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
               >
                 En savoir plus <ArrowRight size={16} />
               </Link>
@@ -462,7 +462,7 @@ export function HomePage() {
                   boxShadow:"0 8px 30px rgba(0,0,0,0.12)", border:"1px solid #E2E8F0",
                 }}
               >
-                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#C2410C" }}>3</div>
+                <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#F97316" }}>3</div>
                 <div style={{ fontSize:"0.8rem", color:"#0F172A", fontWeight:"500" }}>Logiciels édités</div>
               </div>
               {/* Badge haut-droite : flotte vers le haut */}
@@ -470,13 +470,13 @@ export function HomePage() {
                 className="float-a"
                 style={{
                   position:"absolute", top:"-20px", right:"-20px",
-                  background:"linear-gradient(135deg,#0A6E9E,#075985)",
+                  background:"linear-gradient(135deg,#0EA5E9,#0284C7)",
                   borderRadius:"16px", padding:"16px 20px",
                   boxShadow:"0 8px 30px rgba(14,165,233,0.3)",
                 }}
               >
                 <div style={{ fontSize:"1.5rem", fontWeight:"800", color:"#fff" }}>100%</div>
-                <div style={{ fontSize:"0.8rem", color:"#E8F4FB", fontWeight:"500" }}>Satisfaction</div>
+                <div style={{ fontSize:"0.8rem", color:"#BAE6FD", fontWeight:"500" }}>Satisfaction</div>
               </div>
             </div>
 
@@ -491,10 +491,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#FFF7ED", color:"#9A3412", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+            <div style={{ display:"inline-block", background:"#FFF7ED", color:"#EA580C", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
               Nos Services
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
               Ce que nous faisons pour vous
             </h2>
             <p style={{ color:"#0F172A", maxWidth:"550px", margin:"0 auto", lineHeight:"1.8" }}>
@@ -526,7 +526,7 @@ export function HomePage() {
                   >
                     <Icon size={24} color={i % 2 === 0 ? "#0EA5E9" : "#F97316"} />
                   </div>
-                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"8px" }}>{service.title}</h3>
+                  <h3 style={{ fontWeight:"700", color:"#0EA5E9", marginBottom:"8px" }}>{service.title}</h3>
                   <p style={{ color:"#0F172A", fontSize:"0.9rem", lineHeight:"1.7" }}>{service.desc}</p>
                 </div>
               );
@@ -537,7 +537,7 @@ export function HomePage() {
             <Link
               to="/services"
               className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0A6E9E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
             >
               Voir tous nos services <ArrowRight size={16} />
             </Link>
@@ -552,10 +552,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
               Nos Produits
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
               Des logiciels que nous éditons nous-mêmes
             </h2>
             <p style={{ color:"#0F172A", maxWidth:"620px", margin:"0 auto", lineHeight:"1.8" }}>
@@ -589,7 +589,7 @@ export function HomePage() {
                   <div
                     style={{
                       display:"inline-block", alignSelf:"flex-start",
-                      background: product.theme.accentText, color:"#fff",
+                      background: product.theme.accent, color:"#fff",
                       padding:"3px 12px", borderRadius:"100px",
                       fontSize:"0.7rem", fontWeight:"700", letterSpacing:"0.04em",
                       textTransform:"uppercase", marginBottom:"12px",
@@ -597,14 +597,14 @@ export function HomePage() {
                   >
                     {product.audience}
                   </div>
-                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"8px", fontSize:"1.15rem" }}>
+                  <h3 style={{ fontWeight:"700", color:"#0EA5E9", marginBottom:"8px", fontSize:"1.15rem" }}>
                     {product.name}
                   </h3>
                   <p style={{ color:"#0F172A", fontSize:"0.9rem", lineHeight:"1.7", marginBottom:"18px" }}>
                     {product.cardLine}
                   </p>
                   <div className="flex items-center justify-between" style={{ marginTop:"auto" }}>
-                    <span style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#075985", fontWeight:"600", fontSize:"0.9rem" }}>
+                    <span style={{ display:"inline-flex", alignItems:"center", gap:"6px", color:"#0284C7", fontWeight:"600", fontSize:"0.9rem" }}>
                       En savoir plus <ArrowRight size={15} />
                     </span>
                     <span style={{ display:"inline-flex", alignItems:"center", gap:"4px", color:"#64748B", fontSize:"0.8rem" }}>
@@ -620,7 +620,7 @@ export function HomePage() {
             <Link
               to="/portfolio"
               className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0A6E9E 0%,#075985 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"13px 32px", background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", boxShadow:"0 4px 16px rgba(14,165,233,0.3)" }}
             >
               Découvrir nos réalisations <ArrowRight size={16} />
             </Link>
@@ -635,10 +635,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14 reveal">
-            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#075985", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
+            <div style={{ display:"inline-block", background:"#E0F2FE", color:"#0284C7", padding:"4px 16px", borderRadius:"100px", fontSize:"0.82rem", fontWeight:"600", marginBottom:"16px" }}>
               Pourquoi nous choisir
             </div>
-            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0C4A6E", letterSpacing:"-0.02em", marginBottom:"16px" }}>
+            <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.5rem)", fontWeight:"800", color:"#0EA5E9", letterSpacing:"-0.02em", marginBottom:"16px" }}>
               Notre engagement envers l'excellence
             </h2>
           </div>
@@ -661,7 +661,7 @@ export function HomePage() {
                     className="reason-icon"
                     style={{
                       width:"64px", height:"64px", borderRadius:"50%",
-                      background:"linear-gradient(135deg,#0A6E9E 0%,#075985 100%)",
+                      background:"linear-gradient(135deg,#0EA5E9 0%,#0284C7 100%)",
                       display:"flex", alignItems:"center", justifyContent:"center",
                       margin:"0 auto 16px",
                       boxShadow:"0 4px 16px rgba(14,165,233,0.3)",
@@ -669,7 +669,7 @@ export function HomePage() {
                   >
                     <Icon size={26} color="#fff" />
                   </div>
-                  <h3 style={{ fontWeight:"700", color:"#0C4A6E", marginBottom:"10px" }}>{reason.title}</h3>
+                  <h3 style={{ fontWeight:"700", color:"#0EA5E9", marginBottom:"10px" }}>{reason.title}</h3>
                   <p style={{ color:"#0F172A", fontSize:"0.88rem", lineHeight:"1.7" }}>{reason.desc}</p>
                 </div>
               );
@@ -683,7 +683,7 @@ export function HomePage() {
       ══════════════════════════════════════ */}
       <section
         style={{
-          background:"linear-gradient(135deg,#0A7BAD 0%,#0E7490 100%)",
+          background:"linear-gradient(135deg,#0EA5E9 0%,#06B6D4 100%)",
           padding:"clamp(40px,8vw,80px) 0",
           position:"relative", overflow:"hidden",
         }}
@@ -700,14 +700,14 @@ export function HomePage() {
             <Link
               to="/contact"
               className="btn-primary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"linear-gradient(135deg,#C2410C 0%,#9A3412 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"700", fontSize:"1.05rem", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"linear-gradient(135deg,#F97316 0%,#EA580C 100%)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"700", fontSize:"1.05rem", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}
             >
               Nous contacter <ArrowRight size={18} />
             </Link>
             <Link
               to="/portfolio"
               className="btn-secondary"
-              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(3,44,72,0.3)", border:"1px solid rgba(255,255,255,0.3)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
+              style={{ display:"inline-flex", alignItems:"center", gap:"8px", padding:"15px 36px", background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", borderRadius:"10px", textDecoration:"none", fontWeight:"600", fontSize:"1.05rem" }}
             >
               Voir nos réalisations
             </Link>

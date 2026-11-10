@@ -16,7 +16,7 @@ const services = [
     icon: Globe,
     title: "Création de sites web professionnels",
     tagline: "Votre vitrine digitale 24h/24",
-    color: "#0C4A6E",
+    color: "#0EA5E9",
     bg: "#E0F2FE",
     problem: "Un site web, c'est votre commercial qui travaille 24h/24. Sans lui, vous perdez des clients chaque jour.",
     included: [
@@ -33,7 +33,7 @@ const services = [
     icon: Code,
     title: "Développement de logiciels et applications",
     tagline: "Solutions sur mesure pour vos besoins",
-    color: "#C2410C",
+    color: "#F97316",
     bg: "#FFF7ED",
     problem: "Votre activité a des besoins spécifiques que les logiciels standards ne couvrent pas.",
     included: [
@@ -50,7 +50,7 @@ const services = [
     icon: Palette,
     title: "Design graphique et identité visuelle",
     tagline: "Identité visuelle inoubliable",
-    color: "#6D28D9",
+    color: "#8B5CF6",
     bg: "#EDE9FE",
     problem: "Votre logo est la première chose que vos clients voient. Il doit être mémorable.",
     included: [
@@ -66,7 +66,7 @@ const services = [
     icon: TrendingUp,
     title: "Marketing digital et communication",
     tagline: "Soyez vu, entendu et choisi",
-    color: "#047857",
+    color: "#10B981",
     bg: "#D1FAE5",
     problem: "Être présent en ligne ne suffit pas. Il faut être vu, entendu et choisi.",
     included: [
@@ -82,7 +82,7 @@ const services = [
     icon: Video,
     title: "Production multimedia et vidéo IA",
     tagline: "Contenus visuels professionnels",
-    color: "#BE185D",
+    color: "#EC4899",
     bg: "#FCE7F3",
     problem: "Une vidéo professionnelle convainc 10x plus qu'un texte.",
     included: [
@@ -99,7 +99,7 @@ const services = [
     icon: BookOpen,
     title: "Formation et accompagnement numérique",
     tagline: "Votre équipe maîtrise la technologie",
-    color: "#0E7490",
+    color: "#06B6D4",
     bg: "#CFFAFE",
     problem: "La technologie ne sert à rien si elle n'est pas maîtrisée.",
     included: [
@@ -116,7 +116,7 @@ const services = [
     icon: Cpu,
     title: "Vente de matériel informatique",
     tagline: "Ordinateur sélectionné et prêt à l'emploi",
-    color: "#4338CA",
+    color: "#6366F1",
     bg: "#E0E7FF",
     problem: "Un matériel mal configuré vous coûte du temps chaque jour.",
     included: [
@@ -163,13 +163,13 @@ export function ServicesPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A7BAD 0%, #0E7490 100%)",
+          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
           padding: "clamp(40px, 8vw, 80px) 0",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: "800", color: "#fff", marginBottom: "20px" }}>
-            Nos 7 services digitaux <span style={{ color: "#FFEAD5" }}>complets</span>
+            Nos 7 services digitaux <span style={{ color: "#F97316" }}>complets</span>
           </h1>
           <p style={{ color: "#fff", fontSize: "1.05rem", maxWidth: "600px", margin: "0 auto" }}>
             De la création web au marketing digital, découvrez toutes nos solutions conçues pour propulser votre entreprise.
@@ -219,7 +219,7 @@ export function ServicesPage() {
                   >
                     <Icon size={28} color={service.color} />
                   </div>
-                  <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "#0C4A6E", marginBottom: "4px" }}>
+                  <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "#0EA5E9", marginBottom: "4px" }}>
                     {service.title}
                   </h3>
                   <p style={{ fontSize: "0.8rem", color: service.color, fontWeight: "600", marginBottom: "12px" }}>
@@ -267,7 +267,7 @@ export function ServicesPage() {
       {/* ── NOTRE APPROCHE ── */}
       <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0C4A6E", marginBottom: "16px", textAlign: "center" }}>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", textAlign: "center" }}>
             Notre processus de travail
           </h2>
           <p style={{ textAlign: "center", color: "#0F172A", marginBottom: "48px", fontSize: "1rem" }}>
@@ -287,7 +287,7 @@ export function ServicesPage() {
                   style={{
                     fontSize: "2.5rem",
                     fontWeight: "900",
-                    color: "#0C4A6E",
+                    color: "#0EA5E9",
                     marginBottom: "8px",
                   }}
                 >
@@ -308,7 +308,7 @@ export function ServicesPage() {
       {/* ── FAQ (réponse d'abord : visibilité IA / GEO-AEO) ── */}
       <section style={{ background: "#F8FAFC", padding: "clamp(60px, 10vw, 100px) 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0C4A6E", marginBottom: "16px", textAlign: "center" }}>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: "800", color: "#0EA5E9", marginBottom: "16px", textAlign: "center" }}>
             Questions fréquentes
           </h2>
           <p style={{ textAlign: "center", color: "#475569", marginBottom: "48px", fontSize: "1rem" }}>
@@ -338,12 +338,12 @@ export function ServicesPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "linear-gradient(135deg, #0A6E9E 0%, #075985 100%)", padding: "60px 0" }}>
+      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)", padding: "60px 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 style={{ fontSize: "2rem", fontWeight: "800", color: "#fff", marginBottom: "12px" }}>
             Prêt à transformer votre activité ?
           </h2>
-          <p style={{ color: "#E8F4FB", marginBottom: "28px" }}>
+          <p style={{ color: "#BAE6FD", marginBottom: "28px" }}>
             Obtenez un devis gratuit et personnalisé pour votre projet.
           </p>
           <Link
@@ -354,7 +354,7 @@ export function ServicesPage() {
               gap: "8px",
               padding: "14px 36px",
               background: "#fff",
-              color: "#075985",
+              color: "#0284C7",
               borderRadius: "10px",
               textDecoration: "none",
               fontWeight: "700",

@@ -19,7 +19,7 @@ export function PortfolioPage() {
       {/* ── HERO ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0A7BAD 0%, #0E7490 100%)",
+          background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
           padding: "clamp(40px, 8vw, 80px) 0",
           position: "relative",
           overflow: "hidden",
@@ -39,9 +39,9 @@ export function PortfolioPage() {
           <div
             style={{
               display: "inline-block",
-              background: "rgba(3,44,72,0.32)",
-              border: "1px solid rgba(255,255,255,0.3)",
-              color: "#FFFFFF",
+              background: "rgba(14,165,233,0.15)",
+              border: "1px solid rgba(14,165,233,0.3)",
+              color: "#7DD3FC",
               padding: "4px 20px",
               borderRadius: "100px",
               fontSize: "0.85rem",
@@ -61,7 +61,7 @@ export function PortfolioPage() {
               marginBottom: "20px",
             }}
           >
-            Trois logiciels <span style={{ color: "#FFEAD5" }}>en production</span>
+            Trois logiciels <span style={{ color: "#F97316" }}>en production</span>
           </h1>
           <p style={{ color: "#fff", fontSize: "1.05rem", lineHeight: "1.8", maxWidth: "620px", margin: "0 auto", opacity: 0.95 }}>
             Chacun est né d'un besoin qu'un client nous a décrit, et chacun tourne aujourd'hui au
@@ -90,7 +90,7 @@ export function PortfolioPage() {
               {/* Bandeau */}
               <div
                 style={{
-                  background: "linear-gradient(135deg, #0A6E9E 0%, #075985 100%)",
+                  background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
                   padding: "12px 24px",
                 }}
                 className="flex flex-wrap items-center justify-between gap-3"
@@ -98,7 +98,7 @@ export function PortfolioPage() {
                 <div className="flex items-center gap-3">
                   <div
                     style={{
-                      background: "rgba(3,44,72,0.38)",
+                      background: "rgba(255,255,255,0.2)",
                       borderRadius: "6px",
                       padding: "4px 12px",
                       fontSize: "0.78rem",
@@ -108,7 +108,7 @@ export function PortfolioPage() {
                   >
                     PRODUIT #{index + 1}
                   </div>
-                  <span style={{ color: "#E8F4FB", fontSize: "0.85rem" }}>{product.year}</span>
+                  <span style={{ color: "#BAE6FD", fontSize: "0.85rem" }}>{product.year}</span>
                 </div>
                 <div
                   style={{
@@ -150,7 +150,7 @@ export function PortfolioPage() {
                     style={{
                       display: "inline-block",
                       background: "#E0F2FE",
-                      color: "#075985",
+                      color: "#0284C7",
                       padding: "4px 14px",
                       borderRadius: "8px",
                       fontSize: "0.78rem",
@@ -164,7 +164,7 @@ export function PortfolioPage() {
                     style={{
                       fontSize: "1.5rem",
                       fontWeight: "800",
-                      color: "#0C4A6E",
+                      color: "#0EA5E9",
                       marginBottom: "6px",
                       letterSpacing: "-0.02em",
                     }}
@@ -218,7 +218,7 @@ export function PortfolioPage() {
                         justifyContent: "center",
                         gap: "8px",
                         padding: "12px 24px",
-                        background: "linear-gradient(135deg, #0A6E9E 0%, #075985 100%)",
+                        background: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
                         color: "#fff",
                         borderRadius: "10px",
                         textDecoration: "none",
@@ -238,7 +238,7 @@ export function PortfolioPage() {
                         gap: "8px",
                         padding: "12px 24px",
                         background: "#fff",
-                        color: "#0C4A6E",
+                        color: "#0EA5E9",
                         border: "1px solid #0EA5E9",
                         borderRadius: "10px",
                         textDecoration: "none",
@@ -274,7 +274,7 @@ export function PortfolioPage() {
             >
               Design & Branding
             </div>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: "800", color: "#0C4A6E", letterSpacing: "-0.02em", marginBottom: "10px" }}>
+            <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: "800", color: "#0EA5E9", letterSpacing: "-0.02em", marginBottom: "10px" }}>
               L'identité de marque Revyon Tech
             </h2>
             <p style={{ color: "#0F172A", lineHeight: "1.8", maxWidth: "620px", margin: "0 auto" }}>
@@ -285,7 +285,7 @@ export function PortfolioPage() {
 
           <div
             style={{
-              background: "linear-gradient(135deg, #0A6E9E 0%, #0C2340 100%)",
+              background: "linear-gradient(135deg, #0EA5E9 0%, #0C2340 100%)",
               borderRadius: "20px",
               padding: "clamp(28px, 5vw, 48px)",
             }}
@@ -319,7 +319,7 @@ export function PortfolioPage() {
                 {[
                   { color: "#0C2340", name: "Bleu nuit" },
                   { color: "#1A3A6B", name: "Bleu marine" },
-                  { color: "#0C4A6E", name: "Bleu vif" },
+                  { color: "#0EA5E9", name: "Bleu vif" },
                   { color: "#E84C1E", name: "Orange RT" },
                   { color: "#ffffff", name: "Blanc", border: true },
                 ].map((c) => (
@@ -335,7 +335,7 @@ export function PortfolioPage() {
                       }}
                     />
                     <span style={{ fontSize: "0.62rem", color: "#fff", textAlign: "center" }}>{c.name}</span>
-                    <span style={{ fontSize: "0.6rem", color: "#E8F4FB", fontFamily: "monospace" }}>{c.color}</span>
+                    <span style={{ fontSize: "0.6rem", color: "#BAE6FD", fontFamily: "monospace" }}>{c.color}</span>
                   </div>
                 ))}
               </div>
@@ -345,7 +345,7 @@ export function PortfolioPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: "linear-gradient(135deg, #0A7BAD 0%, #0E7490 100%)", padding: "60px 0" }}>
+      <section style={{ background: "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)", padding: "60px 0" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: "800", color: "#fff", marginBottom: "12px" }}>
             Votre métier mérite son propre outil
@@ -361,7 +361,7 @@ export function PortfolioPage() {
               alignItems: "center",
               gap: "8px",
               padding: "13px 32px",
-              background: "linear-gradient(135deg, #C2410C 0%, #9A3412 100%)",
+              background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
               color: "#fff",
               borderRadius: "10px",
               textDecoration: "none",
